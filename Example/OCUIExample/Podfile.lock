@@ -1,16 +1,20 @@
 PODS:
+  - CombineObjectObjc (1.0.0)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
+  - CombineObjectObjc
   - Masonry
 
 SPEC REPOS:
   trunk:
+    - CombineObjectObjc
     - Masonry
 
 SPEC CHECKSUMS:
+  CombineObjectObjc: f003a1717e8736dd95e20f7e9c7d9b7d1944e2ad
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: a1bd8db01735b25e79cd8e43a2b7b980bbb5109e
+PODFILE CHECKSUM: 028ec9ee039f196e50e0d562c7b6bbcbf59ddc4f
 
 COCOAPODS: 1.8.0.beta.1

@@ -8,7 +8,6 @@
 #import <objc/runtime.h>
 #import <Masonry/Masonry.h>
 #import "OCUIMaker.h"
-#import "OCUITransfer.h"
 
 
 @implementation OCUIMaker {
@@ -44,6 +43,18 @@
         _stack = [[OCUIVStack alloc] init];
     }
     return _stack;
+}
+
+- (OCUIVStack * _Nonnull (^)(OCUIHorizontalAlignment))alignment {
+    return ^OCUIVStack *(OCUIHorizontalAlignment alignment) {
+        if ([self.stack isKindOfClass:[OCUIVStack class]]) {
+            OCUIVStack *vStack = (OCUIVStack *)self.stack;
+            vStack.alignment(alignment);
+            return vStack;
+        } else {
+            return nil;
+        }
+    };
 }
 
 @end

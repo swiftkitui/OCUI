@@ -91,7 +91,7 @@
 - (NSUInteger)automaticRenderViewCount {
     __block NSUInteger count = 0;
     [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (!CGSizeEqualToSize([self sizeWithRenderView:obj], CGSizeZero)) {
+        if (!CGSizeEqualToSize([self sizeWithRenderView:obj], CGSizeZero) || [obj isKindOfClass:[OCUISpacer class]]) {
             return;
         }
         count ++;
@@ -104,7 +104,7 @@
     if ([renderView respondsToSelector:@selector(renderSize)]) {
         renderSize = [renderView renderSize];
     }
-    if (renderSize.width >= 0 && renderSize.height >= 0) {
+    if (renderSize.width > 0 && renderSize.height > 0) {
         return renderSize;
     }
     UIView *makeView = [self viewWithRenderView:renderView];
@@ -112,7 +112,7 @@
         return CGSizeZero;
     }
     CGSize intrinsicContentSize = makeView.intrinsicContentSize;
-    if (intrinsicContentSize.width >= 0 && intrinsicContentSize.height >= 0) {
+    if (intrinsicContentSize.width > 0 && intrinsicContentSize.height > 0) {
         return intrinsicContentSize;
     }
     return intrinsicContentSize;

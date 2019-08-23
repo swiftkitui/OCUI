@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (OCUIText *(^)(NSString *content))Text;
 - (OCUISpacer *(^)(void))Spacer;
 - (OCUIView *(^)(void))View;
+- (OCUIVStack *(^)(OCUIHorizontalAlignment))alignment;
 
 @end
 

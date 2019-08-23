@@ -10,7 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger,OCUIHorizontalAlignment) {
+    OCUIHorizontalAlignmentLeading,
+    OCUIHorizontalAlignmentCenter,
+    OCUIHorizontalAlignmentTrailing
+};
+
 @interface OCUIVStack : OCUIStack
+
+/// 垂直布局里面子元素的横向布局 默认为居中
+@property (nonatomic, assign, readonly) OCUIHorizontalAlignment stackAlignment;
+
+/**
+ 设置子元素的布局
+ */
+- (OCUIVStack *(^)(OCUIHorizontalAlignment))alignment;
 
 @end
 

@@ -20,7 +20,6 @@
 - (UIView *)makeOCUIView {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.text = self.content;
-    NSLog(@"%@",label);
     return label;
 }
 

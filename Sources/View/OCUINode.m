@@ -10,4 +10,8 @@
 
 @implementation OCUINode
 
+- (UIView *)makeOCUIView {
+    return nil;
+}
+
 @end

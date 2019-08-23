@@ -21,15 +21,10 @@
 }
 
 - (void)OCUIMaker:(OCUIMaker *)UI {
-    UI.View()
-    .backgroundColor([UIColor redColor]);
+    UI.alignment(OCUIHorizontalAlignmentTrailing);
     
-    UI.View()
-    .backgroundColor([UIColor blueColor])
-    .size(CGSizeMake(100, 100));
-
-    UI.View()
-    .backgroundColor([UIColor grayColor]);
+    UI.Text(@"Hello");
+    UI.Text(@"World");
 }
 
 @end
