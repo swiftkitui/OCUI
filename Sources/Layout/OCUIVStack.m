@@ -9,158 +9,101 @@
 #import "OCUIVStack.h"
 #import "OCUILayout.h"
 #import "OCUILayoutContent.h"
+#import <Masonry/Masonry.h>
 
 @implementation OCUIVStack {
-    NSMutableDictionary<NSString *, UIView *> *_makeViewMap;
-    
+
 }
 
 - (void)loadAndLayoutViewsInView:(UIView *)contentView {
-    _makeViewMap = [NSMutableDictionary dictionary];
-    for (id<OCUIRenderView> renderView in self.nodes) {
-        UIView *makeView = [self lookMakeViewWithRenderView:renderView];
-        if (!makeView) {
-            continue;
-        }
-        [contentView addSubview:makeView];
-    }
-    for (id<OCUIRenderView> renderView in self.nodes) {
-        UIView *makeView = [self lookMakeViewWithRenderView:renderView];
-        if (!makeView) {
-            continue;
-        }
-        [self addLayoutInView:renderView
-                         view:makeView
-                  contentView:contentView];
-    }
-    _makeViewMap = nil;
-}
-
-/**
- 默认的居中布局
-
- @param contentView 父试图
- @param layoutContent 约束
- @param renderView 描述 UI
- @param view 整整的 UI
- */
-- (void)centerYSize:(UIView *)contentView layoutContent:(OCUILayoutContent *)layoutContent renderView:(id<OCUIRenderView>)renderView view:(UIView *)view {
-    [layoutContent addLayout:^BOOL(MASConstraintMaker * _Nonnull make) {
-        CGSize renderSize = CGSizeZero;
-        if ([renderView respondsToSelector:@selector(renderSize)]) {
-            renderSize = [renderView renderSize];
-        }
-        CGSize size = [self addSizeInMake:make
-                               renderSize:renderSize
-                     intrinsicContentSize:[view intrinsicContentSize]];
-        if (CGSizeEqualToSize(size, CGSizeZero)) {
-            return NO;
-        }
-        NSUInteger index = [self.nodes indexOfObject:renderView];
-        make.centerX.equalTo(contentView);
-        BOOL isDoubleNumber = self.nodes.count % 2 == 0;
-        NSUInteger countCenterIndex = self.nodes.count / 2;
-        if (isDoubleNumber) {
-            countCenterIndex --;
-        }
-        if (index < countCenterIndex) {
-            make.bottom.equalTo([self lookMakeViewWithRenderViewIndex:(index + 1)].mas_top);
-        } else if (index == countCenterIndex) {
-            if (self.nodes.count % 2 != 0) {
-                make.bottom.equalTo(contentView.mas_centerY);
-            } else {
-                make.centerY.equalTo(contentView.mas_centerY);
-            }
-        } else {
-            make.top.equalTo([self lookMakeViewWithRenderViewIndex:(index - 1)].mas_bottom);
-        }
-        return YES;
-    }];
-}
-
-- (void)addLayoutInView:(id<OCUIRenderView>)renderView
-                   view:(UIView *)view
-            contentView:(UIView *)contentView  {
-    OCUILayoutContent *layoutContent = [[OCUILayoutContent alloc] initWithView:view];
+    [super loadAndLayoutViewsInView:contentView];
     
-    /// Sparce 布局
-    [layoutContent addLayout:^BOOL(MASConstraintMaker * _Nonnull make) {
-        if (![self isExitSpacer]) {
-            return NO;
+    CGFloat viewHeight = CGRectGetHeight(contentView.frame);
+    /// 设置距离顶部默认为0
+    CGFloat top = 0;
+    /// 设置距离底部默认为0
+    CGFloat bottom = 0;
+    /// 自动布局占位符的个数
+    NSUInteger automaticSpacerCount = [self automaticSpacerCount];
+    /// 自动布局占位符的高度默认为0
+    CGFloat automaticSpacerHeight = 0;
+    /// 自动渲染的试图个数
+    NSUInteger automaticRenderViewCount = [self automaticRenderViewCount];
+    /// 自动试图自动高度默认为0
+    CGFloat automaticViewHeight = 0;
+    CGFloat intrinsicContentHeight = [self intrinsicContentHeight];
+    if (automaticRenderViewCount == 0 && automaticSpacerCount == 0) {
+        /// 代表两端自动适应
+        if (top >= 0) {
+            bottom = viewHeight - intrinsicContentHeight - top;
+        } else if (bottom >= 0) {
+            top = viewHeight - intrinsicContentHeight - bottom;
         }
-        NSUInteger index = [self.nodes indexOfObject:renderView];
-        if ([renderView isEqual:self.nodes.firstObject]) {
-            make.top.equalTo(contentView).offset(0);
-        } else if ([renderView isEqual:self.nodes.lastObject]) {
-            make.bottom.equalTo(contentView).offset(0);
-        } else if([renderView isKindOfClass:[OCUISpacer class]]){
+    } else if (automaticRenderViewCount > 0) {
+        automaticViewHeight = (viewHeight - intrinsicContentHeight - top - bottom) / automaticRenderViewCount;
+    } else {
+        automaticSpacerHeight = (viewHeight - intrinsicContentHeight - top- bottom) / automaticSpacerCount;
+    }
+    
+    __block UIView *topView = contentView;
+    [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = [self viewWithRenderView:obj];
+        if (!view) {
+            return;
+        }
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            /// 布局位置
+            make.centerX.equalTo(contentView);
+            /// 布局大小
+            CGSize renderSize = [self sizeWithRenderView:obj];
+            if (renderSize.width == 0) {
+                make.width.equalTo(contentView);
+            } else {
+                make.width.mas_equalTo(renderSize.width);
+            }
             
-        } else {
-            id<OCUIRenderView> upRenderView = self.nodes[(index - 1)];
-            if ([upRenderView isKindOfClass:[OCUISpacer class]]) {
-                make.top.greaterThanOrEqualTo([self lookMakeViewWithRenderViewIndex:(index - 2)].mas_bottom).offset(0);
+            if (renderSize.height == 0) {
+                make.height.mas_equalTo(automaticViewHeight);
             } else {
-                make.top.equalTo([self lookMakeViewWithRenderViewIndex:(index - 1)].mas_bottom);
+                make.height.mas_equalTo(renderSize.height);
             }
-        }
-        make.centerX.equalTo(contentView);
-        return YES;
+            
+            /// 布局顶部
+            if ([obj isEqual:self.nodes.firstObject]) {
+                make.top.mas_offset(top);
+            } else if([obj isEqual:self.nodes.lastObject]) {
+                make.bottom.mas_offset(bottom);
+            } else {
+                id<OCUIRenderView> upRenderView = self.nodes[idx - 1];
+                if (!([upRenderView isKindOfClass:[OCUISpacer class]])) {
+                    make.top.equalTo(topView.mas_bottom);
+                } else {
+                    OCUISpacer *spacer = [[OCUISpacer alloc] init];
+                    if (spacer.lenghtOffset) {
+                        make.top.equalTo(topView.mas_bottom).offset(spacer.lenghtOffset.height);
+                    } else {
+                        make.top.equalTo(topView.mas_bottom).offset(automaticViewHeight);
+                    }
+                }
+            }
+        }];
+        topView = view;
     }];
     
-    /// 默认布局
-    [self centerYSize:contentView layoutContent:layoutContent renderView:renderView view:view];
-    
-    if (!layoutContent.isAutolayoutOK) {
-        NSString *message = [NSString stringWithFormat:@"renderView:%@ layout error",renderView];
-        NSAssert(NO, message);
-    }
 }
 
-- (CGSize)addSizeInMake:(MASConstraintMaker *)make
-             renderSize:(CGSize)renderSize
-   intrinsicContentSize:(CGSize)intrinsicContentSize{
-    if (renderSize.width != 0 && renderSize.height != 0) {
-        make.size.mas_equalTo(renderSize);
-        return renderSize;
-    } else if (intrinsicContentSize.width != 0 && intrinsicContentSize.height != 0) {
-        return intrinsicContentSize;
-    } else {
-        return CGSizeZero;
-    }
-}
-
-- (UIView *)lookMakeViewWithRenderView:(id<OCUIRenderView>)renderView {
-    NSUInteger index = [self.nodes indexOfObject:renderView];
-    return [self lookMakeViewWithRenderViewIndex:index];
-}
-
-- (UIView *)lookMakeViewWithRenderViewIndex:(NSUInteger)index {
-    NSString *key = [@(index) stringValue];
-    UIView *view = _makeViewMap[key];
-    if (!view) {
-        id<OCUIRenderView> renderView = self.nodes[index];
-        view = [renderView makeOCUIView];
-        if (view) {
-            _makeViewMap[key] = view;
-        }
-        return view;
-    } else {
-        if (view.superview) {
-            return view;
+- (CGFloat)intrinsicContentHeight {
+    __block CGFloat height = 0;
+    [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[OCUISpacer class]]) {
+            OCUISpacer *spacer = [[OCUISpacer alloc] init];
+            height += spacer.lenghtOffset.height;
         } else {
-            return nil;
+            height += [self sizeWithRenderView:obj].height;
         }
-    }
-    
+    }];
+    return height;
 }
 
-- (BOOL)isExitSpacer {
-    for (id<OCUIRenderView> renderView in self.nodes) {
-        if ([renderView isKindOfClass:[OCUISpacer class]]) {
-            return YES;
-        }
-    }
-    return NO;
-}
 
 @end

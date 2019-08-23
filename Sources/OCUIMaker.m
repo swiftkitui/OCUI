@@ -27,9 +27,15 @@
     };
 }
 
-- (OCUISpacer * _Nonnull (^)(void))spacer {
+- (OCUISpacer * _Nonnull (^)(void))Spacer {
     return ^OCUISpacer *{
-        return self.stack.spacer();
+        return self.stack.Spacer();
+    };
+}
+
+- (OCUIView * _Nonnull (^)(void))View {
+    return ^OCUIView * {
+        return self.stack.View();
     };
 }
 

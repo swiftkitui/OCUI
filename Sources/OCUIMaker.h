@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) OCUIStack *stack;
 
 - (OCUIText *(^)(NSString *content))Text;
-- (OCUISpacer *(^)(void))spacer;
+- (OCUISpacer *(^)(void))Spacer;
+- (OCUIView *(^)(void))View;
 
 @end
 

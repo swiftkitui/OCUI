@@ -26,7 +26,7 @@
 		5D392A94230E367300A787E1 /* OCUILayoutContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392A92230E367300A787E1 /* OCUILayoutContent.m */; };
 		5D392D8B230E8B4E00A787E1 /* OCUISpacer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392D89230E8B4E00A787E1 /* OCUISpacer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D392D8C230E8B4E00A787E1 /* OCUISpacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392D8A230E8B4E00A787E1 /* OCUISpacer.m */; };
-		5D392D8F230E9E2B00A787E1 /* OCUILayoutOffset.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392D8D230E9E2B00A787E1 /* OCUILayoutOffset.h */; };
+		5D392D8F230E9E2B00A787E1 /* OCUILayoutOffset.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392D8D230E9E2B00A787E1 /* OCUILayoutOffset.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D392D90230E9E2B00A787E1 /* OCUILayoutOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392D8E230E9E2B00A787E1 /* OCUILayoutOffset.m */; };
 		5D43F1FA230D40810098713E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F1F9230D40810098713E /* AppDelegate.m */; };
 		5D43F1FD230D40810098713E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F1FC230D40810098713E /* ViewController.m */; };
@@ -41,6 +41,8 @@
 		5D43F240230D42270098713E /* OCUIMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F23D230D42270098713E /* OCUIMaker.m */; };
 		5D43F244230D427F0098713E /* OCUIText.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D43F242230D427F0098713E /* OCUIText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D43F245230D427F0098713E /* OCUIText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F243230D427F0098713E /* OCUIText.m */; };
+		5D96684A230F7421007D646E /* OCUIView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D966848230F7421007D646E /* OCUIView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5D96684B230F7421007D646E /* OCUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D966849230F7421007D646E /* OCUIView.m */; };
 		5DFFEBEB230D465B007E13D4 /* OCUITransfer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DFFEBE9230D465B007E13D4 /* OCUITransfer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DFFEBEC230D465B007E13D4 /* OCUITransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFEBEA230D465B007E13D4 /* OCUITransfer.m */; };
 /* End PBXBuildFile section */
@@ -107,6 +109,8 @@
 		5D43F242230D427F0098713E /* OCUIText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIText.h; sourceTree = "<group>"; };
 		5D43F243230D427F0098713E /* OCUIText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIText.m; sourceTree = "<group>"; };
 		5D7E85C7230D4B02002B49DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D966848230F7421007D646E /* OCUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIView.h; sourceTree = "<group>"; };
+		5D966849230F7421007D646E /* OCUIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIView.m; sourceTree = "<group>"; };
 		5DFFEBE9230D465B007E13D4 /* OCUITransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUITransfer.h; sourceTree = "<group>"; };
 		5DFFEBEA230D465B007E13D4 /* OCUITransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUITransfer.m; sourceTree = "<group>"; };
 		69715C3D4AFD2F8C9C532C97 /* libPods-OCUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OCUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +242,8 @@
 				5D43F243230D427F0098713E /* OCUIText.m */,
 				5D392D89230E8B4E00A787E1 /* OCUISpacer.h */,
 				5D392D8A230E8B4E00A787E1 /* OCUISpacer.m */,
+				5D966848230F7421007D646E /* OCUIView.h */,
+				5D966849230F7421007D646E /* OCUIView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,8 +285,9 @@
 				5D43F23E230D42270098713E /* OCUIMaker.h in Headers */,
 				5D392A84230E283100A787E1 /* OCUIRenderView.h in Headers */,
 				5D392D8B230E8B4E00A787E1 /* OCUISpacer.h in Headers */,
-				5D43F244230D427F0098713E /* OCUIText.h in Headers */,
+				5D96684A230F7421007D646E /* OCUIView.h in Headers */,
 				5D392D8F230E9E2B00A787E1 /* OCUILayoutOffset.h in Headers */,
+				5D43F244230D427F0098713E /* OCUIText.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +455,7 @@
 				5D392D8C230E8B4E00A787E1 /* OCUISpacer.m in Sources */,
 				5D392D90230E9E2B00A787E1 /* OCUILayoutOffset.m in Sources */,
 				5D392A7E230E24A900A787E1 /* OCUIVStack.m in Sources */,
+				5D96684B230F7421007D646E /* OCUIView.m in Sources */,
 				5D392A82230E24BC00A787E1 /* OCUIHStack.m in Sources */,
 				5D392A88230E2D0F00A787E1 /* OCUINode.m in Sources */,
 				5D43F245230D427F0098713E /* OCUIText.m in Sources */,

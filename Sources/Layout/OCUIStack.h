@@ -15,10 +15,29 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OCUIStack : NSObject
 
 @property (nonatomic, copy, readonly) NSMutableArray<id<OCUIRenderView>> *nodes;
-- (OCUIText * _Nonnull (^)(NSString * _Nonnull))Text;
-- (OCUISpacer *(^)(void))spacer;
+- (OCUIText *(^)(NSString * _Nonnull))Text;
+- (OCUISpacer *(^)(void))Spacer;
+- (OCUIView *(^)(void))View;
 
 - (void)loadAndLayoutViewsInView:(UIView *)view;
+
+- (UIView *)viewWithRenderView:(id<OCUIRenderView>)renderView;
+- (CGSize)sizeWithRenderView:(id<OCUIRenderView>)renderView;
+
+
+/**
+ 自动布局占位符的个数
+
+ @return NSUInteger
+ */
+- (NSUInteger)automaticSpacerCount;
+
+/**
+ 自动渲染试图的个数
+
+ @return NSUInteger
+ */
+- (NSUInteger)automaticRenderViewCount;
 
 @end
 

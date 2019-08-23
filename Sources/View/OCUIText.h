@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "OCUIRenderView.h"
-#import "OCUINode.h"
+#import "OCUIView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OCUIText : OCUINode
+@interface OCUIText : OCUIView
 
 @property (nonatomic, copy) NSString *content;
 

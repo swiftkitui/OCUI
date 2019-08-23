@@ -21,11 +21,15 @@
 }
 
 - (void)OCUIMaker:(OCUIMaker *)UI {
-//    UI.Text(@"Hello");
-//    UI.spacer();
-////    UI.Text(@"World");
-    UI.spacer();
-    UI.Text(@"World");
+    UI.View()
+    .backgroundColor([UIColor redColor]);
+    
+    UI.View()
+    .backgroundColor([UIColor blueColor])
+    .size(CGSizeMake(100, 100));
+
+    UI.View()
+    .backgroundColor([UIColor grayColor]);
 }
 
 @end
