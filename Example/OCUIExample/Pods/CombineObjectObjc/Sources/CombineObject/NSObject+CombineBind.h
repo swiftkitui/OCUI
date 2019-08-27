@@ -14,13 +14,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSObject (CombineBind)
-
-@property (nonatomic, strong, readonly) CombineBind *bind;
-@property (nonatomic, weak) id<CombineValue> wrappedValue;
+@interface NSObject (CombineBind)<CombineView>
 
 - (void(^)(CombineBind *, NSString *))viewBind;
-- (void(^)(id<CombineValue>, NSString *))updateWrappedValue;
+- (void(^)(id<CombineValue>, NSString *))wrappedContent;
+
+- (void)updateWithBind:(CombineBind *)bind
+            identifier:(NSString *)identifier;
 
 @end
 

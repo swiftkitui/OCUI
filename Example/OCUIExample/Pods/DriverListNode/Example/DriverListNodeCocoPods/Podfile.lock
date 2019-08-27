@@ -1,0 +1,23 @@
+PODS:
+  - DriverListNode (3.4.0)
+  - Masonry (1.1.0)
+
+DEPENDENCIES:
+  - DriverListNode (from `../../DriverNodeList.podspec`)
+  - Masonry
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+
+EXTERNAL SOURCES:
+  DriverListNode:
+    :path: "../../DriverNodeList.podspec"
+
+SPEC CHECKSUMS:
+  DriverListNode: da9da2338a357e503840aa8e447e4a2edde5f862
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+
+PODFILE CHECKSUM: b324d774b75af9157e262c0be4db5bf503fbd360
+
+COCOAPODS: 1.8.0.beta.1

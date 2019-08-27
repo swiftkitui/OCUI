@@ -1,20 +1,28 @@
 PODS:
   - CombineObjectObjc (1.0.0)
+  - DriverListNode (3.4.0)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
-  - CombineObjectObjc
+  - CombineObjectObjc (from `./Pods/CombineObjectObjc/CombineObjectObjc.podspec`)
+  - DriverListNode (from `./Pods/DriverListNode/DriverListNode.podspec`)
   - Masonry
 
 SPEC REPOS:
   trunk:
-    - CombineObjectObjc
     - Masonry
+
+EXTERNAL SOURCES:
+  CombineObjectObjc:
+    :path: "./Pods/CombineObjectObjc/CombineObjectObjc.podspec"
+  DriverListNode:
+    :path: "./Pods/DriverListNode/DriverListNode.podspec"
 
 SPEC CHECKSUMS:
   CombineObjectObjc: f003a1717e8736dd95e20f7e9c7d9b7d1944e2ad
+  DriverListNode: da9da2338a357e503840aa8e447e4a2edde5f862
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 028ec9ee039f196e50e0d562c7b6bbcbf59ddc4f
+PODFILE CHECKSUM: d6ab10d777c720c95f3059eaa439951728780e79
 
 COCOAPODS: 1.8.0.beta.1

@@ -1,7 +1,8 @@
 source 'https://cdn.cocoapods.org/'
 platform :ios, '9.0'
 
-target 'OCUI' do
-pod 'Masonry'
-pod 'CombineObjectObjc'
+target 'OCUIExample' do
+  pod 'Masonry'
+  pod 'CombineObjectObjc', :path => "./Pods/CombineObjectObjc/CombineObjectObjc.podspec"
+  pod 'DriverListNode', :path => "./Pods/DriverListNode/DriverListNode.podspec"
 end

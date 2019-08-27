@@ -7,52 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D392A75230E246200A787E1 /* OCUIStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392A73230E246200A787E1 /* OCUIStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392A76230E246200A787E1 /* OCUIStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392A74230E246200A787E1 /* OCUIStack.m */; };
-		5D392A79230E249900A787E1 /* OCUIZStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392A77230E249900A787E1 /* OCUIZStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392A7A230E249900A787E1 /* OCUIZStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392A78230E249900A787E1 /* OCUIZStack.m */; };
-		5D392A7D230E24A900A787E1 /* OCUIVStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392A7B230E24A900A787E1 /* OCUIVStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392A7E230E24A900A787E1 /* OCUIVStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392A7C230E24A900A787E1 /* OCUIVStack.m */; };
-		5D392A81230E24BC00A787E1 /* OCUIHStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392A7F230E24BC00A787E1 /* OCUIHStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392A82230E24BC00A787E1 /* OCUIHStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392A80230E24BC00A787E1 /* OCUIHStack.m */; };
-		5D392A84230E283100A787E1 /* OCUIRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392A83230E283100A787E1 /* OCUIRenderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392A87230E2D0F00A787E1 /* OCUINode.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392A85230E2D0F00A787E1 /* OCUINode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392A88230E2D0F00A787E1 /* OCUINode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392A86230E2D0F00A787E1 /* OCUINode.m */; };
-		5D392A8F230E334000A787E1 /* OCUILayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392A8D230E334000A787E1 /* OCUILayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392A90230E334000A787E1 /* OCUILayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392A8E230E334000A787E1 /* OCUILayout.m */; };
-		5D392A93230E367300A787E1 /* OCUILayoutContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392A91230E367300A787E1 /* OCUILayoutContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392A94230E367300A787E1 /* OCUILayoutContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392A92230E367300A787E1 /* OCUILayoutContent.m */; };
-		5D392D8B230E8B4E00A787E1 /* OCUISpacer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392D89230E8B4E00A787E1 /* OCUISpacer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392D8C230E8B4E00A787E1 /* OCUISpacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392D8A230E8B4E00A787E1 /* OCUISpacer.m */; };
-		5D392D8F230E9E2B00A787E1 /* OCUILayoutOffset.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D392D8D230E9E2B00A787E1 /* OCUILayoutOffset.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D392D90230E9E2B00A787E1 /* OCUILayoutOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D392D8E230E9E2B00A787E1 /* OCUILayoutOffset.m */; };
+		52C20879024A57CEC2EE9555 /* libPods-OCUIExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83135448550FCBD8A84856A6 /* libPods-OCUIExample.a */; };
 		5D43F1FA230D40810098713E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F1F9230D40810098713E /* AppDelegate.m */; };
 		5D43F1FD230D40810098713E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F1FC230D40810098713E /* ViewController.m */; };
 		5D43F200230D40810098713E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D43F1FE230D40810098713E /* Main.storyboard */; };
 		5D43F202230D40840098713E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D43F201230D40840098713E /* Assets.xcassets */; };
 		5D43F205230D40840098713E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D43F203230D40840098713E /* LaunchScreen.storyboard */; };
 		5D43F208230D40840098713E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F207230D40840098713E /* main.m */; };
-		5D43F22C230D40DA0098713E /* OCUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D43F225230D40DA0098713E /* OCUI.framework */; };
-		5D43F22D230D40DA0098713E /* OCUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5D43F225230D40DA0098713E /* OCUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5D43F23E230D42270098713E /* OCUIMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D43F23B230D42270098713E /* OCUIMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D43F23F230D42270098713E /* OCUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D43F23C230D42270098713E /* OCUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D43F240230D42270098713E /* OCUIMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F23D230D42270098713E /* OCUIMaker.m */; };
-		5D43F244230D427F0098713E /* OCUIText.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D43F242230D427F0098713E /* OCUIText.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D43F245230D427F0098713E /* OCUIText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F243230D427F0098713E /* OCUIText.m */; };
-		5D96684A230F7421007D646E /* OCUIView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D966848230F7421007D646E /* OCUIView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D96684B230F7421007D646E /* OCUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D966849230F7421007D646E /* OCUIView.m */; };
-		CC8887EA581CF18375740BFE /* libPods-OCUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DA265DAAC299CD1C978C13 /* libPods-OCUI.a */; };
+		5D5F0971231362060029EE9E /* OCUIStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F0959231362050029EE9E /* OCUIStack.m */; };
+		5D5F0972231362060029EE9E /* OCUILayoutOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F095A231362050029EE9E /* OCUILayoutOffset.m */; };
+		5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F095B231362050029EE9E /* OCUIHStack.m */; };
+		5D5F0975231362060029EE9E /* OCUIVStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F095F231362050029EE9E /* OCUIVStack.m */; };
+		5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F0960231362050029EE9E /* OCUIZStack.m */; };
+		5D5F0977231362060029EE9E /* OCUISpacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096A231362050029EE9E /* OCUISpacer.m */; };
+		5D5F0978231362060029EE9E /* OCUINode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096B231362050029EE9E /* OCUINode.m */; };
+		5D5F0979231362060029EE9E /* OCUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096C231362050029EE9E /* OCUIView.m */; };
+		5D5F097A231362060029EE9E /* OCUIText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096E231362050029EE9E /* OCUIText.m */; };
+		5D5F097B231362060029EE9E /* OCUIMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096F231362050029EE9E /* OCUIMaker.m */; };
+		5D5F098223137C850029EE9E /* OCUIConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F098123137C850029EE9E /* OCUIConstraints.m */; };
+		5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09842313E0A10029EE9E /* OCUIImage.m */; };
+		5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09882314E6A90029EE9E /* OCUIList.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		5D43F22A230D40DA0098713E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5D43F1ED230D40810098713E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5D43F224230D40DA0098713E;
-			remoteInfo = OCUI;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5D43F21F230D409B0098713E /* Embed Frameworks */ = {
@@ -61,7 +36,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5D43F22D230D40DA0098713E /* OCUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,25 +43,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5D392A73230E246200A787E1 /* OCUIStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIStack.h; sourceTree = "<group>"; };
-		5D392A74230E246200A787E1 /* OCUIStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIStack.m; sourceTree = "<group>"; };
-		5D392A77230E249900A787E1 /* OCUIZStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIZStack.h; sourceTree = "<group>"; };
-		5D392A78230E249900A787E1 /* OCUIZStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIZStack.m; sourceTree = "<group>"; };
-		5D392A7B230E24A900A787E1 /* OCUIVStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIVStack.h; sourceTree = "<group>"; };
-		5D392A7C230E24A900A787E1 /* OCUIVStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIVStack.m; sourceTree = "<group>"; };
-		5D392A7F230E24BC00A787E1 /* OCUIHStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIHStack.h; sourceTree = "<group>"; };
-		5D392A80230E24BC00A787E1 /* OCUIHStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIHStack.m; sourceTree = "<group>"; };
-		5D392A83230E283100A787E1 /* OCUIRenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIRenderView.h; sourceTree = "<group>"; };
-		5D392A85230E2D0F00A787E1 /* OCUINode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUINode.h; sourceTree = "<group>"; };
-		5D392A86230E2D0F00A787E1 /* OCUINode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUINode.m; sourceTree = "<group>"; };
-		5D392A8D230E334000A787E1 /* OCUILayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUILayout.h; sourceTree = "<group>"; };
-		5D392A8E230E334000A787E1 /* OCUILayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUILayout.m; sourceTree = "<group>"; };
-		5D392A91230E367300A787E1 /* OCUILayoutContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUILayoutContent.h; sourceTree = "<group>"; };
-		5D392A92230E367300A787E1 /* OCUILayoutContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUILayoutContent.m; sourceTree = "<group>"; };
-		5D392D89230E8B4E00A787E1 /* OCUISpacer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUISpacer.h; sourceTree = "<group>"; };
-		5D392D8A230E8B4E00A787E1 /* OCUISpacer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUISpacer.m; sourceTree = "<group>"; };
-		5D392D8D230E9E2B00A787E1 /* OCUILayoutOffset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUILayoutOffset.h; sourceTree = "<group>"; };
-		5D392D8E230E9E2B00A787E1 /* OCUILayoutOffset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUILayoutOffset.m; sourceTree = "<group>"; };
 		5D43F1F5230D40810098713E /* OCUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D43F1F8230D40810098713E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5D43F1F9230D40810098713E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -98,18 +53,38 @@
 		5D43F204230D40840098713E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D43F206230D40840098713E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D43F207230D40840098713E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5D43F225230D40DA0098713E /* OCUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OCUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D43F23B230D42270098713E /* OCUIMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIMaker.h; sourceTree = "<group>"; };
-		5D43F23C230D42270098713E /* OCUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUI.h; sourceTree = "<group>"; };
-		5D43F23D230D42270098713E /* OCUIMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIMaker.m; sourceTree = "<group>"; };
-		5D43F242230D427F0098713E /* OCUIText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIText.h; sourceTree = "<group>"; };
-		5D43F243230D427F0098713E /* OCUIText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIText.m; sourceTree = "<group>"; };
-		5D7E85C7230D4B02002B49DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D966848230F7421007D646E /* OCUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIView.h; sourceTree = "<group>"; };
-		5D966849230F7421007D646E /* OCUIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIView.m; sourceTree = "<group>"; };
-		CD6118AAF8FDEFD5E65AC542 /* Pods-OCUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUI.release.xcconfig"; path = "Target Support Files/Pods-OCUI/Pods-OCUI.release.xcconfig"; sourceTree = "<group>"; };
-		D1DA265DAAC299CD1C978C13 /* libPods-OCUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OCUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7DFA2F0F98B9FB7CD8DD658 /* Pods-OCUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUI.debug.xcconfig"; path = "Target Support Files/Pods-OCUI/Pods-OCUI.debug.xcconfig"; sourceTree = "<group>"; };
+		5D5F0955231362050029EE9E /* OCUIHStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIHStack.h; sourceTree = "<group>"; };
+		5D5F0956231362050029EE9E /* OCUILayoutOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUILayoutOffset.h; sourceTree = "<group>"; };
+		5D5F0957231362050029EE9E /* OCUIZStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIZStack.h; sourceTree = "<group>"; };
+		5D5F0958231362050029EE9E /* OCUIVStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIVStack.h; sourceTree = "<group>"; };
+		5D5F0959231362050029EE9E /* OCUIStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIStack.m; sourceTree = "<group>"; };
+		5D5F095A231362050029EE9E /* OCUILayoutOffset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUILayoutOffset.m; sourceTree = "<group>"; };
+		5D5F095B231362050029EE9E /* OCUIHStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIHStack.m; sourceTree = "<group>"; };
+		5D5F095E231362050029EE9E /* OCUIStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIStack.h; sourceTree = "<group>"; };
+		5D5F095F231362050029EE9E /* OCUIVStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIVStack.m; sourceTree = "<group>"; };
+		5D5F0960231362050029EE9E /* OCUIZStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIZStack.m; sourceTree = "<group>"; };
+		5D5F0961231362050029EE9E /* OCUIMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIMaker.h; sourceTree = "<group>"; };
+		5D5F0963231362050029EE9E /* OCUIRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIRenderView.h; sourceTree = "<group>"; };
+		5D5F0965231362050029EE9E /* OCUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUI.h; sourceTree = "<group>"; };
+		5D5F0967231362050029EE9E /* OCUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIView.h; sourceTree = "<group>"; };
+		5D5F0968231362050029EE9E /* OCUINode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUINode.h; sourceTree = "<group>"; };
+		5D5F0969231362050029EE9E /* OCUIText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIText.h; sourceTree = "<group>"; };
+		5D5F096A231362050029EE9E /* OCUISpacer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUISpacer.m; sourceTree = "<group>"; };
+		5D5F096B231362050029EE9E /* OCUINode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUINode.m; sourceTree = "<group>"; };
+		5D5F096C231362050029EE9E /* OCUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIView.m; sourceTree = "<group>"; };
+		5D5F096D231362050029EE9E /* OCUISpacer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUISpacer.h; sourceTree = "<group>"; };
+		5D5F096E231362050029EE9E /* OCUIText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIText.m; sourceTree = "<group>"; };
+		5D5F096F231362050029EE9E /* OCUIMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIMaker.m; sourceTree = "<group>"; };
+		5D5F098023137C850029EE9E /* OCUIConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIConstraints.h; sourceTree = "<group>"; };
+		5D5F098123137C850029EE9E /* OCUIConstraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIConstraints.m; sourceTree = "<group>"; };
+		5D5F09832313E0A10029EE9E /* OCUIImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIImage.h; sourceTree = "<group>"; };
+		5D5F09842313E0A10029EE9E /* OCUIImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIImage.m; sourceTree = "<group>"; };
+		5D5F09862314BD020029EE9E /* OCUIChained.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIChained.h; sourceTree = "<group>"; };
+		5D5F09872314E6A90029EE9E /* OCUIList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIList.h; sourceTree = "<group>"; };
+		5D5F09882314E6A90029EE9E /* OCUIList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIList.m; sourceTree = "<group>"; };
+		83135448550FCBD8A84856A6 /* libPods-OCUIExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OCUIExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CCE597FC42D7C6BA36DDB8F /* Pods-OCUIExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUIExample.debug.xcconfig"; path = "Target Support Files/Pods-OCUIExample/Pods-OCUIExample.debug.xcconfig"; sourceTree = "<group>"; };
+		C50B3E89958EC3ECD144CA9E /* Pods-OCUIExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUIExample.release.xcconfig"; path = "Target Support Files/Pods-OCUIExample/Pods-OCUIExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,15 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D43F22C230D40DA0098713E /* OCUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5D43F222230D40DA0098713E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CC8887EA581CF18375740BFE /* libPods-OCUI.a in Frameworks */,
+				52C20879024A57CEC2EE9555 /* libPods-OCUIExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,37 +102,15 @@
 		35CAB2E5EC8B82862157DFA6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D7DFA2F0F98B9FB7CD8DD658 /* Pods-OCUI.debug.xcconfig */,
-				CD6118AAF8FDEFD5E65AC542 /* Pods-OCUI.release.xcconfig */,
+				8CCE597FC42D7C6BA36DDB8F /* Pods-OCUIExample.debug.xcconfig */,
+				C50B3E89958EC3ECD144CA9E /* Pods-OCUIExample.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		5D392A72230E241A00A787E1 /* Layout */ = {
-			isa = PBXGroup;
-			children = (
-				5D392A73230E246200A787E1 /* OCUIStack.h */,
-				5D392A74230E246200A787E1 /* OCUIStack.m */,
-				5D392A77230E249900A787E1 /* OCUIZStack.h */,
-				5D392A78230E249900A787E1 /* OCUIZStack.m */,
-				5D392A7B230E24A900A787E1 /* OCUIVStack.h */,
-				5D392A7C230E24A900A787E1 /* OCUIVStack.m */,
-				5D392A7F230E24BC00A787E1 /* OCUIHStack.h */,
-				5D392A80230E24BC00A787E1 /* OCUIHStack.m */,
-				5D392A8D230E334000A787E1 /* OCUILayout.h */,
-				5D392A8E230E334000A787E1 /* OCUILayout.m */,
-				5D392A91230E367300A787E1 /* OCUILayoutContent.h */,
-				5D392A92230E367300A787E1 /* OCUILayoutContent.m */,
-				5D392D8D230E9E2B00A787E1 /* OCUILayoutOffset.h */,
-				5D392D8E230E9E2B00A787E1 /* OCUILayoutOffset.m */,
-			);
-			path = Layout;
 			sourceTree = "<group>";
 		};
 		5D43F1EC230D40810098713E = {
 			isa = PBXGroup;
 			children = (
-				5D43F231230D41130098713E /* OCUI */,
 				5D43F1F7230D40810098713E /* OCUIExample */,
 				5D43F1F6230D40810098713E /* Products */,
 				35CAB2E5EC8B82862157DFA6 /* Pods */,
@@ -177,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				5D43F1F5230D40810098713E /* OCUIExample.app */,
-				5D43F225230D40DA0098713E /* OCUI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +129,7 @@
 		5D43F1F7230D40810098713E /* OCUIExample */ = {
 			isa = PBXGroup;
 			children = (
+				5D5F0951231362050029EE9E /* Sources */,
 				5D43F1F8230D40810098713E /* AppDelegate.h */,
 				5D43F1F9230D40810098713E /* AppDelegate.m */,
 				5D43F1FB230D40810098713E /* ViewController.h */,
@@ -198,91 +143,91 @@
 			path = OCUIExample;
 			sourceTree = "<group>";
 		};
-		5D43F231230D41130098713E /* OCUI */ = {
+		5D5F0951231362050029EE9E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5D7E85C7230D4B02002B49DE /* Info.plist */,
-				5D43F23A230D42270098713E /* Sources */,
-			);
-			path = OCUI;
-			sourceTree = "<group>";
-		};
-		5D43F23A230D42270098713E /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				5D392A72230E241A00A787E1 /* Layout */,
-				5DFFEBE8230D463A007E13D4 /* Transfer */,
-				5D43F241230D42480098713E /* View */,
-				5D43F23C230D42270098713E /* OCUI.h */,
-				5D43F23B230D42270098713E /* OCUIMaker.h */,
-				5D43F23D230D42270098713E /* OCUIMaker.m */,
-				5D392A83230E283100A787E1 /* OCUIRenderView.h */,
+				5D5F098B2314E79D0029EE9E /* Core */,
+				5D5F098A2314E6E90029EE9E /* LayoutViews */,
+				5D5F0964231362050029EE9E /* ControllerViews */,
+				5D5F0966231362050029EE9E /* Other Views */,
+				5D5F0965231362050029EE9E /* OCUI.h */,
 			);
 			name = Sources;
 			path = ../../../Sources;
 			sourceTree = "<group>";
 		};
-		5D43F241230D42480098713E /* View */ = {
+		5D5F0964231362050029EE9E /* ControllerViews */ = {
 			isa = PBXGroup;
 			children = (
-				5D392A85230E2D0F00A787E1 /* OCUINode.h */,
-				5D392A86230E2D0F00A787E1 /* OCUINode.m */,
-				5D43F242230D427F0098713E /* OCUIText.h */,
-				5D43F243230D427F0098713E /* OCUIText.m */,
-				5D392D89230E8B4E00A787E1 /* OCUISpacer.h */,
-				5D392D8A230E8B4E00A787E1 /* OCUISpacer.m */,
-				5D966848230F7421007D646E /* OCUIView.h */,
-				5D966849230F7421007D646E /* OCUIView.m */,
+				5D5F0969231362050029EE9E /* OCUIText.h */,
+				5D5F096E231362050029EE9E /* OCUIText.m */,
+				5D5F09872314E6A90029EE9E /* OCUIList.h */,
+				5D5F09882314E6A90029EE9E /* OCUIList.m */,
 			);
-			path = View;
+			path = ControllerViews;
 			sourceTree = "<group>";
 		};
-		5DFFEBE8230D463A007E13D4 /* Transfer */ = {
+		5D5F0966231362050029EE9E /* Other Views */ = {
 			isa = PBXGroup;
 			children = (
+				5D5F0967231362050029EE9E /* OCUIView.h */,
+				5D5F096C231362050029EE9E /* OCUIView.m */,
+				5D5F09832313E0A10029EE9E /* OCUIImage.h */,
+				5D5F09842313E0A10029EE9E /* OCUIImage.m */,
 			);
-			path = Transfer;
+			path = "Other Views";
+			sourceTree = "<group>";
+		};
+		5D5F098A2314E6E90029EE9E /* LayoutViews */ = {
+			isa = PBXGroup;
+			children = (
+				5D5F0955231362050029EE9E /* OCUIHStack.h */,
+				5D5F095B231362050029EE9E /* OCUIHStack.m */,
+				5D5F0958231362050029EE9E /* OCUIVStack.h */,
+				5D5F095F231362050029EE9E /* OCUIVStack.m */,
+				5D5F0957231362050029EE9E /* OCUIZStack.h */,
+				5D5F0960231362050029EE9E /* OCUIZStack.m */,
+				5D5F096D231362050029EE9E /* OCUISpacer.h */,
+				5D5F096A231362050029EE9E /* OCUISpacer.m */,
+			);
+			path = LayoutViews;
+			sourceTree = "<group>";
+		};
+		5D5F098B2314E79D0029EE9E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5D5F0963231362050029EE9E /* OCUIRenderView.h */,
+				5D5F09862314BD020029EE9E /* OCUIChained.h */,
+				5D5F095E231362050029EE9E /* OCUIStack.h */,
+				5D5F0959231362050029EE9E /* OCUIStack.m */,
+				5D5F0968231362050029EE9E /* OCUINode.h */,
+				5D5F096B231362050029EE9E /* OCUINode.m */,
+				5D5F0956231362050029EE9E /* OCUILayoutOffset.h */,
+				5D5F095A231362050029EE9E /* OCUILayoutOffset.m */,
+				5D5F098023137C850029EE9E /* OCUIConstraints.h */,
+				5D5F098123137C850029EE9E /* OCUIConstraints.m */,
+				5D5F0961231362050029EE9E /* OCUIMaker.h */,
+				5D5F096F231362050029EE9E /* OCUIMaker.m */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		73B4FFA190951EA7A5C078D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D1DA265DAAC299CD1C978C13 /* libPods-OCUI.a */,
+				83135448550FCBD8A84856A6 /* libPods-OCUIExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		5D43F220230D40DA0098713E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5D43F23F230D42270098713E /* OCUI.h in Headers */,
-				5D392A81230E24BC00A787E1 /* OCUIHStack.h in Headers */,
-				5D392A79230E249900A787E1 /* OCUIZStack.h in Headers */,
-				5D392A75230E246200A787E1 /* OCUIStack.h in Headers */,
-				5D392A7D230E24A900A787E1 /* OCUIVStack.h in Headers */,
-				5D392A8F230E334000A787E1 /* OCUILayout.h in Headers */,
-				5D392A93230E367300A787E1 /* OCUILayoutContent.h in Headers */,
-				5D392A87230E2D0F00A787E1 /* OCUINode.h in Headers */,
-				5D43F23E230D42270098713E /* OCUIMaker.h in Headers */,
-				5D392A84230E283100A787E1 /* OCUIRenderView.h in Headers */,
-				5D392D8B230E8B4E00A787E1 /* OCUISpacer.h in Headers */,
-				5D96684A230F7421007D646E /* OCUIView.h in Headers */,
-				5D392D8F230E9E2B00A787E1 /* OCUILayoutOffset.h in Headers */,
-				5D43F244230D427F0098713E /* OCUIText.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		5D43F1F4230D40810098713E /* OCUIExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5D43F20B230D40840098713E /* Build configuration list for PBXNativeTarget "OCUIExample" */;
 			buildPhases = (
+				F6F623409778A1D4CA74EC2C /* [CP] Check Pods Manifest.lock */,
 				5D43F1F1230D40810098713E /* Sources */,
 				5D43F1F2230D40810098713E /* Frameworks */,
 				5D43F1F3230D40810098713E /* Resources */,
@@ -291,31 +236,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				5D43F22B230D40DA0098713E /* PBXTargetDependency */,
 			);
 			name = OCUIExample;
 			productName = OCUIExample;
 			productReference = 5D43F1F5230D40810098713E /* OCUIExample.app */;
 			productType = "com.apple.product-type.application";
-		};
-		5D43F224230D40DA0098713E /* OCUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5D43F22E230D40DA0098713E /* Build configuration list for PBXNativeTarget "OCUI" */;
-			buildPhases = (
-				9D3A66682DF6C4DF02F29685 /* [CP] Check Pods Manifest.lock */,
-				5D43F220230D40DA0098713E /* Headers */,
-				5D43F221230D40DA0098713E /* Sources */,
-				5D43F222230D40DA0098713E /* Frameworks */,
-				5D43F223230D40DA0098713E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = OCUI;
-			productName = OCUI;
-			productReference = 5D43F225230D40DA0098713E /* OCUI.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -327,9 +252,6 @@
 				ORGANIZATIONNAME = "张行";
 				TargetAttributes = {
 					5D43F1F4230D40810098713E = {
-						CreatedOnToolsVersion = 10.3;
-					};
-					5D43F224230D40DA0098713E = {
 						CreatedOnToolsVersion = 10.3;
 					};
 				};
@@ -348,7 +270,6 @@
 			projectRoot = "";
 			targets = (
 				5D43F1F4230D40810098713E /* OCUIExample */,
-				5D43F224230D40DA0098713E /* OCUI */,
 			);
 		};
 /* End PBXProject section */
@@ -364,17 +285,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D43F223230D40DA0098713E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9D3A66682DF6C4DF02F29685 /* [CP] Check Pods Manifest.lock */ = {
+		F6F623409778A1D4CA74EC2C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,7 +303,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OCUI-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-OCUIExample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -404,39 +318,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D43F1FD230D40810098713E /* ViewController.m in Sources */,
+				5D5F0977231362060029EE9E /* OCUISpacer.m in Sources */,
+				5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */,
+				5D5F0975231362060029EE9E /* OCUIVStack.m in Sources */,
+				5D5F0978231362060029EE9E /* OCUINode.m in Sources */,
+				5D5F0979231362060029EE9E /* OCUIView.m in Sources */,
+				5D5F097B231362060029EE9E /* OCUIMaker.m in Sources */,
 				5D43F208230D40840098713E /* main.m in Sources */,
+				5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */,
+				5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */,
+				5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */,
+				5D5F0972231362060029EE9E /* OCUILayoutOffset.m in Sources */,
+				5D5F0971231362060029EE9E /* OCUIStack.m in Sources */,
+				5D5F097A231362060029EE9E /* OCUIText.m in Sources */,
+				5D5F098223137C850029EE9E /* OCUIConstraints.m in Sources */,
 				5D43F1FA230D40810098713E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D43F221230D40DA0098713E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5D392A76230E246200A787E1 /* OCUIStack.m in Sources */,
-				5D392D8C230E8B4E00A787E1 /* OCUISpacer.m in Sources */,
-				5D392D90230E9E2B00A787E1 /* OCUILayoutOffset.m in Sources */,
-				5D392A7E230E24A900A787E1 /* OCUIVStack.m in Sources */,
-				5D96684B230F7421007D646E /* OCUIView.m in Sources */,
-				5D392A82230E24BC00A787E1 /* OCUIHStack.m in Sources */,
-				5D392A88230E2D0F00A787E1 /* OCUINode.m in Sources */,
-				5D43F245230D427F0098713E /* OCUIText.m in Sources */,
-				5D392A94230E367300A787E1 /* OCUILayoutContent.m in Sources */,
-				5D43F240230D42270098713E /* OCUIMaker.m in Sources */,
-				5D392A7A230E249900A787E1 /* OCUIZStack.m in Sources */,
-				5D392A90230E334000A787E1 /* OCUILayout.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5D43F22B230D40DA0098713E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5D43F224230D40DA0098713E /* OCUI */;
-			targetProxy = 5D43F22A230D40DA0098713E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5D43F1FE230D40810098713E /* Main.storyboard */ = {
@@ -572,6 +472,7 @@
 		};
 		5D43F20C230D40840098713E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CCE597FC42D7C6BA36DDB8F /* Pods-OCUIExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -591,6 +492,7 @@
 		};
 		5D43F20D230D40840098713E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C50B3E89958EC3ECD144CA9E /* Pods-OCUIExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -605,62 +507,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		5D43F22F230D40DA0098713E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7DFA2F0F98B9FB7CD8DD658 /* Pods-OCUI.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = OCUI/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.josercc.OCUI;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		5D43F230230D40DA0098713E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD6118AAF8FDEFD5E65AC542 /* Pods-OCUI.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = OCUI/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.josercc.OCUI;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -681,15 +527,6 @@
 			buildConfigurations = (
 				5D43F20C230D40840098713E /* Debug */,
 				5D43F20D230D40840098713E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5D43F22E230D40DA0098713E /* Build configuration list for PBXNativeTarget "OCUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5D43F22F230D40DA0098713E /* Debug */,
-				5D43F230230D40DA0098713E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

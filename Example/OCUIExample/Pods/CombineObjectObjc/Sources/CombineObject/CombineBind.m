@@ -7,20 +7,20 @@
 //
 
 #import "CombineBind.h"
+#import "NSObject+CombineBind.h"
 
 @implementation CombineBindBlockContent
 
-- (void)registerWrappedValue:(Class)valueClass
-                   viewClass:(Class)viewClass
-                  identifier:(NSString *)identifier
-                       block:(void (^)(id<CombineValue> _Nullable, id<CombineView> _Nullable))block {
-    if (![self.value isKindOfClass:valueClass]) {
+- (void)registerCombineViewClass:(Class)viewClass
+                      identifier:(NSString *)identifier
+                           block:(void (^)(id<CombineValue> _Nonnull, id<CombineView> _Nonnull))block {
+    if (![self.value.value conformsToProtocol:@protocol(CombineValue)]) {
         return;
     }
-    if (![self.view isKindOfClass:viewClass]) {
+    if (![self.view.view isKindOfClass:viewClass]) {
         return;
     }
-    if (![self.identifier isEqualToString:identifier]) {
+    if (![self.view.identifier isEqualToString:identifier]) {
         return;
     }
     if (block) {
@@ -32,18 +32,28 @@
 
 @implementation CombineBind
 
-- (instancetype)init {
+- (instancetype)initWithContent:(id<CombineValue>)content {
     if (self = [super init]) {
+        _wrappedContent = content;
         _views = [NSMutableArray array];
     }
     return self;
 }
 
-- (void)setContent:(id<CombineValue>)content {
-    _content = content;
+- (void)setWrappedContent:(id<CombineValue>)wrappedContent {
+    _wrappedContent = wrappedContent;
+    for (CombineWeakView *weakView in self.views) {
+        NSObject *view = weakView.view;
+        [view updateWithBind:self identifier:weakView.identifier];
+    }
     if (self.contentChanged) {
-        self.contentChanged(content);
+        self.contentChanged(wrappedContent);
     }
 }
 
 @end
+
+FOUNDATION_EXPORT CombineBind *CombineBindMaker(id<CombineValue> value) {
+    CombineBind *bind = [[CombineBind alloc] initWithContent:value];
+    return bind;
+}

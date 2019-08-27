@@ -14,6 +14,9 @@
 
 - (void(^)(CombineBind *, NSString *))viewBind {
     return ^(CombineBind *bind, NSString *identifier) {
+        if (!bind) {
+            return;
+        }
         identifier = identifier ?: @"";
         id<CombineView> view = (id<CombineView>)self;
         CombineWeakView *weakView = [[CombineWeakView alloc] init];
@@ -21,69 +24,46 @@
         weakView.identifier = identifier;
         [bind.views addObject:weakView];
         [self setViewBind:bind identifier:identifier];
-        [self updateView:view bind:bind identifier:identifier];
+        [self updateWithBind:bind identifier:identifier];
     };
 }
 
-- (CombineBind *)bind {
-    CombineBind *bindCache = objc_getAssociatedObject(self, @selector(bind));
-    if (!bindCache) {
-        __weak id<CombineValue> combindValue = (id<CombineValue>)self;
-        bindCache = [[CombineBind alloc] init];
-        bindCache.content = combindValue;
-        objc_setAssociatedObject(self, @selector(bind), bindCache, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return bindCache;
-}
-
-- (void (^)(id<CombineValue> _Nonnull, NSString * _Nonnull))updateWrappedValue {
+- (void (^)(id<CombineValue> _Nonnull, NSString * _Nonnull))wrappedContent {
     return ^(id<CombineValue> value, NSString *identifier) {
         identifier = identifier ?: @"";
         CombineBind *bind = [self viewBinds][identifier];
-        bind.content = value;
-        for (CombineWeakView *weakView in bind.views) {
-            [self updateView:weakView.view bind:bind identifier:weakView.identifier];
-        }
+        bind.wrappedContent = value;
     };
 }
 
-- (void)setWrappedValue:(id<CombineValue>)wrappedValue {
-    self.bind.content = wrappedValue;
-    for (CombineWeakView *weakView in self.bind.views) {
-        [self updateView:weakView.view bind:self.bind identifier:weakView.identifier];
-    }
-}
 
-- (void)updateView:(id<CombineView>)view bind:(CombineBind *)bind identifier:(NSString *)identifier {
+- (void)updateWithBind:(CombineBind *)bind
+            identifier:(NSString *)identifier {
     if (bind.customSetWrappedValueBlock) {
         CombineBindBlockContent *content = [[CombineBindBlockContent alloc] init];
         content.value = ({
             CombineWeakValue *value = [[CombineWeakValue alloc] init];
-            value.value = bind.content;
+            value.value = bind.wrappedContent;
             value;
         });
         content.view = ({
             CombineWeakView *weakView = [[CombineWeakView alloc] init];
-            weakView.view = view;
+            weakView.view = self;
+            weakView.identifier = identifier;
             weakView;
         });
-        content.identifier = identifier;
         bind.customSetWrappedValueBlock(content);
     } else {
-        [view setCombineValue:bind.content identifier:identifier];
+        [self setCombineValue:bind.wrappedContent identifier:identifier];
     }
 }
 
-- (id<CombineValue>)wrappedValue {
-    return self.bind.content;
-}
 
 - (NSMutableDictionary<NSString *,CombineBind *> *)viewBinds {
     return [NSMutableDictionary dictionaryWithDictionary:objc_getAssociatedObject(self, @selector(viewBinds))];
 }
 
 - (void)setViewBind:(CombineBind *)bind identifier:(NSString *)identifier {
-    NSLog(@"setViewBind");
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[self viewBinds]];
     dictionary[identifier] = bind;
     objc_setAssociatedObject(self, @selector(viewBinds), dictionary, OBJC_ASSOCIATION_COPY_NONATOMIC);
