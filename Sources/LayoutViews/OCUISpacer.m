@@ -8,29 +8,20 @@
 
 #import "OCUISpacer.h"
 
-@implementation OCUISpacer
+@implementation OCUISpacer {
+    
+}
 
-- (instancetype)initWithOffset:(NSNumber *)offset {
+
+- (instancetype)initWithOffset:(NSNumber * _Nullable )offset {
     if (self = [super init]) {
         if (offset) {
-            _lenghtOffset = [[OCUILayoutOffset alloc] initWithHeight:[offset floatValue]];
+            _flxedOffset = [[OCUILayoutOffset alloc] initWithValue:[offset floatValue]];
         }
     }
     return self;
 }
 
-- (OCUISpacer * _Nonnull (^)(CGFloat))min {
-    return ^OCUISpacer *(CGFloat min) {
-        self->_minOffset = [[OCUILayoutOffset alloc] initWithHeight:min];
-        return self;
-    };
-}
 
-- (CGFloat)minSpancer {
-    if (!_minOffset) {
-        return 0;
-    }
-    return _minOffset.height;
-}
 
 @end

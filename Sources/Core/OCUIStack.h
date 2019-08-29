@@ -24,6 +24,14 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
 @property (nonatomic, assign) BOOL isCanUpdateContraints;
 /// 布局依赖的父试图
 @property (nonatomic, weak, readonly) UIView *contentView;
+/// 获取所有浮动布局 Spacer 的对象数组
+@property (nonatomic, copy, readonly) NSArray<OCUISpacer *> *allFloatSpacers;
+/**
+ 最小的浮动间距
+ */
+@property (nonatomic, assign, readonly) CGFloat minSpacerFloatOffset;
+@property (nonatomic, assign, readonly) CGFloat maxSpacerFloatOffset;
+
 
 - (void)loadAndLayoutViewsInView:(UIView *)view;
 
@@ -62,6 +70,7 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
  */
 - (NSUInteger)automaticSpacerCount;
 
+
 /**
  自动渲染试图的个数
 
@@ -80,6 +89,9 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
 - (CGFloat)firstOffset;
 - (CGFloat)lastOffset;
 
+- (NSArray<OCUINode *> *)findNodesWithBlock:(BOOL(^)(id<OCUIRenderView> obj))block;
+
+- (BOOL)isExitFloatView;
 
 @end
 

@@ -14,13 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUISpacer : OCUINode
 
-@property (nonatomic, strong, readonly) OCUILayoutOffset *lenghtOffset;
-@property (nonatomic, strong, readonly) OCUILayoutOffset *minOffset;
-@property (nonatomic, assign, readonly) CGFloat minSpancer;
+@property (nonatomic, strong, readonly) OCUILayoutOffset *flxedOffset;
 
-- (instancetype)initWithOffset:(NSNumber *)offset;
-
-- (OCUISpacer *(^)(CGFloat))min;
+- (instancetype)initWithOffset:(NSNumber * _Nullable)offset;
 
 @end
 

@@ -16,6 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OCUINode<T:OCUINode *> : NSObject<OCUIRenderView, OCUIChained>
 
 @property (nonatomic, assign, readonly) CGFloat viewPriority;
+@property (nonatomic, assign, readonly) CGFloat currentFloatOffset;
+@property (nonatomic, assign, readonly) CGFloat minFloatOffset;
+@property (nonatomic, weak, readonly) UIView *floatTrailingView;
+@property (nonatomic, weak, readonly) UIView *sourceView;
+
+- (void)addFloatLayoutWithSourceView:(UIView *)sourceView
+                        trailingView:(UIView *)trailingView
+                               block:(void(^)(OCUINode *node))block;
 
 @end
 

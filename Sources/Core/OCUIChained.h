@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CombineObjectObjc/NSObject+CombineBind.h>
+#import <DriverListNode/DriverListNode.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -52,6 +53,17 @@ NS_ASSUME_NONNULL_BEGIN
  设置优先级 默认为1000
  */
 - (id<OCUIChained>(^)(CGFloat))priority;
+
+/**
+ 设置最小的浮动间距
+ */
+- (id<OCUIChained>(^)(CGFloat))min;
+/**
+ 更新浮动的间距
+ */
+- (id<OCUIChained>(^)(CGFloat))updateFloatOffset;
+
+- (id<OCUIChained>(^)(void(^)(UITableViewCell *,NSUInteger)))config;
 
 @end
 

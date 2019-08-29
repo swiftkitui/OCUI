@@ -62,6 +62,12 @@ FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName) {
     return image;
 }
 
+FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, id<OCUIRenderView>(^block)(void)) {
+    OCUIList *list = [[OCUIList alloc] initWithWithBind:bind block:block];
+    AddRenderViewInStack(list);
+    return list;
+}
+
 @implementation OCUIMaker {
     OCUIStack *_stack;
 }

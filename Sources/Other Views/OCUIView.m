@@ -23,7 +23,9 @@
 
 - (void)configOCUIView:(UIView *)view {
     [super configOCUIView:view];
-    view.backgroundColor = self.viewBackgroundColor;
+    if (self.viewBackgroundColor) {
+        view.backgroundColor = self.viewBackgroundColor;
+    }
 }
 
 @end

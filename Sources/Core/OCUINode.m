@@ -11,8 +11,9 @@
 @implementation OCUINode {
     CGFloat _width;
     CGFloat _height;
+    void(^_floatLayoutBlock)(OCUINode *);
 }
-
+@synthesize currentFloatOffset = _currentFloatOffset;
 #pragma mark - OCUIRenderView
 
 - (instancetype)init {
@@ -20,6 +21,18 @@
         _viewPriority = 1000;
     }
     return self;
+}
+
+- (CGFloat)currentFloatOffset {
+    return MAX(_currentFloatOffset, _minFloatOffset);
+}
+
+- (void)addFloatLayoutWithSourceView:(UIView *)sourceView
+                        trailingView:(UIView *)trailingView
+                               block:(void(^)(OCUINode *))block {
+    _floatTrailingView = trailingView;
+    _floatLayoutBlock = block;
+    _sourceView = sourceView;
 }
 
 - (UIView *)makeOCUIView {
@@ -55,33 +68,56 @@
     };
 }
 
-- (id<OCUIChained>  _Nonnull (^)(CGFloat))offset {
+- (id<OCUIChained> _Nonnull (^)(CGFloat))offset {
     return ^id<OCUIChained>(CGFloat offset) {
         return self;
     };
 }
 
-- (id<OCUIChained>  _Nonnull (^)(CombineBind * _Nonnull))bind {
+- (id<OCUIChained> _Nonnull (^)(CombineBind * _Nonnull))bind {
     return ^id<OCUIChained>(CombineBind *bind) {
         return self;
     };
 }
 
-- (id<OCUIChained>  _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
+- (id<OCUIChained> _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
     return ^id<OCUIChained>(UIColor *backgroundColor) {
         return self;
     };
 }
 
-- (id<OCUIChained>  _Nonnull (^)(UIImage * _Nonnull))image {
+- (id<OCUIChained> _Nonnull (^)(UIImage * _Nonnull))image {
     return ^id<OCUIChained>(UIImage *image) {
         return self;
     };
 }
 
-- (id<OCUIChained>  _Nonnull (^)(CGFloat))priority {
+- (id<OCUIChained> _Nonnull (^)(CGFloat))priority {
     return ^id<OCUIChained>(CGFloat priority) {
         self->_viewPriority = priority;
+        return self;
+    };
+}
+
+- (id<OCUIChained> _Nonnull (^)(CGFloat))min {
+    return ^id<OCUIChained> (CGFloat min) {
+        self->_minFloatOffset = MAX(min, 0);
+        return self;
+    };
+}
+
+- (id<OCUIChained> _Nonnull (^)(CGFloat))updateFloatOffset {
+    return ^id<OCUIChained>(CGFloat offset) {
+        self->_currentFloatOffset = MAX(offset, self.minFloatOffset);
+        if (self->_floatLayoutBlock) {
+            self->_floatLayoutBlock(self);
+        }
+        return self;
+    };
+}
+
+- (id<OCUIChained>  _Nonnull (^)(void(^)(UITableViewCell *,NSUInteger)))config {
+    return ^id<OCUIChained>(void(^block)(UITableViewCell *,NSUInteger)) {
         return self;
     };
 }

@@ -27,6 +27,8 @@
 		5D5F098223137C850029EE9E /* OCUIConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F098123137C850029EE9E /* OCUIConstraints.m */; };
 		5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09842313E0A10029EE9E /* OCUIImage.m */; };
 		5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09882314E6A90029EE9E /* OCUIList.m */; };
+		5DD5E7CF231672C100053E78 /* NSArray+CombineValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5E7CE231672C100053E78 /* NSArray+CombineValue.m */; };
+		5DD5E7D22316772F00053E78 /* UITableViewCell+OCUIRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5E7D12316772F00053E78 /* UITableViewCell+OCUIRenderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +84,10 @@
 		5D5F09862314BD020029EE9E /* OCUIChained.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIChained.h; sourceTree = "<group>"; };
 		5D5F09872314E6A90029EE9E /* OCUIList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIList.h; sourceTree = "<group>"; };
 		5D5F09882314E6A90029EE9E /* OCUIList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIList.m; sourceTree = "<group>"; };
+		5DD5E7CD231672C100053E78 /* NSArray+CombineValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+CombineValue.h"; sourceTree = "<group>"; };
+		5DD5E7CE231672C100053E78 /* NSArray+CombineValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CombineValue.m"; sourceTree = "<group>"; };
+		5DD5E7D02316772F00053E78 /* UITableViewCell+OCUIRenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+OCUIRenderView.h"; sourceTree = "<group>"; };
+		5DD5E7D12316772F00053E78 /* UITableViewCell+OCUIRenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+OCUIRenderView.m"; sourceTree = "<group>"; };
 		83135448550FCBD8A84856A6 /* libPods-OCUIExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OCUIExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCE597FC42D7C6BA36DDB8F /* Pods-OCUIExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUIExample.debug.xcconfig"; path = "Target Support Files/Pods-OCUIExample/Pods-OCUIExample.debug.xcconfig"; sourceTree = "<group>"; };
 		C50B3E89958EC3ECD144CA9E /* Pods-OCUIExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUIExample.release.xcconfig"; path = "Target Support Files/Pods-OCUIExample/Pods-OCUIExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +214,10 @@
 				5D5F098123137C850029EE9E /* OCUIConstraints.m */,
 				5D5F0961231362050029EE9E /* OCUIMaker.h */,
 				5D5F096F231362050029EE9E /* OCUIMaker.m */,
+				5DD5E7CD231672C100053E78 /* NSArray+CombineValue.h */,
+				5DD5E7CE231672C100053E78 /* NSArray+CombineValue.m */,
+				5DD5E7D02316772F00053E78 /* UITableViewCell+OCUIRenderView.h */,
+				5DD5E7D12316772F00053E78 /* UITableViewCell+OCUIRenderView.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -318,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D43F1FD230D40810098713E /* ViewController.m in Sources */,
+				5DD5E7CF231672C100053E78 /* NSArray+CombineValue.m in Sources */,
 				5D5F0977231362060029EE9E /* OCUISpacer.m in Sources */,
 				5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */,
 				5D5F0975231362060029EE9E /* OCUIVStack.m in Sources */,
@@ -326,6 +337,7 @@
 				5D5F097B231362060029EE9E /* OCUIMaker.m in Sources */,
 				5D43F208230D40840098713E /* main.m in Sources */,
 				5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */,
+				5DD5E7D22316772F00053E78 /* UITableViewCell+OCUIRenderView.m in Sources */,
 				5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */,
 				5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */,
 				5D5F0972231362060029EE9E /* OCUILayoutOffset.m in Sources */,

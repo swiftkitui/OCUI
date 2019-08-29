@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUILayoutOffset : NSObject
 
-@property (nonatomic, assign, readonly) CGFloat height;
+@property (nonatomic, assign, readonly) CGFloat value;
 
-- (instancetype)initWithHeight:(CGFloat)height;
+- (instancetype)initWithValue:(CGFloat)value;
 
 @end
 

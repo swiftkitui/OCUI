@@ -20,6 +20,8 @@
 @implementation OCUIStack {
 }
 
+@synthesize allFloatSpacers = _allFloatSpacers;
+
 - (instancetype)init {
     if (self = [super init]) {
         _nodes = [NSMutableArray array];
@@ -39,17 +41,18 @@
     [self setupContraints];
     [self updateContraints];
     [self addContraints];
-//    [self addKVOView];
+    [self addKVOViewSizeChanged];
     self.isCanUpdateContraints = YES;
 }
 
 - (void)addSpacerInBothSides {
+    NSNumber *leadingTrailing = [self getCurrentAllFloatSpacers].count > 0 || [self isExitFloatView] ? @0 : nil;
     if (![self.nodes.firstObject isKindOfClass:[OCUISpacer class]]) {
-        OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:@(0)];
+        OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:leadingTrailing];
         [self.nodes insertObject:spacer atIndex:0];
     }
     if (![self.nodes.lastObject isKindOfClass:[OCUISpacer class]]) {
-        OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:@(0)];
+        OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:leadingTrailing];
         [self.nodes addObject:spacer];
     }
 }
@@ -58,14 +61,13 @@
 - (void)updateContraints {}
 - (void)addContraints {}
 
-- (void)addKVOView {
+- (void)addKVOViewSizeChanged {
     [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *view = [self viewWithRenderView:obj];
-        if (view) {
-            if ([view isKindOfClass:[UILabel class]]) {
-                [view addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
-            }
+        if ([view isKindOfClass:[UILabel class]]) {
+            [view addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
         }
+        [view addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
     }];
 }
 
@@ -73,22 +75,7 @@
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context {
-    if ([object isKindOfClass:[UIView class]]) {
-        UIView *view = (UIView *)object;
-        CGSize size = [view intrinsicContentSize];
-        if (size.width != CGRectGetWidth(view.frame)) {
-            [view mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo(size.width);
-            }];
-            
-        }
-        if (size.height != CGRectGetHeight(view.frame)) {
-            [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(size.height);
-            }];
-        }
-        [self updateContraints];
-    }
+    [self updateContraints];
 }
 
 - (UIView *)viewWithRenderView:(id<OCUIRenderView>)renderView {
@@ -115,13 +102,15 @@
             return;
         }
         OCUISpacer *spacer = (OCUISpacer *)obj;
-        if (spacer.lenghtOffset) {
+        if (spacer.flxedOffset) {
             return;
         }
         count ++;
     }];
     return count;
 }
+
+
 
 - (NSUInteger)automaticRenderViewCountWithStackType:(OCUIStackType)stackType {
     __block NSUInteger count = 0;
@@ -194,10 +183,58 @@
         return 0;
     }
     OCUISpacer *spacer = (OCUISpacer *)renderView;
-    if (!spacer.lenghtOffset) {
+    if (!spacer.flxedOffset) {
         return 0;
     }
-    return spacer.lenghtOffset.height;
+    return spacer.flxedOffset.value;
+}
+
+- (NSArray<OCUINode *> *)allFloatSpacers {
+    if (!_allFloatSpacers) {
+        _allFloatSpacers = [self getCurrentAllFloatSpacers];
+    }
+    return _allFloatSpacers;
+}
+
+- (NSArray<OCUINode *> *)findNodesWithBlock:(BOOL(^)(id<OCUIRenderView> obj))block {
+    NSMutableArray<OCUINode *> *spacers = [NSMutableArray array];
+    [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (block(obj)) {
+            [spacers addObject:(OCUINode *)obj];
+        }
+    }];
+    return spacers;
+}
+
+- (NSArray<OCUISpacer *> *)getCurrentAllFloatSpacers {
+    return (NSArray<OCUISpacer *> *)[self findNodesWithBlock:^BOOL(id<OCUIRenderView> obj) {
+        if (![obj isKindOfClass:[OCUISpacer class]]) {
+            return NO;
+        }
+        OCUISpacer *spacer = (OCUISpacer *)obj;
+        if (spacer.flxedOffset) {
+            return NO;
+        }
+        return YES;
+    }];
+}
+
+- (CGFloat)minSpacerFloatOffset {
+    __block CGFloat offset = 0;
+    [self.allFloatSpacers enumerateObjectsUsingBlock:^(OCUISpacer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        offset += obj.minFloatOffset;
+    }];
+    return offset;
+}
+
+- (CGFloat)maxSpacerFloatOffset {
+    __block CGFloat maxOffset = 0;
+    [self.allFloatSpacers enumerateObjectsUsingBlock:^(OCUISpacer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.minFloatOffset > maxOffset) {
+            maxOffset = obj.minFloatOffset;
+        }
+    }];
+    return (maxOffset * self.allFloatSpacers.count);
 }
 
 @end

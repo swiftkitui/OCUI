@@ -12,6 +12,7 @@
 #import "OCUIHStack.h"
 #import "OCUIVStack.h"
 #import "OCUIImage.h"
+#import "OCUIList.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,7 @@ FOUNDATION_EXPORT void AddRenderViewInStack(id<OCUIRenderView> view);
 FOUNDATION_EXPORT OCUIText *Text(NSString * _Nullable content);
 FOUNDATION_EXPORT OCUISpacer *Spacer(NSNumber * _Nullable offset);
 FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName);
+FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, id<OCUIRenderView>(^block)(void));
 
 
 /// UI 构造器

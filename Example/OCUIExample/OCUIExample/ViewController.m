@@ -13,40 +13,28 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) CombineBind<NSArray *> *bind;
+
 @end
 
 @implementation ViewController {
-    CombineBind<NSString *> *_textBind;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _textBind = CombineBindMaker(@"Hello!");
+    _bind = [[CombineBind alloc] initWithContent:@[@"1",@"2",@"3"]];
     [self loadOCUIInView:self.view];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"self->_text.wrappedValue");
-        self->_textBind.wrappedContent = @"Hello World!";
-    });
+
 }
 
 - (void)OCUIMaker {
     HStack(^{
-        /// 左侧15
-        Spacer(@(15));
-        /// 左侧图标25x25
-        Image(@"")
-        .size(CGSizeMake(25, 25))
-        .backgroundColor(UIColor.redColor);
-        /// 左侧10
-        Spacer(@(10));
-        Text(@"飞行模式")
-        .priority(750);
-        /// 左侧自动布局
-        Spacer(nil)
-        .min(10);
-        Text(@"未连接");
-        /// 右侧文本距离15
-        Spacer(@(15));
+        List(self.bind, ^id<OCUIRenderView> _Nonnull{
+            return UITableViewCell.self;
+        })
+        .config(^(UITableViewCell *cell, NSUInteger index) {
+            cell.textLabel.text = self.bind.wrappedContent[index];
+        });
     });
 }
 

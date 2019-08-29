@@ -10,9 +10,9 @@
 
 @implementation OCUILayoutOffset
 
-- (instancetype)initWithHeight:(CGFloat)height {
+- (instancetype)initWithValue:(CGFloat)value {
     if (self = [super init]) {
-        _height = height;
+        _value = value;
     }
     return self;
 }

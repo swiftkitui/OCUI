@@ -154,11 +154,11 @@
                     make.top.equalTo(topView.mas_bottom);
                 } else {
                     OCUISpacer *spacer = [[OCUISpacer alloc] init];
-                    if (spacer.lenghtOffset) {
+                    if (spacer.flxedOffset) {
                         if ([topView isEqual:self.contentView]) {
-                            make.top.equalTo(topView).offset(spacer.lenghtOffset.height);
+                            make.top.equalTo(topView).offset(spacer.flxedOffset.value);
                         } else {
-                            make.top.equalTo(topView.mas_bottom).offset(spacer.lenghtOffset.height);
+                            make.top.equalTo(topView.mas_bottom).offset(spacer.flxedOffset.value);
                         }
                     } else {
                         if ([topView isEqual:self.contentView]) {
@@ -180,7 +180,7 @@
     [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[OCUISpacer class]]) {
             OCUISpacer *spacer = [[OCUISpacer alloc] init];
-            height += spacer.lenghtOffset.height;
+            height += spacer.flxedOffset.value;
         } else {
             height += [self lenghtWithRenderView:obj stackType:OCUIStackTypeV];
         }
