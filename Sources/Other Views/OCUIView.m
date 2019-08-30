@@ -10,13 +10,6 @@
 
 @implementation OCUIView
 
-- (id<OCUIChained> _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
-    return ^id<OCUIChained>(UIColor *backgroundColor) {
-        self->_viewBackgroundColor = backgroundColor;
-        return self;
-    };
-}
-
 - (UIView *)makeOCUIView {
     return [[UIView alloc] initWithFrame:CGRectZero];
 }

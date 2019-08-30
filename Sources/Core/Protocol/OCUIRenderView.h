@@ -24,9 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param view 通过makeOCUIView创建的试图
  */
 - (void)configOCUIView:(UIView *)view;
-@optional
-/// 支持自定义大小
-- (CGSize)renderSize;
 
 @end
 

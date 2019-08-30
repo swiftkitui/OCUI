@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OCUIRenderView.h"
+#import "NSObject+OCUI.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITableViewCell (OCUIRenderView)<OCUIRenderView>
+@interface UITableViewCell (OCUIRenderView)
 
 @end
 

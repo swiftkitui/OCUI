@@ -5,22 +5,24 @@
 //  Created by 张行 on 2019/8/22.
 //  Copyright © 2019 张行. All rights reserved.
 //
-
-#import "OCUIStack.h"
-#import "OCUIRenderView.h"
 #import <objc/runtime.h>
 #import <Masonry/Masonry.h>
+#import "OCUIStack.h"
+#import "OCUISpacer.h"
+
 
 @interface OCUIStack ()
 
-@property (nonatomic, copy) NSMutableArray<id<OCUIRenderView>> *nodes;
+@property (nonatomic, copy) NSMutableArray *nodes;
+
 
 @end
 
 @implementation OCUIStack {
+    OCUIConstraints *_contentViewLenghtContraints;
+    OCUIConstraints *_automaticViewLenghtContraints;
+    OCUIConstraints *_automaticSpacerLenghtContraints;
 }
-
-@synthesize allFloatSpacers = _allFloatSpacers;
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -32,182 +34,111 @@
 - (void)loadAndLayoutViewsInView:(UIView *)view {
     _contentView = view;
     [self addSpacerInBothSides];
-    for (id<OCUIRenderView> renderView in self.nodes) {
-        UIView *makeView = [self viewWithRenderView:renderView];
-        if (makeView) {
-            [view addSubview:makeView];
-        }
-    }
-    [self setupContraints];
-    [self updateContraints];
-    [self addContraints];
+    [self addSubViewInSuperView];
+    [self setupLayoutContraints];
+    [self updateLayoutConstraints];
+    [self makeLayoutContraints];
     [self addKVOViewSizeChanged];
-    self.isCanUpdateContraints = YES;
+    _isCanUpdateContraints = YES;
 }
 
+/**
+ 自动在两端添加 Spacer
+ */
 - (void)addSpacerInBothSides {
-    NSNumber *leadingTrailing = [self getCurrentAllFloatSpacers].count > 0 || [self isExitFloatView] ? @0 : nil;
+    NSNumber *upDownOffset = [self getCurrentAllFloatSpacers].count > 0 || [self getCurrentAllFloatRenderViews].count > 0 ? @0 : nil;
     if (![self.nodes.firstObject isKindOfClass:[OCUISpacer class]]) {
-        OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:leadingTrailing];
+        OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:upDownOffset];
         [self.nodes insertObject:spacer atIndex:0];
     }
     if (![self.nodes.lastObject isKindOfClass:[OCUISpacer class]]) {
-        OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:leadingTrailing];
+        OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:upDownOffset];
         [self.nodes addObject:spacer];
     }
 }
 
-- (void)setupContraints {}
-- (void)updateContraints {}
-- (void)addContraints {}
-
-- (void)addKVOViewSizeChanged {
-    [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIView *view = [self viewWithRenderView:obj];
-        if ([view isKindOfClass:[UILabel class]]) {
-            [view addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+/**
+ 将子试图全部添加到父试图里面
+ */
+- (void)addSubViewInSuperView {
+    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *makeView = [self viewWithObj:obj];
+        if (makeView) {
+            [self.contentView addSubview:makeView];
         }
-        [view addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
     }];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context {
-    [self updateContraints];
-}
+@end
 
-- (UIView *)viewWithRenderView:(id<OCUIRenderView>)renderView {
-    if (!renderView) {
+@implementation OCUIStack (RenderView)
+
+- (UIView *)viewWithObj:(id)obj {
+    if (!obj) {
         return nil;
     }
-    UIView *makeView = objc_getAssociatedObject(renderView, @selector(viewWithRenderView:));
-    if (!makeView && [renderView respondsToSelector:@selector(makeOCUIView)]) {
-        makeView = [renderView makeOCUIView];
-        if ([renderView respondsToSelector:@selector(configOCUIView:)]) {
-            [renderView configOCUIView:makeView];
-        }
+    UIView *makeView = objc_getAssociatedObject(obj, @selector(viewWithObj:));
+    if (!makeView) {
+        makeView = [obj makeOCUIView];
         if (makeView) {
-            objc_setAssociatedObject(renderView, @selector(viewWithRenderView:), makeView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            [obj configOCUIView:makeView];
+            objc_setAssociatedObject(obj, @selector(viewWithObj:), makeView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     return makeView;
 }
 
-- (NSUInteger)automaticSpacerCount {
-    __block NSUInteger count = 0;
-    [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![obj isKindOfClass:[OCUISpacer class]]) {
-            return;
-        }
-        OCUISpacer *spacer = (OCUISpacer *)obj;
-        if (spacer.flxedOffset) {
-            return;
-        }
-        count ++;
-    }];
-    return count;
-}
-
-
-
-- (NSUInteger)automaticRenderViewCountWithStackType:(OCUIStackType)stackType {
-    __block NSUInteger count = 0;
-    [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGFloat height = [self lenghtWithRenderView:obj stackType:stackType];
-        if (height != 0 || [obj isKindOfClass:[OCUISpacer class]]) {
-            return;
-        }
-        count ++;
-    }];
-    return count;
-}
-
-- (CGFloat)lenghtWithRenderView:(id<OCUIRenderView>)renderView
-                      stackType:(OCUIStackType)stackType {
-    CGSize renderSize = CGSizeZero;
-    CGFloat height = 0;
-    if ([renderView respondsToSelector:@selector(renderSize)]) {
-        renderSize = [renderView renderSize];
-        height = [self heightWithSize:renderSize stackType:stackType];
-    }
-    if (height > 0) {
-        return height;
-    }
-    UIView *makeView = [self viewWithRenderView:renderView];
-    if (!makeView) {
-        return 0;
-    }
-    CGSize intrinsicContentSize = makeView.intrinsicContentSize;
-    height = [self heightWithSize:intrinsicContentSize stackType:stackType];
-    if (height > 0) {
-        return height;
-    }
-    return height;
-}
-
-- (CGFloat)heightWithSize:(CGSize)size
-                stackType:(OCUIStackType)stackType {
-    if (stackType == OCUIStackTypeH) {
-        return size.width;
-    } else if (stackType == OCUIStackTypeV) {
-        return size.height;
-    } else {
-        return 0;
-    }
-}
-
-- (UIView *)viewWithHash:(NSUInteger)hash {
-    __block UIView *view;
-    [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIView *makeView = [self viewWithRenderView:obj];
-        if (makeView.hash == hash) {
-            view = makeView;
-            return;
+- (UIView *)upViewWithObj:(id)obj {
+    NSUInteger index = [self.nodes indexOfObject:obj];
+    __block UIView *upView;
+    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = [self viewWithObj:obj];
+        if (view && idx < index) {
+            upView = view;
         }
     }];
-    return view;
+    return upView ?: self.contentView;
 }
 
-- (CGFloat)firstOffset {
-    return [self offsetWithRenderView:self.nodes.firstObject];
+- (UIView *)downViewWithObj:(id)obj {
+    NSUInteger index = [self.nodes indexOfObject:obj];
+    __block UIView *downView;
+    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = [self viewWithObj:obj];
+        if (view && idx > index) {
+            downView = view;
+        }
+    }];
+    return downView ?: self.contentView;
 }
 
-- (CGFloat)lastOffset {
-    return [self offsetWithRenderView:self.nodes.lastObject];
-}
+@end
 
-- (CGFloat)offsetWithRenderView:(id<OCUIRenderView>)renderView {
-    if (![renderView isKindOfClass:[OCUISpacer class]]) {
-        return 0;
-    }
-    OCUISpacer *spacer = (OCUISpacer *)renderView;
-    if (!spacer.flxedOffset) {
-        return 0;
-    }
-    return spacer.flxedOffset.value;
-}
+@implementation OCUIStack (Nodes)
 
-- (NSArray<OCUINode *> *)allFloatSpacers {
-    if (!_allFloatSpacers) {
-        _allFloatSpacers = [self getCurrentAllFloatSpacers];
-    }
-    return _allFloatSpacers;
-}
-
-- (NSArray<OCUINode *> *)findNodesWithBlock:(BOOL(^)(id<OCUIRenderView> obj))block {
-    NSMutableArray<OCUINode *> *spacers = [NSMutableArray array];
-    [self.nodes enumerateObjectsUsingBlock:^(id<OCUIRenderView>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+/**
+ 根据指定的条件组装新的数组
+ 
+ @param block 指定的条件的 Block
+ @return 筛选之后新的数组
+ */
+- (NSArray *)findNodesWithBlock:(BOOL(^)(id obj))block {
+    NSMutableArray *tempNodes = [NSMutableArray array];
+    [self.nodes enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (block(obj)) {
-            [spacers addObject:(OCUINode *)obj];
+            [tempNodes addObject:obj];
         }
     }];
-    return spacers;
+    return tempNodes;
 }
 
+/**
+ 获取当前所有的支持浮动布局的 Sapcer
+ 
+ @return OCUISpacer数组
+ */
 - (NSArray<OCUISpacer *> *)getCurrentAllFloatSpacers {
-    return (NSArray<OCUISpacer *> *)[self findNodesWithBlock:^BOOL(id<OCUIRenderView> obj) {
+    return (NSArray<OCUISpacer *> *)[self findNodesWithBlock:^BOOL(id obj) {
         if (![obj isKindOfClass:[OCUISpacer class]]) {
             return NO;
         }
@@ -219,22 +150,271 @@
     }];
 }
 
-- (CGFloat)minSpacerFloatOffset {
-    __block CGFloat offset = 0;
-    [self.allFloatSpacers enumerateObjectsUsingBlock:^(OCUISpacer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        offset += obj.minFloatOffset;
-    }];
-    return offset;
+- (NSArray *)getCurrentAllFloatRenderViews {
+    NSAssert(NO, @"子类必须重写");
+    return nil;
 }
 
-- (CGFloat)maxSpacerFloatOffset {
-    __block CGFloat maxOffset = 0;
-    [self.allFloatSpacers enumerateObjectsUsingBlock:^(OCUISpacer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.minFloatOffset > maxOffset) {
-            maxOffset = obj.minFloatOffset;
+@end
+
+
+@implementation OCUIStack (OCUIContraints)
+
+- (OCUIConstraints *)contentViewLenghtContraints {
+    return _contentViewLenghtContraints;
+}
+
+- (OCUIConstraints *)automaticViewLenghtContraints {
+    return _automaticViewLenghtContraints;
+}
+
+- (OCUIConstraints *)automaticSpacerLenghtContraints {
+    return _automaticSpacerLenghtContraints;
+}
+
+@end
+
+@implementation OCUIStack (LayoutContraints)
+
+/**
+ 初始化布局约束的条件
+ */
+- (void)setupLayoutContraints {
+    __weak typeof(self) weakSelf = self;
+    _contentViewLenghtContraints = [[OCUIConstraints alloc] initWithValue:CGRectGetWidth(self.contentView.frame)];
+    _automaticViewLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint *contraints) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf.isCanUpdateContraints) {
+            return;
+        }
+        [strongSelf updateLayoutConstraints];
+    };
+    
+    _automaticViewLenghtContraints = [[OCUIConstraints alloc] initWithValue:0];
+    _automaticViewLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint *contraints) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf.isCanUpdateContraints) {
+            return;
+        }
+        contraints.mas_equalTo(value);
+    };
+    
+    _automaticSpacerLenghtContraints = [[OCUIConstraints alloc] initWithValue:0];
+    _automaticSpacerLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint *contraints) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf.isCanUpdateContraints) {
+            return;
+        }
+        contraints.offset(value);
+    };
+}
+/**
+ 更新计算布局约束的条件
+ */
+- (void)updateLayoutConstraints {
+    /// 获取父试图的宽度
+    CGFloat viewLenght = [self contentLenght];
+    NSArray *allFloatSpacers = [self getCurrentAllFloatSpacers];
+    NSArray *allFloatViews = [self getCurrentAllFloatRenderViews];
+    /// 获取自动 Spacer 的个数
+    NSUInteger automaticSpacerCount = allFloatSpacers.count;
+    /// 如果有自动撑满的UIView 则 Spancer 失效
+    NSUInteger automaticRenderViewCount = allFloatViews.count;
+    /// 获取布局试图的当前最适合的长度
+    CGFloat intrinsicContentLenght = [self intrinsicContentLenght];
+    /// 可以自动布局的浮动长度
+    CGFloat floatLenght = viewLenght - intrinsicContentLenght;
+    if (automaticRenderViewCount > 0) {
+        /// 如果可以浮动的宽度此时 小于或者等于最小的间隙 就按照最小的间隙来
+        [self  updateFloatLenghtWithMin:[self minFloatLenghtWithNodes:allFloatViews]
+                                    max:[self maxFloatLenghtWithNodes:allFloatViews]
+                            floatLenght:floatLenght
+                             floatNodes:allFloatViews];
+    } else if (automaticSpacerCount > 0) {
+        /// 如果可以浮动的宽度此时 小于或者等于最小的间隙 就按照最小的间隙来
+        [self  updateFloatLenghtWithMin:[self minFloatLenghtWithNodes:allFloatSpacers]
+                                    max:[self maxFloatLenghtWithNodes:allFloatSpacers]
+                            floatLenght:floatLenght
+                             floatNodes:allFloatSpacers];
+    }
+}
+
+- (void)makeLayoutContraints {
+    __block UIView *upView = self.contentView;
+    [self.nodes enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = [self viewWithObj:obj];
+        if (!view) {
+            return;
+        }
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            /// 布局位置
+            [self addAlignmentContraintsWithMake:make];
+            
+            /// 布局大小
+            CGSize intrinsicContentSize = [view intrinsicContentSize];
+            /// 是否可以使用试图的大小约束
+            BOOL isUseIntrinsicContentSize = intrinsicContentSize.width > 0 && intrinsicContentSize.height > 0;
+            /// 如果支持自动布局 则按照自动布局计算
+            if (!isUseIntrinsicContentSize) {
+                /// 不支持自动布局
+                [self addSizeContraintsWithMake:make
+                                            obj:obj];
+            }
+            [self addOtherContraintsWithMake:make
+                                         obj:obj];
+            
+        }];
+        upView = view;
+    }];
+}
+
+- (void)addAlignmentContraintsWithMake:(MASConstraintMaker *)make {
+    NSAssert(NO, @"子类必须重写");
+}
+
+- (void)addSizeContraintsWithMake:(MASConstraintMaker *)make obj:(id)obj {
+    NSAssert(NO, @"子类必须重写");
+}
+
+- (void)addOtherContraintsWithMake:(MASConstraintMaker *)make obj:(id)obj {
+    NSAssert(NO, @"子类必须重写");
+}
+
+/**
+ 根据数据源获取最小的浮动长度
+
+ @param nodes 提供的数据源数组
+ @return CGFloat
+ */
+- (CGFloat)minFloatLenghtWithNodes:(NSArray *)nodes {
+    __block CGFloat lenght = 0;
+    [nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        lenght += [obj ocui].uiMinFloatLenght;
+    }];
+    return lenght;
+}
+
+/**
+ 根据提供的数据源获取最大的浮动长度
+
+ @param nodes 提供的数据源数组
+ @return CGFloat
+ */
+- (CGFloat)maxFloatLenghtWithNodes:(NSArray *)nodes {
+    __block CGFloat maxLenght = 0;
+    [nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat minFloatLengh = [obj ocui].uiMinFloatLenght;
+        if (minFloatLengh > maxLenght) {
+            maxLenght = minFloatLengh;
         }
     }];
-    return (maxOffset * self.allFloatSpacers.count);
+    return (maxLenght * nodes.count);
+}
+
+/**
+ 根据最小的浮动长度 最大的浮动长度重新计算每一个浮动试图的浮动长度
+
+ @param min 最小的浮动长度
+ @param max 最大的浮动长度
+ @param floatLenght 剩余的浮动长度
+ @param floatNodes 进行计算的浮动长度视图的数组
+ */
+- (void)updateFloatLenghtWithMin:(CGFloat)min
+                             max:(CGFloat)max
+                     floatLenght:(CGFloat)floatLenght
+                      floatNodes:(NSArray *)floatNodes {
+    /// 如果可以浮动的宽度此时 小于或者等于最小的间隙 就按照最小的间隙来
+    if (floatLenght <= min) {
+        [floatNodes enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            OCUINode *node = [obj ocui];
+            node.floatLenght(node.uiMinFloatLenght);
+        }];
+    } else if (floatLenght > min && floatLenght < max) {
+        /// 如果大于最小间隙 并且小于最大平均值 先入顺序 优先满足
+        [self updateFloatLenghtWithNodes:floatNodes
+                             floatLenght:floatLenght];
+    } else {
+        /// 如果满足平分就平分
+        CGFloat averageOffset = floatLenght * 1.0 / floatNodes.count;
+        [floatNodes enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            OCUINode *node = [obj ocui];
+            node.floatLenght(averageOffset);
+        }];
+    }
+}
+
+/**
+ 按照设置的优先级进行设置 如果优先级一样 按照第一个优先级最高
+ 
+ @param nodes 剩余进行优先级布局
+ @param floatLenght 剩余浮动布局的宽度
+ */
+- (void)updateFloatLenghtWithNodes:(NSArray *)nodes
+                       floatLenght:(CGFloat)floatLenght {
+    if (nodes.count == 0 || floatLenght <= 0) {
+        return;
+    }
+    __block OCUINode *node;
+    NSMutableArray *tempSpacers = [NSMutableArray arrayWithArray:nodes];
+    [tempSpacers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        OCUINode *objNode = [obj ocui];
+        if (!node) {
+            node = objNode;
+            return;
+        }
+        if (objNode.uiPriority >= node.uiPriority) {
+            node = objNode;
+        }
+    }];
+    CGFloat updateOffset = 0;
+    if (nodes.count == 1) {
+        updateOffset = MAX(floatLenght, node.uiMinFloatLenght);
+    } else {
+        updateOffset = node.uiMinFloatLenght;
+    }
+    node.floatLenght(updateOffset);
+    [tempSpacers removeObject:node];
+    floatLenght -= updateOffset;
+    [self updateFloatLenghtWithNodes:tempSpacers
+                         floatLenght:floatLenght];
+}
+
+- (CGFloat)contentLenght {
+    NSAssert(NO, @"子类必须重写");
+    return 0;
+}
+
+- (CGFloat)intrinsicContentLenght {
+    NSAssert(NO, @"子类必须重写");
+    return 0;
+}
+
+@end
+
+@implementation OCUIStack (KVOSize)
+
+- (void)addKVOViewSizeChanged {
+    [self.nodes enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = [self viewWithObj:obj];
+        OCUINode *node = [obj ocui];
+        if ([view isKindOfClass:[UILabel class]]) {
+            [view addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+        }
+        [view addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
+        [node addObserver:self forKeyPath:@"uiSize" options:NSKeyValueObservingOptionNew context:nil];
+    }];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    BOOL isCanUpdateConstrints = ([object isKindOfClass:[UILabel class]] && [keyPath isEqualToString:@"text"])
+    || ([object isKindOfClass:[UIView class]] && [keyPath isEqualToString:@"bounds"])
+    || ([object isKindOfClass:[OCUINode class]] && [keyPath isEqualToString:@"uiSize"]);
+    if (isCanUpdateConstrints) {
+        [self updateLayoutConstraints];
+    }
 }
 
 @end

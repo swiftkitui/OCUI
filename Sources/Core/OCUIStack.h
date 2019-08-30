@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OCUIText.h"
+#import "OCUINode.h"
 #import "OCUISpacer.h"
+#import "OCUIConstraints.h"
+#import "NSObject+OCUI.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, OCUIStackType) {
@@ -19,79 +21,142 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
 
 @interface OCUIStack : NSObject
 
-@property (nonatomic, copy, readonly) NSMutableArray<id<OCUIRenderView>> *nodes;
+/**
+ 布局的对象
+ */
+@property (nonatomic, copy, readonly) NSMutableArray *nodes;
 /// 是否可以更新约束 默认是不可以
-@property (nonatomic, assign) BOOL isCanUpdateContraints;
+@property (nonatomic, assign, readonly) BOOL isCanUpdateContraints;
 /// 布局依赖的父试图
 @property (nonatomic, weak, readonly) UIView *contentView;
-/// 获取所有浮动布局 Spacer 的对象数组
-@property (nonatomic, copy, readonly) NSArray<OCUISpacer *> *allFloatSpacers;
-/**
- 最小的浮动间距
- */
-@property (nonatomic, assign, readonly) CGFloat minSpacerFloatOffset;
-@property (nonatomic, assign, readonly) CGFloat maxSpacerFloatOffset;
-
 
 - (void)loadAndLayoutViewsInView:(UIView *)view;
 
-/**
- 子类重写 用于初始化约束
- */
-- (void)setupContraints;
+
+@end
+
+@interface OCUIStack (RenderView)
 
 /**
- 子类重写 用于更新约束的值
- */
-- (void)updateContraints;
-/**
- 子类重写用于添加约束
- */
-- (void)addContraints;
+ 根据提供的对象获取绑定生成的 UIView 对象
 
-- (UIView *)viewWithRenderView:(id<OCUIRenderView>)renderView;
+ @param obj 继承 NSObject 的对象
+ @return UIView对象
+ */
+- (UIView *)viewWithObj:(id)obj;
 /**
- 获取符合`OCUIRenderView`协议的最适合长度
-如果是横向布局 则获取 renderSize 的宽度如果大于0则返回，否则就获取intrinsicContentSize大小的宽度，大于0就返回，否则返回0
-如果是纵向布局 则获取 renderSize 的高度如果大于0则返回，否则就获取intrinsicContentSize大小的高度，大于0就返回，否则返回0
+ 查找布局视图对应上一个的 UIView
+
+ @param obj 布局对象
+ @return UIView
+ */
+- (UIView *)upViewWithObj:(id)obj;
+/**
+ 查找布局视图对应下一个的 UIView
+
+ @param obj 布局对象
+ @return UIView
+ */
+- (UIView *)downViewWithObj:(id)obj;
+
+@end
+
+@interface OCUIStack (Nodes)
+/**
+ 根据指定的条件组装新的数组
  
- @param renderView 符合OCUIRenderView协议的对象
- @param stackType 布局类型
- @return 最适合的大小
+ @param block 指定的条件的 Block
+ @return 筛选之后新的数组
  */
-- (CGFloat)lenghtWithRenderView:(id<OCUIRenderView>)renderView
-                      stackType:(OCUIStackType)stackType;
-
+- (NSArray *)findNodesWithBlock:(BOOL(^)(id obj))block;
+/**
+ 获取当前所有的支持浮动布局的 Sapcer
+ 
+ @return OCUISpacer数组
+ */
+- (NSArray<OCUISpacer *> *)getCurrentAllFloatSpacers;
 
 /**
- 自动布局占位符的个数
+ 获取所有的浮动布局 UIView 的对象数组 子类实现 默认为 nil
 
- @return NSUInteger
+ @return NSArray *
  */
-- (NSUInteger)automaticSpacerCount;
+- (NSArray *)getCurrentAllFloatRenderViews;
 
+@end
+
+@interface OCUIStack (OCUIContraints)
+
+/// 如果是横向布局就是宽度 如果是纵向布局就是高度
+@property (nonatomic, strong, readonly) OCUIConstraints *contentViewLenghtContraints;
+@property (nonatomic, strong, readonly) OCUIConstraints *automaticViewLenghtContraints;
+@property (nonatomic, strong, readonly) OCUIConstraints *automaticSpacerLenghtContraints;
+
+@end
+
+@interface OCUIStack (LayoutContraints)
 
 /**
- 自动渲染试图的个数
-
- @return NSUInteger
+ 初始化布局约束的条件
  */
-- (NSUInteger)automaticRenderViewCountWithStackType:(OCUIStackType)stackType;
+- (void)setupLayoutContraints;
+/**
+ 更新计算布局约束的条件
+ */
+- (void)updateLayoutConstraints;
 
 /**
- 根据 Hash 值获取指定 UIView 试图地址
-
- @param hash Hah 值
- @return UIView *
+ 新建视图的布局约束
  */
-- (UIView *)viewWithHash:(NSUInteger)hash;
+- (void)makeLayoutContraints;
 
-- (CGFloat)firstOffset;
-- (CGFloat)lastOffset;
+/**
+  添加排版约束 子类实现
 
-- (NSArray<OCUINode *> *)findNodesWithBlock:(BOOL(^)(id<OCUIRenderView> obj))block;
+ @param make MASConstraintMaker *
+ */
+- (void)addAlignmentContraintsWithMake:(MASConstraintMaker *)make;
+/**
+ 添加大小的约束 子类实现
 
-- (BOOL)isExitFloatView;
+ @param make MASConstraintMaker *
+ @param obj 布局的对象
+ */
+- (void)addSizeContraintsWithMake:(MASConstraintMaker *)make
+                              obj:(id)obj;
+
+/**
+ 添加其他的约束
+
+ @param make MASConstraintMaker *
+ @param obj 布局的对象
+ */
+- (void)addOtherContraintsWithMake:(MASConstraintMaker *)make
+                               obj:(id)obj;
+
+/**
+ 获取当前布局视图的最适合的长度 子类实现 默认为 0
+
+ @return CGFloat
+ */
+- (CGFloat)intrinsicContentLenght;
+
+/**
+ 获取布局范围的长度
+
+ @return CGFloat
+ */
+- (CGFloat)contentLenght;
+
+@end
+
+
+@interface OCUIStack (KVOSize)
+
+/**
+ 监听布局试图 Size 的变化进行重新的布局
+ */
+- (void)addKVOViewSizeChanged;
 
 @end
 

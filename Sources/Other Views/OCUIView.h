@@ -6,11 +6,11 @@
 //  Copyright © 2019 张行. All rights reserved.
 //
 
-#import "OCUINode.h"
+#import "NSObject+OCUI.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OCUIView : OCUINode
+@interface OCUIView : NSObject
 
 @property (nonatomic, strong, readonly) UIColor *viewBackgroundColor;
 

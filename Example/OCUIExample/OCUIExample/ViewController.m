@@ -28,14 +28,6 @@
 }
 
 - (void)OCUIMaker {
-    HStack(^{
-        List(self.bind, ^id<OCUIRenderView> _Nonnull{
-            return UITableViewCell.self;
-        })
-        .config(^(UITableViewCell *cell, NSUInteger index) {
-            cell.textLabel.text = self.bind.wrappedContent[index];
-        });
-    });
+    Text(@"Hello Word");
 }
-
 @end

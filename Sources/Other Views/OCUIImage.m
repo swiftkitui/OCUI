@@ -17,12 +17,6 @@
     return self;
 }
 
-- (id<OCUIChained>  _Nonnull (^)(UIImage * _Nonnull))image {
-    return ^id<OCUIChained>(UIImage *image) {
-        self->_contentImage = image;
-        return self;
-    };
-}
 
 - (UIView *)makeOCUIView {
     return [[UIImageView alloc] initWithFrame:CGRectZero];

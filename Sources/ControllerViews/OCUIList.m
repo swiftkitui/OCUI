@@ -36,29 +36,7 @@
     UITableViewCell *cell = (UITableViewCell *)_bindRenderView;
     UITableView *tableView = (UITableView *)view;
     NSArray *data = (NSArray *)self.dataBind.wrappedContent;
-    tableView.driverData(MakeDriverGroup {
-        list.makeGroup(MakeDriverNode {
-            DriverNode *node = ZHDriverNode(cell.class, ^(DriverBlockContent * _Nonnull content) {
-                [content setConfigBlock:^(UIView * _Nonnull view, NSUInteger index) {
-                    if (self->_cellConfig) {
-                        self->_cellConfig(view,index);
-                    }
-                }];
-                [content setDidSelectRowBlock:^(UIView * _Nonnull view, NSUInteger index) {
-                    
-                }];
-            });
-            group.makeCell(node)
-            .number(data.count);
-        });
-    });
-}
-
-- (id<OCUIChained>  _Nonnull (^)(void (^ _Nonnull)(UITableViewCell * _Nonnull, NSUInteger)))config {
-    return ^id<OCUIChained>(void (^block)(UITableViewCell * _Nonnull, NSUInteger)) {
-        self->_cellConfig = block;
-        return self;
-    };
+    
 }
 
 @end

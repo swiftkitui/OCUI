@@ -52,11 +52,13 @@
 
 - (DriverNode * _Nonnull (^)(UIColor * _Nonnull))makeSpeacer {
     return ^DriverNode *(UIColor *backgroundColor) {
-        return self.makeCell(ZHDriverNode(MakeDriverBlock(UITableViewCell) {
+        return self.makeCell([DriverNode makeDriverAnyClass:[UITableViewCell class] block:^DriverBlockContent * _Nonnull{
+            DriverBlockContent<UITableViewCell *> *content = [[DriverBlockContent alloc] init];
             [content setConfigBlock:^(UITableViewCell * _Nonnull view, NSUInteger index) {
                 view.backgroundColor = backgroundColor;
             }];
-        }))
+            return content;
+        }])
         .height(10);
     };
 }

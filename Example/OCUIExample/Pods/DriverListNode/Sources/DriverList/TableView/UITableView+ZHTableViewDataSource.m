@@ -22,6 +22,15 @@
 }
 
 #pragma mark - DriverDataSource
+- (void)reloadListWithDriverBlock:(void(^)(void))block {
+    [self makeDriverList:^(DriverList * _Nonnull list) {
+        currentDriverList = list;
+        if (block) {
+            block();
+        }
+    }];
+}
+
 - (void (^)(void(^)(DriverList *list)))driverData {
     return ^(void(^block)(DriverList *list)) {
         [self makeDriverList:block];

@@ -92,6 +92,12 @@ FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, id<OCUIRenderView
     };
 }
 
+FOUNDATION_EXPORT OCUIView *View(void) {
+    OCUIView *view = [[OCUIView alloc] init];
+    AddRenderViewInStack(view);
+    return view;
+}
+
 @end
 
 @implementation NSObject (OCUIMaker)

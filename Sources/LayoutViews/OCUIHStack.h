@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, OCUIVerticalAlignment) {
 @interface OCUIHStack : OCUIStack
 
 /// 垂直布局里面子元素的横向布局 默认为居中
-@property (nonatomic, assign, readonly) OCUIVerticalAlignment stackAlignment;
+@property (nonatomic, assign, readonly) OCUIVerticalAlignment uiAlignment;
 
 /**
  设置子元素的布局

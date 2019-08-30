@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OCUISpacer : OCUINode
+@interface OCUISpacer : NSObject
 
 @property (nonatomic, strong, readonly) OCUILayoutOffset *flxedOffset;
 

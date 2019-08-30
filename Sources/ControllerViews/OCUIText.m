@@ -17,13 +17,6 @@
     return self;
 }
 
-- (id<OCUIChained>  _Nonnull (^)(CombineBind * _Nonnull))bind {
-    return ^id<OCUIChained>(CombineBind *bind) {
-        self->_textBind = bind;
-        return self;
-    };
-}
-
 - (UIView *)makeOCUIView {
     return [[UILabel alloc] initWithFrame:CGRectZero];
 }

@@ -36,3 +36,62 @@
 
 
 @end
+
+FOUNDATION_EXPORT void ZHAddDriverGroup(DriverGroup *group) {
+    if (!group) {
+        return;
+    }
+    if (!currentDriverList) {
+        currentDriverList = [[DriverList alloc] init];
+    }
+    [currentDriverList.groups addObject:group];
+}
+FOUNDATION_EXPORT void ZHAddDriverNode(DriverNode *node) {
+    if (!currentDriverGroup) {
+        currentDriverGroup = [[DriverGroup alloc] init];
+        ZHAddDriverGroup(currentDriverGroup);
+    }
+    currentDriverGroup.makeCell(node);
+}
+FOUNDATION_EXPORT DriverGroup *ZHDriverGroup(void) {
+    DriverGroup *group = [[DriverGroup alloc] init];
+    ZHAddDriverGroup(group);
+    return group;
+}
+
+FOUNDATION_EXPORT DriverNode *ZHDriverCell(Class className, DriverBlockContent *(^block)(void)) {
+    DriverNode *node = [DriverNode makeDriverAnyClass:className block:block];
+    return node;
+}
+FOUNDATION_EXPORT DriverNode *ZHDriverSpacer(UIColor *backgroundColor,DriverBlockContent *(^block)(void)) {
+    return ZHDriverCell([UITableViewCell class], ^DriverBlockContent *{
+        if (block) {
+            return block();
+        } else {
+            DriverBlockContent<UITableViewCell *> *content = [[DriverBlockContent alloc] init];
+            [content setConfigBlock:^(UITableViewCell * _Nonnull view, NSUInteger index) {
+                view.backgroundColor = backgroundColor;
+            }];
+            return content;
+        }
+    });
+}
+FOUNDATION_EXPORT DriverNode *ZHDriverHeader(Class className, DriverBlockContent *(^block)(void)) {
+    DriverNode *node = [DriverNode makeDriverAnyClass:className block:block];
+    if (!currentDriverGroup) {
+        currentDriverGroup = [[DriverGroup alloc] init];
+        ZHAddDriverGroup(currentDriverGroup);
+    }
+    currentDriverGroup.makeHeader(node);
+    return node;
+}
+
+FOUNDATION_EXPORT DriverNode *ZHDriverFooter(Class className, DriverBlockContent *(^block)(void)) {
+    DriverNode *node = [DriverNode makeDriverAnyClass:className block:block];
+    if (!currentDriverGroup) {
+        currentDriverGroup = [[DriverGroup alloc] init];
+        ZHAddDriverGroup(currentDriverGroup);
+    }
+    currentDriverGroup.makeFooter(node);
+    return node;
+}

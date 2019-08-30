@@ -10,10 +10,6 @@
 
 @implementation UITableViewCell (OCUIRenderView)
 
-- (void)configOCUIView:(nonnull UIView *)view {
-    
-}
-
 - (nonnull UIView *)makeOCUIView {
     return self;
 }
