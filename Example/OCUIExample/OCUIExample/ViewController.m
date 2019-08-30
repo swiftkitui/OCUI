@@ -29,9 +29,17 @@
 
 - (void)OCUIMaker {
     HStack(^{
-        Text(@"Hello World!");
-        Spacer(@10);
-        Text(@"Hello World!");
+        List(self.bind, ^UITableViewCell * _Nonnull{
+            UITableViewCell *cell = UITableViewCell.new;
+            cell.ocui.driverBlockContent(^DriverBlockContent * {
+                DriverBlockContent<UITableViewCell *> *content = [DriverBlockContent new];
+                [content setConfigBlock:^(UITableViewCell * _Nonnull view, NSUInteger index) {
+                    view.textLabel.text = self.bind.wrappedContent[index];
+                }];
+                return content;
+            });
+            return cell;
+        });
     });
 }
 @end

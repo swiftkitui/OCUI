@@ -26,6 +26,7 @@ static DriverGroup *currentDriverGroup;
 
 @end
 
+FOUNDATION_EXTERN DriverList *ZHDriverList(DriverList *);
 FOUNDATION_EXPORT DriverGroup *ZHDriverGroup(void);
 FOUNDATION_EXPORT DriverNode *ZHDriverCell(Class className, DriverBlockContent *(^block)(void));
 FOUNDATION_EXPORT DriverNode *ZHDriverSpacer(UIColor *backgroundColor,DriverBlockContent *(^block)(void));

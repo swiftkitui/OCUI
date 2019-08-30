@@ -57,62 +57,38 @@
 - (void)addOtherContraintsWithMake:(MASConstraintMaker *)make
                                obj:(id)obj {
     NSUInteger index = [self.nodes indexOfObject:obj];
-    [self makeContraintsWithMake:make
-                            isUp:YES
-                         atIndex:index];
-    [self makeContraintsWithMake:make
-                            isUp:NO
-                         atIndex:index];
-}
-
-- (void)makeContraintsWithMake:(MASConstraintMaker *)make
-                          isUp:(BOOL)isUp
-                       atIndex:(NSUInteger)index {
-    id dependObj;
-    if (isUp) {
-        dependObj = self.nodes[index - 1];
-    } else {
-        dependObj = self.nodes[index + 1];
-    }
-    UIView *topView = [self upViewWithObj:self.nodes[index]];
-    UIView *bottomView = [self downViewWithObj:self.nodes[index]];
-    /// 如果上一个不是OCUISpacer 说明位置是紧紧挨着的
-    if (!([dependObj isKindOfClass:[OCUISpacer class]])) {
-        if (isUp) {
-            make.top.equalTo(topView.mas_bottom);
-        } else {
-            make.bottom.equalTo(bottomView.mas_top);
-        }
-    } else {
-        OCUISpacer *spacer = (OCUISpacer *)dependObj;
-        OCUINode *node = [spacer ocui];
-        /// 如果存在写死的间距
-        if (spacer.flxedOffset) {
-            if (isUp) {
-                if ([topView isEqual:self.contentView]) {
-                    make.top.equalTo(topView).offset(spacer.flxedOffset.value);
-                } else {
-                    make.top.equalTo(topView.mas_bottom).offset(spacer.flxedOffset.value);
-                }
+    UIView *topView = [self upViewWithObj:obj];
+    UIView *bottomView = [self downViewWithObj:obj];
+    __block BOOL isExitTopFloatLayout = NO;
+    /// 左侧布局
+    [self makeContraintsWithMake:make isUp:YES atIndex:index block:^(CGFloat flxedOffset) {
+        if (flxedOffset != NSNotFound) {
+            if ([topView isEqual:self.contentView]) {
+                make.top.equalTo(topView).offset(flxedOffset);
             } else {
-                if ([bottomView isEqual:self.contentView]) {
-                    make.bottom.equalTo(bottomView).offset(-spacer.flxedOffset.value);
-                } else {
-                    make.bottom.equalTo(bottomView.mas_top).offset(-spacer.flxedOffset.value);
-                }
+                make.top.equalTo(topView.mas_bottom).offset(flxedOffset);
             }
         } else {
-            /// 右侧采用浮动布局 就优先压缩
-            if (!isUp) {
-                if ([bottomView isEqual:self.contentView]) {
-                    make.bottom.equalTo(bottomView).offset(-node.uiFloatLenght);
-                } else {
-                    [bottomView setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-                    make.bottom.equalTo(bottomView.mas_top).offset(-node.uiFloatLenght);
-                }
+            isExitTopFloatLayout = YES;
+            OCUINode *node = [self.nodes[index - 1] ocui];
+            if ([topView isEqual:self.contentView]) {
+                make.top.greaterThanOrEqualTo(topView).offset(node.uiFloatLenght);
+            } else {
+                make.top.greaterThanOrEqualTo(topView.mas_bottom).offset(node.uiFloatLenght);
             }
         }
-    }
+    }];
+    [self makeContraintsWithMake:make isUp:NO atIndex:index block:^(CGFloat flxedOffset) {
+        OCUINode *node = [self.nodes[index + 1] ocui];
+        flxedOffset = flxedOffset == NSNotFound ? node.uiFloatLenght : flxedOffset;
+        if (isExitTopFloatLayout) {
+            if ([bottomView isEqual:self.contentView]) {
+                make.bottom.equalTo(bottomView).offset(-flxedOffset);
+            } else {
+                make.bottom.equalTo(bottomView.mas_top).offset(-flxedOffset);
+            }
+        }
+    }];
 }
 
 - (CGFloat)intrinsicContentLenght {

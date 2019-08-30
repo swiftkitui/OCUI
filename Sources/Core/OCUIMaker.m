@@ -9,7 +9,12 @@
 #import <Masonry/Masonry.h>
 #import <objc/runtime.h>
 #import "OCUIMaker.h"
-
+FOUNDATION_EXTERN OCUIMaker *Maker(void(^block)(void)) {
+    OCUICurrentStack = nil;
+    block();
+    OCUIMaker *make = [[OCUIMaker alloc] initWithStack:OCUICurrentStack];
+    return make;
+}
 FOUNDATION_EXPORT OCUIVStack *VStack(void(^ _Nullable block)(void)) {
     OCUIVStack *stack = [[OCUIVStack alloc] init];
     OCUICurrentStack = stack;
@@ -62,7 +67,7 @@ FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName) {
     return image;
 }
 
-FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, id<OCUIRenderView>(^block)(void)) {
+FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, UITableViewCell *(^block)(void)) {
     OCUIList *list = [[OCUIList alloc] initWithWithBind:bind block:block];
     AddRenderViewInStack(list);
     return list;
@@ -103,8 +108,9 @@ FOUNDATION_EXPORT OCUIView *View(void) {
 @implementation NSObject (OCUIMaker)
 
 - (void)loadOCUIInView:(UIView *)view {
-    [self OCUIMaker];
-    OCUIMaker *maker = [[OCUIMaker alloc] initWithStack:OCUICurrentStack];
+    OCUIMaker *maker = Maker(^{
+        [self OCUIMaker];
+    });
     objc_setAssociatedObject(self, @selector(OCUIMaker), maker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [maker.stack loadAndLayoutViewsInView:view];
 }

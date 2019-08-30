@@ -36,11 +36,15 @@
 
 
 @end
-
+FOUNDATION_EXTERN DriverList *ZHDriverList(DriverList *list) {
+    currentDriverList = list;
+    return list;
+}
 FOUNDATION_EXPORT void ZHAddDriverGroup(DriverGroup *group) {
     if (!group) {
         return;
     }
+    extern DriverList *currentDriverList;
     if (!currentDriverList) {
         currentDriverList = [[DriverList alloc] init];
     }
@@ -61,6 +65,7 @@ FOUNDATION_EXPORT DriverGroup *ZHDriverGroup(void) {
 
 FOUNDATION_EXPORT DriverNode *ZHDriverCell(Class className, DriverBlockContent *(^block)(void)) {
     DriverNode *node = [DriverNode makeDriverAnyClass:className block:block];
+    ZHAddDriverNode(node);
     return node;
 }
 FOUNDATION_EXPORT DriverNode *ZHDriverSpacer(UIColor *backgroundColor,DriverBlockContent *(^block)(void)) {

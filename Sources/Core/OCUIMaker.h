@@ -13,19 +13,22 @@
 #import "OCUIVStack.h"
 #import "OCUIImage.h"
 #import "OCUIList.h"
+#import "OCUIButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class OCUIMaker;
 
 /// 当前正在布局的OCUIStack
 static OCUIStack *OCUICurrentStack;
 
+FOUNDATION_EXTERN OCUIMaker *Maker(void(^)(void));
 FOUNDATION_EXPORT OCUIVStack *VStack(void(^ _Nullable block)(void));
 FOUNDATION_EXPORT OCUIHStack *HStack(void(^ _Nullable block)(void));
 FOUNDATION_EXPORT OCUIZStack *ZStack(void(^ _Nullable block)(void));
 FOUNDATION_EXPORT OCUIText *Text(NSString * _Nullable content);
 FOUNDATION_EXPORT OCUISpacer *Spacer(NSNumber * _Nullable offset);
 FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName);
-FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, id<OCUIRenderView>(^block)(void));
+FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, UITableViewCell *(^block)(void));
 FOUNDATION_EXPORT OCUIView *View(void);
 
 

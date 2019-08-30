@@ -15,6 +15,7 @@
     CGFloat _uiFloatLenght;
     CGFloat _uiPriority;
     UIColor *_uiBackgroundColor;
+    DriverBlockContent *_uiDriverBlockContent;
 }
 #pragma mark - OCUIRenderView
 
@@ -116,6 +117,23 @@
 - (OCUINode * _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
     return ^OCUINode *(UIColor *backgroundColor) {
         self->_uiBackgroundColor = backgroundColor;
+        return self;
+    };
+}
+
+@end
+
+@implementation OCUINode (List)
+
+- (DriverBlockContent *)uiDriverBlockContent {
+    return _uiDriverBlockContent;
+}
+
+- (OCUINode * _Nonnull (^)(DriverBlockContent * _Nonnull (^ _Nonnull)(void)))driverBlockContent {
+    return ^OCUINode *(DriverBlockContent *(^block)(void)) {
+        if (block) {
+            self->_uiDriverBlockContent = block();
+        }
         return self;
     };
 }

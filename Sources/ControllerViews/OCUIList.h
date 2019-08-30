@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) CombineBind<NSArray<T> *> *dataBind;
 
 - (instancetype)initWithWithBind:(CombineBind<NSArray<T> *> *)bind
-                           block:(id<OCUIRenderView>(^)(void))block;
+                           block:(UITableViewCell *(^)(void))block;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CombineObjectObjc/NSObject+CombineBind.h>
+#import <DriverListNode/DriverListNode.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUINode;
@@ -77,6 +78,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) UIColor *uiBackgroundColor;
 
 - (OCUINode *(^)(UIColor *))backgroundColor;
+
+@end
+
+@interface OCUINode (List)
+
+@property (nonatomic, strong, readonly) DriverBlockContent *uiDriverBlockContent;
+- (OCUINode *(^)(DriverBlockContent *(^)(void)))driverBlockContent;
 
 @end
 

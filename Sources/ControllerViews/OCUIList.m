@@ -7,13 +7,14 @@
 //
 
 #import "OCUIList.h"
+#import <DriverListNode/DriverListNode.h>
 
 @implementation OCUIList {
-    id<OCUIRenderView> _bindRenderView;
+    UITableViewCell *_bindRenderView;
     void (^_cellConfig)(UITableViewCell * _Nonnull, NSUInteger);
 }
 
-- (instancetype)initWithWithBind:(CombineBind *)bind block:(id<OCUIRenderView>  _Nonnull (^)(void))block {
+- (instancetype)initWithWithBind:(CombineBind *)bind block:(UITableViewCell * _Nonnull (^)(void))block {
     if (self = [super init]) {
         _dataBind = bind;
         _bindRenderView = block();
@@ -27,16 +28,18 @@
 }
 
 - (void)configOCUIView:(UIView *)view {
+    [super configOCUIView:view];
     if (![view isKindOfClass:[UITableView class]]) {
         return;
     }
-    if (![[_bindRenderView class] isSubclassOfClass:[UITableViewCell class]]) {
-        return;
-    }
-    UITableViewCell *cell = (UITableViewCell *)_bindRenderView;
     UITableView *tableView = (UITableView *)view;
     NSArray *data = (NSArray *)self.dataBind.wrappedContent;
-    
+    [tableView reloadListWithDriverBlock:^{
+        ZHDriverCell([self->_bindRenderView class], ^DriverBlockContent * _Nonnull{
+            return self->_bindRenderView.ocui.uiDriverBlockContent;
+        })
+        .number(data.count);
+    }];
 }
 
 @end
