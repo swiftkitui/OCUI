@@ -12,7 +12,7 @@ HStack(^{
 
 ![image-20190829082506942](images/image-20190829082506942.png)
 
-##两个文本居中对齐
+## 两个文本居中对齐
 
 ```objc
 HStack(^{
@@ -47,7 +47,7 @@ HStack(^{
 
 ![image-20190829082929288](images/image-20190829082929288.png)
 
-## 快速减速创建设置 Cell
+## 快速创建设置 Cell
 
 ```objc
 HStack(^{
