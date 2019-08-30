@@ -134,6 +134,11 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
 - (void)addOtherContraintsWithMake:(MASConstraintMaker *)make
                                obj:(id)obj;
 
+- (void)makeContraintsWithMake:(MASConstraintMaker *)make
+                          isUp:(BOOL)isUp
+                       atIndex:(NSUInteger)index
+                         block:(void(^)(CGFloat flxedOffset))block;
+
 /**
  获取当前布局视图的最适合的长度 子类实现 默认为 0
 

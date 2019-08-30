@@ -28,6 +28,10 @@
 }
 
 - (void)OCUIMaker {
-    Text(@"Hello Word");
+    HStack(^{
+        Text(@"Hello World!");
+        Spacer(@10);
+        Text(@"Hello World!");
+    });
 }
 @end

@@ -72,4 +72,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface OCUINode (OCUIView)
+
+@property (nonatomic, strong, readonly) UIColor *uiBackgroundColor;
+
+- (OCUINode *(^)(UIColor *))backgroundColor;
+
+@end
+
 NS_ASSUME_NONNULL_END

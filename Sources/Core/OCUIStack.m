@@ -246,7 +246,7 @@
         if (!view) {
             return;
         }
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        NSArray *contraints = [view mas_makeConstraints:^(MASConstraintMaker *make) {
             /// 布局位置
             [self addAlignmentContraintsWithMake:make];
             
@@ -264,6 +264,7 @@
                                          obj:obj];
             
         }];
+        NSLog(@"contraints = %@",contraints);
         upView = view;
     }];
 }
@@ -278,6 +279,27 @@
 
 - (void)addOtherContraintsWithMake:(MASConstraintMaker *)make obj:(id)obj {
     NSAssert(NO, @"子类必须重写");
+}
+
+- (void)makeContraintsWithMake:(MASConstraintMaker *)make isUp:(BOOL)isUp atIndex:(NSUInteger)index block:(void (^)(CGFloat))block {
+    id dependObj;
+    if (isUp) {
+        dependObj = self.nodes[index - 1];
+    } else {
+        dependObj = self.nodes[index + 1];
+    }
+    /// 如果上一个不是OCUISpacer 说明位置是紧紧挨着的
+    if (!([dependObj isKindOfClass:[OCUISpacer class]])) {
+        block(0);
+    } else {
+        OCUISpacer *spacer = (OCUISpacer *)dependObj;
+        /// 如果存在写死的间距
+        if (spacer.flxedOffset) {
+            block(spacer.flxedOffset.value);
+        } else {
+            block(NSNotFound);
+        }
+    }
 }
 
 /**

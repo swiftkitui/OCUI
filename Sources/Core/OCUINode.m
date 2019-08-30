@@ -14,6 +14,7 @@
     CGFloat _uiMinFloatLengh;
     CGFloat _uiFloatLenght;
     CGFloat _uiPriority;
+    UIColor *_uiBackgroundColor;
 }
 #pragma mark - OCUIRenderView
 
@@ -100,6 +101,21 @@
 - (OCUINode * _Nonnull (^)(CGFloat))priority {
     return ^OCUINode *(CGFloat priority) {
         self->_uiPriority = priority;
+        return self;
+    };
+}
+
+@end
+
+@implementation OCUINode (OCUIView)
+
+- (UIColor *)uiBackgroundColor {
+    return _uiBackgroundColor;
+}
+
+- (OCUINode * _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
+    return ^OCUINode *(UIColor *backgroundColor) {
+        self->_uiBackgroundColor = backgroundColor;
         return self;
     };
 }
