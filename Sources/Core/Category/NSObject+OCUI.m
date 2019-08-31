@@ -20,6 +20,15 @@
     return node;
 }
 
+- (instancetype  _Nonnull (^)(void (^ _Nonnull)(OCUINode * _Nonnull)))UI {
+    return ^NSObject *((void (^block)(OCUINode * _Nonnull))) {
+        if (block) {
+            block(self.ocui);
+        }
+        return self;
+    };
+}
+
 - (void)configOCUIViewWithClass:(Class)className {
     
 }

@@ -13,10 +13,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define UINode ^(OCUINode *UI)
+
 @interface NSObject (OCUI)<OCUIRenderView>
 
 /// 用于链式设置 OCUI 的属性值
 @property (nonatomic, strong, readonly) OCUINode *ocui;
+- (instancetype(^)(void(^)(OCUINode *ui)))UI;
 
 @end
 

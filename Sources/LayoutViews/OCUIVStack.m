@@ -51,7 +51,7 @@
         make.height.mas_equalTo(height);
     }
     CGFloat width = node.uiSize.width;
-    if (height <= 0) {
+    if (width <= 0) {
         make.width.equalTo(self.contentView);
     } else {
         make.width.mas_equalTo(width);
@@ -141,10 +141,10 @@
         }
         OCUINode *node = [obj ocui];
         UIView *makeView = [self viewWithObj:obj];
-        if (node.uiSize.width > 0) {
+        if (node.uiSize.height > 0) {
             return NO;
         }
-        if (makeView.intrinsicContentSize.width > 0) {
+        if (makeView.intrinsicContentSize.height > 0) {
             return NO;
         }
         return YES;

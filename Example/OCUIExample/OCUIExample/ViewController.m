@@ -33,7 +33,6 @@
 }
 
 - (void)OCUIMaker {
-    Slider(1).ocui
-    .bind(_toggleBind);
+    [Slider(0.2).UI(nil) print];
 }
 @end

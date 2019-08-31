@@ -16,8 +16,14 @@
 - (instancetype)initWithValue:(CGFloat)value {
     if (self = [super init]) {
         _value = value;
+        self.ocui.height(30);
+        NSLog(@"%@",self);
     }
     return self;
+}
+
+- (void)print {
+    NSLog(@"%@",self);
 }
 
 - (UIView *)makeOCUIView {
