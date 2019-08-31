@@ -30,23 +30,8 @@
             }];
         };
         _bindViewConstraints = [NSMutableArray array];
-        _bindViewHashNumbers = [NSMutableArray array];
     }
     return self;
-}
-
-- (void)addBindViewHash:(NSUInteger)hashValue {
-    __block BOOL isExit = NO;
-    [self.bindViewHashNumbers enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj integerValue] == hashValue) {
-            isExit = YES;
-            return;
-        }
-    }];
-    if (isExit) {
-        return;
-    }
-    [self.bindViewHashNumbers addObject:@(hashValue)];
 }
 
 - (void (^)(MASConstraint * _Nonnull))addBindViewContraints {

@@ -27,6 +27,9 @@
 		5D5F098223137C850029EE9E /* OCUIConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F098123137C850029EE9E /* OCUIConstraints.m */; };
 		5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09842313E0A10029EE9E /* OCUIImage.m */; };
 		5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09882314E6A90029EE9E /* OCUIList.m */; };
+		5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */; };
+		5DCA42A9231A65AC000F8359 /* OCUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A8231A65AC000F8359 /* OCUISlider.m */; };
+		5DCA42AC231A67A8000F8359 /* OCUIConfigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42AB231A67A8000F8359 /* OCUIConfigView.m */; };
 		5DCBA0182319288D00B1A2D5 /* OCUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCBA0172319288D00B1A2D5 /* OCUIButton.m */; };
 		5DD5E7CF231672C100053E78 /* NSArray+CombineValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5E7CE231672C100053E78 /* NSArray+CombineValue.m */; };
 		5DD5E7D22316772F00053E78 /* UITableViewCell+OCUIRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5E7D12316772F00053E78 /* UITableViewCell+OCUIRenderView.m */; };
@@ -85,6 +88,12 @@
 		5D5F09842313E0A10029EE9E /* OCUIImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIImage.m; sourceTree = "<group>"; };
 		5D5F09872314E6A90029EE9E /* OCUIList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIList.h; sourceTree = "<group>"; };
 		5D5F09882314E6A90029EE9E /* OCUIList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIList.m; sourceTree = "<group>"; };
+		5DCA42A4231A5CB4000F8359 /* OCUIToggle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIToggle.h; sourceTree = "<group>"; };
+		5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIToggle.m; sourceTree = "<group>"; };
+		5DCA42A7231A65AC000F8359 /* OCUISlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUISlider.h; sourceTree = "<group>"; };
+		5DCA42A8231A65AC000F8359 /* OCUISlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUISlider.m; sourceTree = "<group>"; };
+		5DCA42AA231A67A8000F8359 /* OCUIConfigView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIConfigView.h; sourceTree = "<group>"; };
+		5DCA42AB231A67A8000F8359 /* OCUIConfigView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIConfigView.m; sourceTree = "<group>"; };
 		5DCBA0162319288D00B1A2D5 /* OCUIButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIButton.h; sourceTree = "<group>"; };
 		5DCBA0172319288D00B1A2D5 /* OCUIButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIButton.m; sourceTree = "<group>"; };
 		5DD5E7CD231672C100053E78 /* NSArray+CombineValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+CombineValue.h"; sourceTree = "<group>"; };
@@ -176,6 +185,10 @@
 				5D5F09882314E6A90029EE9E /* OCUIList.m */,
 				5DCBA0162319288D00B1A2D5 /* OCUIButton.h */,
 				5DCBA0172319288D00B1A2D5 /* OCUIButton.m */,
+				5DCA42A4231A5CB4000F8359 /* OCUIToggle.h */,
+				5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */,
+				5DCA42A7231A65AC000F8359 /* OCUISlider.h */,
+				5DCA42A8231A65AC000F8359 /* OCUISlider.m */,
 			);
 			path = ControllerViews;
 			sourceTree = "<group>";
@@ -221,6 +234,8 @@
 				5D5F098123137C850029EE9E /* OCUIConstraints.m */,
 				5D5F0961231362050029EE9E /* OCUIMaker.h */,
 				5D5F096F231362050029EE9E /* OCUIMaker.m */,
+				5DCA42AA231A67A8000F8359 /* OCUIConfigView.h */,
+				5DCA42AB231A67A8000F8359 /* OCUIConfigView.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -353,6 +368,7 @@
 			files = (
 				5D43F1FD230D40810098713E /* ViewController.m in Sources */,
 				5DD5E7CF231672C100053E78 /* NSArray+CombineValue.m in Sources */,
+				5DCA42A9231A65AC000F8359 /* OCUISlider.m in Sources */,
 				5D5F0977231362060029EE9E /* OCUISpacer.m in Sources */,
 				5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */,
 				5D5F0975231362060029EE9E /* OCUIVStack.m in Sources */,
@@ -362,6 +378,7 @@
 				5D43F208230D40840098713E /* main.m in Sources */,
 				5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */,
 				5DD5E7D22316772F00053E78 /* UITableViewCell+OCUIRenderView.m in Sources */,
+				5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */,
 				5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */,
 				5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */,
 				5D5F0972231362060029EE9E /* OCUILayoutOffset.m in Sources */,
@@ -371,6 +388,7 @@
 				5D5F097A231362060029EE9E /* OCUIText.m in Sources */,
 				5D5F098223137C850029EE9E /* OCUIConstraints.m in Sources */,
 				5D43F1FA230D40810098713E /* AppDelegate.m in Sources */,
+				5DCA42AC231A67A8000F8359 /* OCUIConfigView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

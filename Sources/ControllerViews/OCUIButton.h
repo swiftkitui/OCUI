@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUIButton : OCUIView
 
+- (instancetype)initWithText:(NSString *)text
+                        make:(void(^)(void))makeBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

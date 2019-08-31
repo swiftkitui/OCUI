@@ -42,7 +42,11 @@
     /// 不支持自动布局
     CGFloat height = node.uiSize.height;
     if (height <= 0) {
-        make.height.mas_equalTo(node.uiFloatLenght);
+        MASConstraint *contraints = make.height.mas_equalTo(node.uiFloatLenght);
+        node.uiFloatLenghtContraints.addBindViewContraints(contraints);
+        node.uiFloatLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint * _Nonnull contraints) {
+            contraints.mas_equalTo(value);
+        };
     } else {
         make.height.mas_equalTo(height);
     }
@@ -71,21 +75,36 @@
         } else {
             isExitTopFloatLayout = YES;
             OCUINode *node = [self.nodes[index - 1] ocui];
+            MASConstraint *contraints;
             if ([topView isEqual:self.contentView]) {
-                make.top.greaterThanOrEqualTo(topView).offset(node.uiFloatLenght);
+                contraints = make.top.greaterThanOrEqualTo(topView).offset(node.uiFloatLenght);
             } else {
-                make.top.greaterThanOrEqualTo(topView.mas_bottom).offset(node.uiFloatLenght);
+                contraints = make.top.greaterThanOrEqualTo(topView.mas_bottom).offset(node.uiFloatLenght);
             }
+            node.uiFloatLenghtContraints.addBindViewContraints(contraints);
+            node.uiFloatLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint * _Nonnull contraints) {
+                contraints.offset(value);
+            };
         }
     }];
     [self makeContraintsWithMake:make isUp:NO atIndex:index block:^(CGFloat flxedOffset) {
         OCUINode *node = [self.nodes[index + 1] ocui];
-        flxedOffset = flxedOffset == NSNotFound ? node.uiFloatLenght : flxedOffset;
+        CGFloat bottomOffset = flxedOffset;
+        if (flxedOffset == NSNotFound) {
+            bottomOffset = node.uiFloatLenght;
+        }
+        MASConstraint *contraints;
         if (isExitTopFloatLayout) {
             if ([bottomView isEqual:self.contentView]) {
-                make.bottom.equalTo(bottomView).offset(-flxedOffset);
+                contraints = make.bottom.equalTo(bottomView).offset(-bottomOffset);
             } else {
-                make.bottom.equalTo(bottomView.mas_top).offset(-flxedOffset);
+                contraints = make.bottom.equalTo(bottomView.mas_top).offset(-bottomOffset);
+            }
+            if (flxedOffset == NSNotFound) {
+                node.uiFloatLenghtContraints.addBindViewContraints(contraints);
+                node.uiFloatLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint * _Nonnull contraints) {
+                    contraints.offset(-value);
+                };
             }
         }
     }];
@@ -130,6 +149,42 @@
         }
         return YES;
     }];
+}
+
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake([self maxIntrinsicContentSizeWidth], [self maxIntrinsicContentSizeHeight]);
+}
+
+- (CGFloat)maxIntrinsicContentSizeWidth {
+    __block CGFloat maxIntrinsicContentSizeWidth = 0;
+    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        OCUINode *node = [obj ocui];
+        if (node.uiSize.width > 0) {
+            maxIntrinsicContentSizeWidth = MAX(maxIntrinsicContentSizeWidth, node.uiSize.width);
+        } else {
+            UIView *view = [self viewWithObj:obj];
+            if (view.intrinsicContentSize.width > 0) {
+                maxIntrinsicContentSizeWidth = MAX(maxIntrinsicContentSizeWidth, view.intrinsicContentSize.width);
+            }
+        }
+    }];
+    return maxIntrinsicContentSizeWidth;
+}
+
+- (CGFloat)maxIntrinsicContentSizeHeight {
+    __block CGFloat maxIntrinsicContentSizeHeight = 0;
+    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        OCUINode *node = [obj ocui];
+        if (node.uiSize.height > 0) {
+            maxIntrinsicContentSizeHeight += node.uiSize.height;
+        } else {
+            UIView *view = [self viewWithObj:obj];
+            if (view.intrinsicContentSize.height > 0) {
+                maxIntrinsicContentSizeHeight += view.intrinsicContentSize.height;
+            }
+        }
+    }];
+    return maxIntrinsicContentSizeHeight;
 }
 
 @end

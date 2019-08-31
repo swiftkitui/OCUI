@@ -20,6 +20,10 @@
     return node;
 }
 
+- (void)configOCUIViewWithClass:(Class)className {
+    
+}
+
 #pragma mark - OCUIRenderView
 - (UIView *)makeOCUIView {
     return nil;
@@ -27,5 +31,6 @@
 
 - (void)configOCUIView:(UIView *)view {
 }
+
 
 @end

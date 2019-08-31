@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CombineObjectObjc/NSObject+CombineBind.h>
 #import <DriverListNode/DriverListNode.h>
+#import "OCUIConstraints.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUINode;
@@ -22,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGFloat uiWidth;
 @property (nonatomic, assign, readonly) CGFloat uiHeight;
 @property (nonatomic, assign, readonly) CGSize uiSize;
+/// 是否使用 intrinsicContentSize 默认为 YES
+@property (nonatomic, assign, readonly) BOOL uiIsUseIntrinsicContentSize;
+/// 内容边距 默认为(0,0,0,0)
+@property (nonatomic, assign, readonly) UIEdgeInsets uiContentEdgeInsets;
 /**
  设置宽度
  */
@@ -35,6 +40,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (OCUINode *(^)(CGSize))size;
 
+/// 设置是否使用 intrinsicContentSize
+- (OCUINode *(^)(BOOL))isUseIntrinsicContentSize;
+/// 设置内容的上下左右间距
+- (OCUINode *(^)(UIEdgeInsets))contentEdgeInsets;
+
+
 @end
 
 @interface OCUINode (FloatLayout)
@@ -47,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
  当前支持的浮动长度 默认为 0
  */
 @property (nonatomic, assign, readonly) CGFloat uiFloatLenght;
+/// 监听uiFloatLenght的变化
+@property (nonatomic, strong, readonly) OCUIConstraints *uiFloatLenghtContraints;
 
 /**
  设置最小的浮动长度
@@ -85,6 +98,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) DriverBlockContent *uiDriverBlockContent;
 - (OCUINode *(^)(DriverBlockContent *(^)(void)))driverBlockContent;
+
+@end
+
+@interface OCUINode (Button)
+
+@property (nonatomic, copy, readonly) void(^uiButtonAction)(void);
+- (OCUINode *(^)(void(^)(void)))action;
+
+@end
+
+@interface OCUINode (Bind)
+
+@property (nonatomic, strong, readonly) CombineBind *uiBind;
+- (OCUINode *(^)(CombineBind *))bind;
 
 @end
 

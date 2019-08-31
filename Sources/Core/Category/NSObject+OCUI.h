@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "OCUINode.h"
 #import "OCUIRenderView.h"
+#import "OCUIConfigView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -14,6 +14,8 @@
 #import "OCUIImage.h"
 #import "OCUIList.h"
 #import "OCUIButton.h"
+#import "OCUIToggle.h"
+#import "OCUISlider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUIMaker;
@@ -30,7 +32,9 @@ FOUNDATION_EXPORT OCUISpacer *Spacer(NSNumber * _Nullable offset);
 FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName);
 FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, UITableViewCell *(^block)(void));
 FOUNDATION_EXPORT OCUIView *View(void);
-
+FOUNDATION_EXTERN OCUIButton *Button(NSString * _Nullable text,void(^ _Nullable block)(void));
+FOUNDATION_EXPORT OCUIToggle *Toggle(BOOL isOn);
+FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value);
 
 /// UI 构造器
 @interface OCUIMaker : NSObject
@@ -40,6 +44,8 @@ FOUNDATION_EXPORT OCUIView *View(void);
 - (instancetype)initWithStack:(OCUIStack *)stack;
 
 - (OCUIVStack *(^)(OCUIHorizontalAlignment))alignment;
+
+- (void)loadOCUIInView:(UIView *)view;
 
 @end
 

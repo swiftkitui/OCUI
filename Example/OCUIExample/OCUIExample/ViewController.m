@@ -14,6 +14,7 @@
 @interface ViewController ()
 
 @property (nonatomic, strong) CombineBind<NSArray *> *bind;
+@property (nonatomic, strong) CombineBind<NSNumber *> *toggleBind;
 
 @end
 
@@ -23,23 +24,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _bind = [[CombineBind alloc] initWithContent:@[@"1",@"2",@"3"]];
+    _toggleBind = [[CombineBind alloc] initWithContent:@YES];
+    [_toggleBind setContentChanged:^(NSNumber * _Nonnull content) {
+        NSLog(@"当前 Slider 值:%@",[content stringValue]);
+    }];
     [self loadOCUIInView:self.view];
-
+    
 }
 
 - (void)OCUIMaker {
-    HStack(^{
-        List(self.bind, ^UITableViewCell * _Nonnull{
-            UITableViewCell *cell = UITableViewCell.new;
-            cell.ocui.driverBlockContent(^DriverBlockContent * {
-                DriverBlockContent<UITableViewCell *> *content = [DriverBlockContent new];
-                [content setConfigBlock:^(UITableViewCell * _Nonnull view, NSUInteger index) {
-                    view.textLabel.text = self.bind.wrappedContent[index];
-                }];
-                return content;
-            });
-            return cell;
-        });
-    });
+    Slider(1).ocui
+    .bind(_toggleBind);
 }
 @end

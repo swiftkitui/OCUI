@@ -153,6 +153,12 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
  */
 - (CGFloat)contentLenght;
 
+
+/// 最适合的内容大小
+- (CGSize)intrinsicContentSize;
+
+- (void)updateContentViewLenght:(CGFloat)lenght;
+
 @end
 
 

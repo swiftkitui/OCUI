@@ -22,6 +22,7 @@
     OCUIConstraints *_contentViewLenghtContraints;
     OCUIConstraints *_automaticViewLenghtContraints;
     OCUIConstraints *_automaticSpacerLenghtContraints;
+    CGFloat _contentViewLenght;
 }
 
 - (instancetype)init {
@@ -181,7 +182,7 @@
  */
 - (void)setupLayoutContraints {
     __weak typeof(self) weakSelf = self;
-    _contentViewLenghtContraints = [[OCUIConstraints alloc] initWithValue:CGRectGetWidth(self.contentView.frame)];
+    _contentViewLenghtContraints = [[OCUIConstraints alloc] initWithValue:[self contentLenght]];
     _automaticViewLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint *contraints) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf.isCanUpdateContraints) {
@@ -189,31 +190,13 @@
         }
         [strongSelf updateLayoutConstraints];
     };
-    
-    _automaticViewLenghtContraints = [[OCUIConstraints alloc] initWithValue:0];
-    _automaticViewLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint *contraints) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (!strongSelf.isCanUpdateContraints) {
-            return;
-        }
-        contraints.mas_equalTo(value);
-    };
-    
-    _automaticSpacerLenghtContraints = [[OCUIConstraints alloc] initWithValue:0];
-    _automaticSpacerLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint *contraints) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (!strongSelf.isCanUpdateContraints) {
-            return;
-        }
-        contraints.offset(value);
-    };
 }
 /**
  更新计算布局约束的条件
  */
 - (void)updateLayoutConstraints {
     /// 获取父试图的宽度
-    CGFloat viewLenght = [self contentLenght];
+    CGFloat viewLenght = _contentViewLenght > 0 ? _contentViewLenght : [self contentLenght];
     NSArray *allFloatSpacers = [self getCurrentAllFloatSpacers];
     NSArray *allFloatViews = [self getCurrentAllFloatRenderViews];
     /// 获取自动 Spacer 的个数
@@ -252,8 +235,11 @@
             
             /// 布局大小
             CGSize intrinsicContentSize = [view intrinsicContentSize];
+            OCUINode *node = [obj ocui];
             /// 是否可以使用试图的大小约束
-            BOOL isUseIntrinsicContentSize = intrinsicContentSize.width > 0 && intrinsicContentSize.height > 0;
+            BOOL isUseIntrinsicContentSize = intrinsicContentSize.width > 0
+            && intrinsicContentSize.height > 0
+            && node.uiIsUseIntrinsicContentSize;
             /// 如果支持自动布局 则按照自动布局计算
             if (!isUseIntrinsicContentSize) {
                 /// 不支持自动布局
@@ -409,6 +395,16 @@
 - (CGFloat)intrinsicContentLenght {
     NSAssert(NO, @"子类必须重写");
     return 0;
+}
+
+- (CGSize)intrinsicContentSize {
+    NSAssert(NO, @"子类必须重写");
+    return CGSizeZero;
+}
+
+- (void)updateContentViewLenght:(CGFloat)lenght {
+    _contentViewLenght = lenght;
+    [self updateLayoutConstraints];
 }
 
 @end

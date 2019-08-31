@@ -10,9 +10,11 @@
 #import <objc/runtime.h>
 #import "OCUIMaker.h"
 FOUNDATION_EXTERN OCUIMaker *Maker(void(^block)(void)) {
+    OCUIStack *tempStack = OCUICurrentStack;
     OCUICurrentStack = nil;
     block();
     OCUIMaker *make = [[OCUIMaker alloc] initWithStack:OCUICurrentStack];
+    OCUICurrentStack = tempStack;
     return make;
 }
 FOUNDATION_EXPORT OCUIVStack *VStack(void(^ _Nullable block)(void)) {
@@ -72,6 +74,28 @@ FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, UITableViewCell *
     AddRenderViewInStack(list);
     return list;
 }
+FOUNDATION_EXTERN OCUIButton *Button(NSString * _Nullable text,void(^ _Nullable block)(void)) {
+    OCUIButton *button = [[OCUIButton alloc] initWithText:text make:block];
+    AddRenderViewInStack(button);
+    return button;
+}
+FOUNDATION_EXPORT OCUIView *View(void) {
+    OCUIView *view = [[OCUIView alloc] init];
+    AddRenderViewInStack(view);
+    return view;
+}
+
+FOUNDATION_EXPORT OCUIToggle *Toggle(BOOL isOn) {
+    OCUIToggle *toggle = [[OCUIToggle alloc] initWithIsOn:isOn];
+    AddRenderViewInStack(toggle);
+    return toggle;
+}
+
+FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value) {
+    OCUISlider *slider = [[OCUISlider alloc] initWithValue:value];
+    AddRenderViewInStack(slider);
+    return slider;
+}
 
 @implementation OCUIMaker {
     OCUIStack *_stack;
@@ -97,10 +121,8 @@ FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, UITableViewCell *
     };
 }
 
-FOUNDATION_EXPORT OCUIView *View(void) {
-    OCUIView *view = [[OCUIView alloc] init];
-    AddRenderViewInStack(view);
-    return view;
+- (void)loadOCUIInView:(UIView *)view {
+    [self.stack loadAndLayoutViewsInView:view];
 }
 
 @end
@@ -112,7 +134,7 @@ FOUNDATION_EXPORT OCUIView *View(void) {
         [self OCUIMaker];
     });
     objc_setAssociatedObject(self, @selector(OCUIMaker), maker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [maker.stack loadAndLayoutViewsInView:view];
+    [maker loadOCUIInView:view];
 }
 
 - (void)OCUIMaker {}
