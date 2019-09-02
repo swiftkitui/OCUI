@@ -30,7 +30,7 @@ FOUNDATION_EXPORT OCUIZStack *ZStack(void(^ _Nullable block)(void));
 FOUNDATION_EXPORT OCUIText *Text(NSString * _Nullable content);
 FOUNDATION_EXPORT OCUISpacer *Spacer(NSNumber * _Nullable offset);
 FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName);
-FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, UITableViewCell *(^block)(void));
+FOUNDATION_EXPORT OCUIList *List();
 FOUNDATION_EXPORT OCUIView *View(void);
 FOUNDATION_EXTERN OCUIButton *Button(NSString * _Nullable text,void(^ _Nullable block)(void));
 FOUNDATION_EXPORT OCUIToggle *Toggle(BOOL isOn);

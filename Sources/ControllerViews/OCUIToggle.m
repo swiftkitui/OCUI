@@ -12,6 +12,7 @@
 @implementation OCUIToggle {
     BOOL _isOn;
     void(^_isOnChangedBlock)(NSNumber *isOn);
+    CombineBind<NSNumber *> *_uiOnBind;
 }
 
 - (instancetype)initWithIsOn:(BOOL)isOn {
@@ -30,20 +31,20 @@
     if (![view isKindOfClass:[UISwitch class]]) {
         return;
     }
-    UISwitch *switchView = (UISwitch *)view;
-    switchView.on = _isOn;
-    OCUINode *node = [self ocui];
-    if (node.uiBind) {
-        self.viewBind(node.uiBind,@"isOn");
-        _isOnChangedBlock = ^(NSNumber *isOn) {
-            [switchView setOn:[isOn boolValue] animated:YES];
-        };
-        [switchView addTarget:self action:@selector(toggleClick:) forControlEvents:UIControlEventValueChanged];
-    }
+    [OCUIConfigView<UISwitch *> configView:view className:[UISwitch class] block:^(UISwitch * _Nonnull configView) {
+        configView.on = self->_isOn;
+        if (self.uiOnBind) {
+            self.viewBind(self.uiOnBind,@"isOn");
+            self->_isOnChangedBlock = ^(NSNumber *isOn) {
+                [configView setOn:[isOn boolValue] animated:YES];
+            };
+            [configView addTarget:self action:@selector(toggleClick:) forControlEvents:UIControlEventValueChanged];
+        }
+    }];
 }
 
 - (void)toggleClick:(UISwitch *)switchView {
-    [self ocui].uiBind.wrappedContent = @(switchView.isOn);
+    self.uiOnBind.wrappedContent = @(switchView.isOn);
 }
 
 - (void)setCombineValue:(id<CombineValue>)value identifier:(NSString *)identifier {
@@ -52,6 +53,21 @@
             _isOnChangedBlock((NSNumber *)value);
         }
     }
+}
+
+@end
+
+@implementation OCUIToggle (Bind)
+
+- (CombineBind<NSNumber *> *)uiOnBind {
+    return _uiOnBind;
+}
+
+- (instancetype  _Nonnull (^)(CombineBind<NSNumber *> * _Nonnull))onBind {
+    return ^OCUIToggle *(CombineBind<NSNumber *> *onBind) {
+        self->_uiOnBind = onBind;
+        return self;
+    };
 }
 
 @end

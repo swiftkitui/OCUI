@@ -10,7 +10,6 @@
 #import "OCUINode.h"
 #import "OCUISpacer.h"
 #import "OCUIConstraints.h"
-#import "NSObject+OCUI.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, OCUIStackType) {
@@ -24,14 +23,13 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
 /**
  布局的对象
  */
-@property (nonatomic, copy, readonly) NSMutableArray *nodes;
+@property (nonatomic, copy, readonly) NSMutableArray<OCUINode *> *nodes;
 /// 是否可以更新约束 默认是不可以
 @property (nonatomic, assign, readonly) BOOL isCanUpdateContraints;
 /// 布局依赖的父试图
 @property (nonatomic, weak, readonly) UIView *contentView;
 
 - (void)loadAndLayoutViewsInView:(UIView *)view;
-
 
 @end
 
@@ -43,21 +41,21 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
  @param obj 继承 NSObject 的对象
  @return UIView对象
  */
-- (UIView *)viewWithObj:(id)obj;
+- (UIView *)viewWithObj:(OCUINode *)obj;
 /**
  查找布局视图对应上一个的 UIView
 
  @param obj 布局对象
  @return UIView
  */
-- (UIView *)upViewWithObj:(id)obj;
+- (UIView *)upViewWithObj:(OCUINode *)obj;
 /**
  查找布局视图对应下一个的 UIView
 
  @param obj 布局对象
  @return UIView
  */
-- (UIView *)downViewWithObj:(id)obj;
+- (UIView *)downViewWithObj:(OCUINode *)obj;
 
 @end
 
@@ -123,7 +121,7 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
  @param obj 布局的对象
  */
 - (void)addSizeContraintsWithMake:(MASConstraintMaker *)make
-                              obj:(id)obj;
+                              obj:(OCUINode *)obj;
 
 /**
  添加其他的约束
@@ -132,7 +130,7 @@ typedef NS_ENUM(NSUInteger, OCUIStackType) {
  @param obj 布局的对象
  */
 - (void)addOtherContraintsWithMake:(MASConstraintMaker *)make
-                               obj:(id)obj;
+                               obj:(OCUINode *)obj;
 
 - (void)makeContraintsWithMake:(MASConstraintMaker *)make
                           isUp:(BOOL)isUp

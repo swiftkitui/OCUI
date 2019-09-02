@@ -15,9 +15,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OCUIText : OCUIView
 
 @property (nonatomic, copy, readonly) NSString *content;
-@property (nonatomic, strong, readonly) CombineBind *textBind;
 
 - (instancetype)initWithText:(NSString *)content;
+
+@end
+
+@interface OCUIText (Bind)
+
+/// 绑定值可变的
+@property (nonatomic, strong, readonly) CombineBind<NSString *> *uiTextBind;
+
+/// 添加字符串绑定
+- (instancetype(^)(CombineBind<NSString *> *))textBind;
 
 @end
 

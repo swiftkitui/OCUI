@@ -19,14 +19,7 @@
     OCUIConstraints *_uiFloatLenghtContraints;
     
     CGFloat _uiPriority;
-    
-    UIColor *_uiBackgroundColor;
-    
-    DriverBlockContent *_uiDriverBlockContent;
-    
     void(^_uiButtonAction)(void);
-    
-    CombineBind *_uiBind;
 }
 #pragma mark - OCUIRenderView
 
@@ -38,6 +31,13 @@
     }
     return self;
 }
+
+#pragma mark - OCUIRenderView
+- (UIView *)makeOCUIView {
+    return nil;
+}
+
+- (void)configOCUIView:(UIView *)view {}
 
 @end
 
@@ -63,21 +63,21 @@
     return _uiContentEdgeInsets;
 }
 
-- (OCUINode * _Nonnull (^)(CGFloat))width {
+- (instancetype(^)(CGFloat))width {
     return ^OCUINode *(CGFloat width) {
         self->_uiWidth = width;
         return self;
     };
 }
 
-- (OCUINode * _Nonnull (^)(CGFloat))height {
+- (instancetype(^)(CGFloat))height {
     return ^OCUINode *(CGFloat height) {
         self->_uiHeight = height;
         return self;
     };
 }
 
-- (OCUINode * _Nonnull (^)(CGSize))size {
+- (instancetype(^)(CGSize))size {
     return ^OCUINode *(CGSize size) {
         self->_uiWidth = size.width;
         self->_uiHeight = size.height;
@@ -85,14 +85,14 @@
     };
 }
 
-- (OCUINode * _Nonnull (^)(BOOL))isUseIntrinsicContentSize {
+- (instancetype(^)(BOOL))isUseIntrinsicContentSize {
     return ^OCUINode *(BOOL isUseIntrinsicContentSize) {
         self->_uiIsUseIntrinsicContentSize = isUseIntrinsicContentSize;
         return self;
     };
 }
 
-- (OCUINode * _Nonnull (^)(UIEdgeInsets))contentEdgeInsets {
+- (instancetype(^)(UIEdgeInsets))contentEdgeInsets {
     return ^OCUINode *(UIEdgeInsets contentEdgeInsets) {
         self->_uiContentEdgeInsets = contentEdgeInsets;
         return self;
@@ -115,14 +115,14 @@
     return _uiFloatLenghtContraints;
 }
 
-- (OCUINode * _Nonnull (^)(CGFloat))minFloatLengh {
+- (instancetype(^)(CGFloat))minFloatLengh {
     return ^OCUINode *(CGFloat minFloatLengh) {
         self->_uiMinFloatLengh = minFloatLengh;
         return self;
     };
 }
 
-- (OCUINode * _Nonnull (^)(CGFloat))floatLenght {
+- (instancetype(^)(CGFloat))floatLenght {
     return ^OCUINode *(CGFloat floatLenght) {
         self->_uiFloatLenght = floatLenght;
         self.uiFloatLenghtContraints.valueBind.wrappedContent = @(floatLenght);
@@ -138,71 +138,9 @@
     return _uiPriority;
 }
 
-- (OCUINode * _Nonnull (^)(CGFloat))priority {
+- (instancetype(^)(CGFloat))priority {
     return ^OCUINode *(CGFloat priority) {
         self->_uiPriority = priority;
-        return self;
-    };
-}
-
-@end
-
-@implementation OCUINode (OCUIView)
-
-- (UIColor *)uiBackgroundColor {
-    return _uiBackgroundColor;
-}
-
-- (OCUINode * _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
-    return ^OCUINode *(UIColor *backgroundColor) {
-        self->_uiBackgroundColor = backgroundColor;
-        return self;
-    };
-}
-
-@end
-
-@implementation OCUINode (List)
-
-- (DriverBlockContent *)uiDriverBlockContent {
-    return _uiDriverBlockContent;
-}
-
-- (OCUINode * _Nonnull (^)(DriverBlockContent * _Nonnull (^ _Nonnull)(void)))driverBlockContent {
-    return ^OCUINode *(DriverBlockContent *(^block)(void)) {
-        if (block) {
-            self->_uiDriverBlockContent = block();
-        }
-        return self;
-    };
-}
-
-@end
-
-@implementation OCUINode (Button)
-
-- (void (^)(void))uiButtonAction {
-    return _uiButtonAction;
-}
-
-- (OCUINode * _Nonnull (^)(void (^ _Nonnull)(void)))action {
-    return ^OCUINode *(void (^action)(void)) {
-        self->_uiButtonAction = action;
-        return self;
-    };
-}
-
-@end
-
-@implementation OCUINode (Bind)
-
-- (CombineBind *)uiBind {
-    return _uiBind;
-}
-
-- (OCUINode * _Nonnull (^)(CombineBind * _Nonnull))bind {
-    return ^OCUINode *(CombineBind *bind) {
-        self->_uiBind = bind;
         return self;
     };
 }

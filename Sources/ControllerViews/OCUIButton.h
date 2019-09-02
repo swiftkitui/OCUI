@@ -12,8 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUIButton : OCUIView
 
+@property (nonatomic, copy, readonly) void(^uiButtonAction)(void);
+
 - (instancetype)initWithText:(NSString *)text
                         make:(void(^)(void))makeBlock;
+
+@end
+
+@interface OCUIButton (Chained)
+
+- (instancetype(^)(void(^)(void)))action;
 
 @end
 

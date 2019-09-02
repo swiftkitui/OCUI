@@ -35,30 +35,40 @@
         return;
     }
     UIButton *btn = (UIButton *)view;
-    OCUINode *node = self.ocui;
     if (_uiMaker) {
-        node.isUseIntrinsicContentSize(NO);
-        node.size([self intrinsicContentSize]);
+        self.isUseIntrinsicContentSize(NO);
+        self.size([self intrinsicContentSize]);
         [_uiMaker loadOCUIInView:btn];
         [_uiMaker.stack updateContentViewLenght:[self intrinsicContentSize].height];
     } else {
         [btn setTitle:_buttonText forState:UIControlStateNormal];
     }
-    if (node.uiButtonAction) {
+    if (self.uiButtonAction) {
         [btn addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
 - (void)buttonClick {
-    if (self.ocui.uiButtonAction) {
-        self.ocui.uiButtonAction();
+    if (self.uiButtonAction) {
+        self.uiButtonAction();
     }
 }
 
 - (CGSize)intrinsicContentSize {
     CGSize size = [_uiMaker.stack intrinsicContentSize];
-    UIEdgeInsets contentEdgeInsets = [self ocui].uiContentEdgeInsets;
+    UIEdgeInsets contentEdgeInsets = self.uiContentEdgeInsets;
     return CGSizeMake(size.width + contentEdgeInsets.left + contentEdgeInsets.right, size.height + contentEdgeInsets.top + contentEdgeInsets.bottom);
+}
+
+@end
+
+@implementation OCUIButton (Chained)
+
+- (instancetype(^)(void(^)(void)))action {
+    return ^OCUIButton *(void(^action)(void)) {
+        self->_uiButtonAction = action;
+        return self;
+    };
 }
 
 @end

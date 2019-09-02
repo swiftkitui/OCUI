@@ -37,20 +37,19 @@
 }
 
 - (void)addSizeContraintsWithMake:(MASConstraintMaker *)make
-                              obj:(id)obj {
-    OCUINode *node = [obj ocui];
+                              obj:(OCUINode *)obj {
     /// 不支持自动布局
-    CGFloat height = node.uiSize.height;
+    CGFloat height = obj.uiSize.height;
     if (height <= 0) {
-        MASConstraint *contraints = make.height.mas_equalTo(node.uiFloatLenght);
-        node.uiFloatLenghtContraints.addBindViewContraints(contraints);
-        node.uiFloatLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint * _Nonnull contraints) {
+        MASConstraint *contraints = make.height.mas_equalTo(obj.uiFloatLenght);
+        obj.uiFloatLenghtContraints.addBindViewContraints(contraints);
+        obj.uiFloatLenghtContraints.contraintsValueChanged = ^(CGFloat value, MASConstraint * _Nonnull contraints) {
             contraints.mas_equalTo(value);
         };
     } else {
         make.height.mas_equalTo(height);
     }
-    CGFloat width = node.uiSize.width;
+    CGFloat width = obj.uiSize.width;
     if (width <= 0) {
         make.width.equalTo(self.contentView);
     } else {
@@ -59,7 +58,7 @@
 }
 
 - (void)addOtherContraintsWithMake:(MASConstraintMaker *)make
-                               obj:(id)obj {
+                               obj:(OCUINode *)obj {
     NSUInteger index = [self.nodes indexOfObject:obj];
     UIView *topView = [self upViewWithObj:obj];
     UIView *bottomView = [self downViewWithObj:obj];
@@ -74,7 +73,7 @@
             }
         } else {
             isExitTopFloatLayout = YES;
-            OCUINode *node = [self.nodes[index - 1] ocui];
+            OCUINode *node = self.nodes[index - 1];
             MASConstraint *contraints;
             if ([topView isEqual:self.contentView]) {
                 contraints = make.top.greaterThanOrEqualTo(topView).offset(node.uiFloatLenght);
@@ -88,7 +87,7 @@
         }
     }];
     [self makeContraintsWithMake:make isUp:NO atIndex:index block:^(CGFloat flxedOffset) {
-        OCUINode *node = [self.nodes[index + 1] ocui];
+        OCUINode *node = self.nodes[index + 1];
         CGFloat bottomOffset = flxedOffset;
         if (flxedOffset == NSNotFound) {
             bottomOffset = node.uiFloatLenght;
@@ -112,16 +111,15 @@
 
 - (CGFloat)intrinsicContentLenght {
     __block CGFloat width = 0;
-    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        OCUINode *node = [obj ocui];
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[OCUISpacer class]]) {
             OCUISpacer *spacer = (OCUISpacer *)obj;
             width += spacer.flxedOffset.value;
         } else  {
             UIView *view = [self viewWithObj:obj];
             CGSize intrinsicContentSize = [view intrinsicContentSize];
-            if (node.uiSize.height > 0) {
-                width += node.uiSize.height;
+            if (obj.uiSize.height > 0) {
+                width += obj.uiSize.height;
             } else if (intrinsicContentSize.height > 0) {
                 width += intrinsicContentSize.height;
             }
@@ -135,13 +133,12 @@
 }
 
 - (NSArray *)getCurrentAllFloatRenderViews {
-    return [self findNodesWithBlock:^BOOL(id  _Nonnull obj) {
+    return [self findNodesWithBlock:^BOOL(OCUINode *  _Nonnull obj) {
         if ([obj isKindOfClass:[OCUISpacer class]]) {
             return NO;
         }
-        OCUINode *node = [obj ocui];
         UIView *makeView = [self viewWithObj:obj];
-        if (node.uiSize.height > 0) {
+        if (obj.uiSize.height > 0) {
             return NO;
         }
         if (makeView.intrinsicContentSize.height > 0) {
@@ -157,10 +154,9 @@
 
 - (CGFloat)maxIntrinsicContentSizeWidth {
     __block CGFloat maxIntrinsicContentSizeWidth = 0;
-    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        OCUINode *node = [obj ocui];
-        if (node.uiSize.width > 0) {
-            maxIntrinsicContentSizeWidth = MAX(maxIntrinsicContentSizeWidth, node.uiSize.width);
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.uiSize.width > 0) {
+            maxIntrinsicContentSizeWidth = MAX(maxIntrinsicContentSizeWidth, obj.uiSize.width);
         } else {
             UIView *view = [self viewWithObj:obj];
             if (view.intrinsicContentSize.width > 0) {
@@ -173,10 +169,9 @@
 
 - (CGFloat)maxIntrinsicContentSizeHeight {
     __block CGFloat maxIntrinsicContentSizeHeight = 0;
-    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        OCUINode *node = [obj ocui];
-        if (node.uiSize.height > 0) {
-            maxIntrinsicContentSizeHeight += node.uiSize.height;
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.uiSize.height > 0) {
+            maxIntrinsicContentSizeHeight += obj.uiSize.height;
         } else {
             UIView *view = [self viewWithObj:obj];
             if (view.intrinsicContentSize.height > 0) {

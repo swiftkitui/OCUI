@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 布局的偏移值
 @interface OCUILayoutOffset : NSObject
 
 @property (nonatomic, assign, readonly) CGFloat value;

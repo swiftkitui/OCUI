@@ -10,15 +10,23 @@
 
 @implementation OCUIView
 
+- (instancetype(^)(UIColor * _Nonnull))backgroundColor {
+    return ^OCUIView *(UIColor *backgroundColor) {
+        self->_uiBackgroundColor = backgroundColor;
+        return self;
+    };
+}
+
 - (UIView *)makeOCUIView {
     return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)configOCUIView:(UIView *)view {
     [super configOCUIView:view];
-    if (self.ocui.uiBackgroundColor) {
-        view.backgroundColor = self.ocui.uiBackgroundColor;
+    if (self.uiBackgroundColor) {
+        view.backgroundColor = self.uiBackgroundColor;
     }
+    
 }
 
 @end

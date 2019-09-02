@@ -41,14 +41,14 @@ FOUNDATION_EXPORT OCUIZStack *ZStack(void(^ _Nullable block)(void)) {
     }
     return stack;
 }
-FOUNDATION_EXPORT void AddRenderViewInStack(id<OCUIRenderView> view) {
-    if (!view) {
+FOUNDATION_EXPORT void AddRenderViewInStack(OCUINode *node) {
+    if (!node) {
         return;
     }
     if (!OCUICurrentStack) {
         OCUICurrentStack = VStack(nil);
     }
-    [OCUICurrentStack.nodes addObject:view];
+    [OCUICurrentStack.nodes addObject:node];
 }
 
 FOUNDATION_EXPORT OCUIText *Text(NSString *_Nullable content) {
@@ -58,7 +58,7 @@ FOUNDATION_EXPORT OCUIText *Text(NSString *_Nullable content) {
 }
 
 FOUNDATION_EXPORT OCUISpacer *Spacer(NSNumber * _Nullable offset) {
-    OCUISpacer *spacer = [[OCUISpacer alloc] initWithOffset:offset];
+    OCUISpacer *spacer = [OCUISpacer new];
     AddRenderViewInStack(spacer);
     return spacer;
 }
@@ -69,8 +69,8 @@ FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName) {
     return image;
 }
 
-FOUNDATION_EXPORT OCUIList *List(CombineBind<NSArray *> *bind, UITableViewCell *(^block)(void)) {
-    OCUIList *list = [[OCUIList alloc] initWithWithBind:bind block:block];
+FOUNDATION_EXPORT OCUIList *List() {
+    OCUIList *list = [[OCUIList alloc] init];
     AddRenderViewInStack(list);
     return list;
 }

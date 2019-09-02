@@ -12,11 +12,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OCUISpacer : NSObject
+@interface OCUISpacer : OCUINode
 
 @property (nonatomic, strong, readonly) OCUILayoutOffset *flxedOffset;
+/**
+ 收缩的最小长度 如果不设置则默认为试图的默认值
+ */
+@property (nonatomic, assign, readonly) CGFloat uiMinOffset;
 
-- (instancetype)initWithOffset:(NSNumber * _Nullable)offset;
+- (instancetype)initWithMinOffset:(NSNumber * _Nullable)minOffset;
+
+@end
+
+@interface OCUISpacer (Chained)
+
+/**
+ 设置收缩的最小长度
+ */
+- (instancetype(^)(CGFloat))minOffset;
 
 @end
 

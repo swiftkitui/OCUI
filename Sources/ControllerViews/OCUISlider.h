@@ -10,11 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OCUISlider : OCUIView<CombineView>
+@interface OCUISlider : OCUIView
 
 - (instancetype)initWithValue:(CGFloat)value;
 
-- (void)print;
+@end
+
+@interface OCUISlider (Bind)
+
+@property (nonatomic, strong, readonly) CombineBind<NSNumber *> *uiValueBind;
+
+- (instancetype(^)(CombineBind<NSNumber *> *))valueBind;
 
 @end
 

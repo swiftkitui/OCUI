@@ -17,11 +17,21 @@
     if (self = [super init]) {
         if (offset) {
             _flxedOffset = [[OCUILayoutOffset alloc] initWithValue:[offset floatValue]];
+            _uiMinOffset = 0;
         }
     }
     return self;
 }
 
+@end
 
+@implementation OCUISpacer (Chained)
+
+- (instancetype  _Nonnull (^)(CGFloat))minOffset {
+    return ^OCUISpacer *(CGFloat minOffset) {
+        self->_uiMinOffset = minOffset;
+        return self;
+    };
+}
 
 @end

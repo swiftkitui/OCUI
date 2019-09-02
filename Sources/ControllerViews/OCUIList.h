@@ -7,17 +7,12 @@
 //
 
 #import "OCUIView.h"
-#import "NSArray+CombineValue.h"
-#import "UITableViewCell+OCUIRenderView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OCUIList<T:NSObject *> : OCUIView
+@interface OCUIList : OCUIView
 
-@property (nonatomic, weak, readonly) CombineBind<NSArray<T> *> *dataBind;
-
-- (instancetype)initWithWithBind:(CombineBind<NSArray<T> *> *)bind
-                           block:(UITableViewCell *(^)(void))block;
+- (instancetype)initWithBlock:(void(^)(void))block;
 
 @end
 

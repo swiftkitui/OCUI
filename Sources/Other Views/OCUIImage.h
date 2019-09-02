@@ -18,4 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface OCUIImage (Chained)
+
+@end
+
 NS_ASSUME_NONNULL_END

@@ -10,9 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OCUIToggle : OCUIView<CombineView>
+@interface OCUIToggle : OCUIView
 
 - (instancetype)initWithIsOn:(BOOL)isOn;
+
+@end
+
+@interface OCUIToggle (Bind)
+
+@property (nonatomic, strong, readonly) CombineBind<NSNumber *> *uiOnBind;
+
+- (instancetype(^)(CombineBind<NSNumber *> *))onBind;
 
 @end
 

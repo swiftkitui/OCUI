@@ -10,18 +10,23 @@
 #import <CombineObjectObjc/NSObject+CombineBind.h>
 #import <DriverListNode/DriverListNode.h>
 #import "OCUIConstraints.h"
+#import "OCUIRenderView.h"
+#import "OCUIConfigView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUINode;
 
-@interface OCUINode : NSObject
+@interface OCUINode : NSObject<OCUIRenderView>
 
 @end
 
 @interface OCUINode (Frame)
 
+/// 设置宽度
 @property (nonatomic, assign, readonly) CGFloat uiWidth;
+/// 设置高度
 @property (nonatomic, assign, readonly) CGFloat uiHeight;
+/// 设置大小
 @property (nonatomic, assign, readonly) CGSize uiSize;
 /// 是否使用 intrinsicContentSize 默认为 YES
 @property (nonatomic, assign, readonly) BOOL uiIsUseIntrinsicContentSize;
@@ -30,20 +35,20 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  设置宽度
  */
-- (OCUINode *(^)(CGFloat))width;
+- (instancetype(^)(CGFloat))width;
 /**
  设置高度
  */
-- (OCUINode *(^)(CGFloat))height;
+- (instancetype(^)(CGFloat))height;
 /**
  设置大小
  */
-- (OCUINode *(^)(CGSize))size;
+- (instancetype(^)(CGSize))size;
 
 /// 设置是否使用 intrinsicContentSize
-- (OCUINode *(^)(BOOL))isUseIntrinsicContentSize;
+- (instancetype(^)(BOOL))isUseIntrinsicContentSize;
 /// 设置内容的上下左右间距
-- (OCUINode *(^)(UIEdgeInsets))contentEdgeInsets;
+- (instancetype(^)(UIEdgeInsets))contentEdgeInsets;
 
 
 @end
@@ -64,11 +69,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  设置最小的浮动长度
  */
-- (OCUINode *(^)(CGFloat))minFloatLengh;
+- (instancetype(^)(CGFloat))minFloatLengh;
 /**
  设置当前的浮动长度 如果小于最小的浮动长度 则按照最小的浮动s长度设置
  */
-- (OCUINode *(^)(CGFloat))floatLenght;
+- (instancetype(^)(CGFloat))floatLenght;
 
 @end
 
@@ -82,36 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  设置优先级
  */
-- (OCUINode *(^)(CGFloat))priority;
-
-@end
-
-@interface OCUINode (OCUIView)
-
-@property (nonatomic, strong, readonly) UIColor *uiBackgroundColor;
-
-- (OCUINode *(^)(UIColor *))backgroundColor;
-
-@end
-
-@interface OCUINode (List)
-
-@property (nonatomic, strong, readonly) DriverBlockContent *uiDriverBlockContent;
-- (OCUINode *(^)(DriverBlockContent *(^)(void)))driverBlockContent;
-
-@end
-
-@interface OCUINode (Button)
-
-@property (nonatomic, copy, readonly) void(^uiButtonAction)(void);
-- (OCUINode *(^)(void(^)(void)))action;
-
-@end
-
-@interface OCUINode (Bind)
-
-@property (nonatomic, strong, readonly) CombineBind *uiBind;
-- (OCUINode *(^)(CombineBind *))bind;
+- (instancetype(^)(CGFloat))priority;
 
 @end
 

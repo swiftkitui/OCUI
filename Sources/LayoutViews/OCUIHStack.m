@@ -39,16 +39,15 @@
 }
 
 - (void)addSizeContraintsWithMake:(MASConstraintMaker *)make
-                              obj:(id)obj {
-    OCUINode *node = [obj ocui];
+                              obj:(OCUINode *)obj {
     /// 不支持自动布局
-    CGFloat width = node.uiSize.width;
+    CGFloat width = obj.uiSize.width;
     if (width <= 0) {
-        make.width.mas_equalTo(node.uiFloatLenght);
+        make.width.mas_equalTo(obj.uiFloatLenght);
     } else {
         make.width.mas_equalTo(width);
     }
-    CGFloat height = node.uiSize.height;
+    CGFloat height = obj.uiSize.height;
     if (height <= 0) {
         make.height.equalTo(self.contentView);
     } else {
@@ -57,7 +56,7 @@
 }
 
 - (void)addOtherContraintsWithMake:(MASConstraintMaker *)make
-                               obj:(id)obj {
+                               obj:(OCUINode *)obj {
     NSUInteger index = [self.nodes indexOfObject:obj];
     UIView *topView = [self upViewWithObj:obj];
     UIView *bottomView = [self downViewWithObj:obj];
@@ -72,7 +71,7 @@
             }
         } else {
             isExitLeadingFloatLayout = YES;
-            OCUINode *node = [self.nodes[index - 1] ocui];
+            OCUINode *node = self.nodes[index - 1];
             if ([topView isEqual:self.contentView]) {
                 make.leading.greaterThanOrEqualTo(topView).offset(node.uiFloatLenght);
             } else {
@@ -81,7 +80,7 @@
         }
     }];
     [self makeContraintsWithMake:make isUp:NO atIndex:index block:^(CGFloat flxedOffset) {
-        OCUINode *node = [self.nodes[index + 1] ocui];
+        OCUINode *node = self.nodes[index + 1];
         flxedOffset = flxedOffset == NSNotFound ? node.uiFloatLenght : flxedOffset;
         if (isExitLeadingFloatLayout) {
             if ([bottomView isEqual:self.contentView]) {
@@ -95,16 +94,15 @@
 
 - (CGFloat)intrinsicContentLenght {
     __block CGFloat width = 0;
-    [self.nodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        OCUINode *node = [obj ocui];
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[OCUISpacer class]]) {
             OCUISpacer *spacer = (OCUISpacer *)obj;
             width += spacer.flxedOffset.value;
         } else  {
             UIView *view = [self viewWithObj:obj];
             CGSize intrinsicContentSize = [view intrinsicContentSize];
-            if (node.uiSize.width > 0) {
-                width += node.uiSize.width;
+            if (obj.uiSize.width > 0) {
+                width += obj.uiSize.width;
             } else if (intrinsicContentSize.width > 0) {
                 width += intrinsicContentSize.width;
             }
@@ -119,13 +117,12 @@
 
 
 - (NSArray *)getCurrentAllFloatRenderViews {
-    return [self findNodesWithBlock:^BOOL(id  _Nonnull obj) {
+    return [self findNodesWithBlock:^BOOL(OCUINode *  _Nonnull obj) {
         if ([obj isKindOfClass:[OCUISpacer class]]) {
             return NO;
         }
-        OCUINode *node = [obj ocui];
         UIView *makeView = [self viewWithObj:obj];
-        if (node.uiSize.width > 0) {
+        if (obj.uiSize.width > 0) {
             return NO;
         }
         if (makeView.intrinsicContentSize.width > 0) {

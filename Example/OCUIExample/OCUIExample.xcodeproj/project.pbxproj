@@ -31,9 +31,6 @@
 		5DCA42A9231A65AC000F8359 /* OCUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A8231A65AC000F8359 /* OCUISlider.m */; };
 		5DCA42AC231A67A8000F8359 /* OCUIConfigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42AB231A67A8000F8359 /* OCUIConfigView.m */; };
 		5DCBA0182319288D00B1A2D5 /* OCUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCBA0172319288D00B1A2D5 /* OCUIButton.m */; };
-		5DD5E7CF231672C100053E78 /* NSArray+CombineValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5E7CE231672C100053E78 /* NSArray+CombineValue.m */; };
-		5DD5E7D22316772F00053E78 /* UITableViewCell+OCUIRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5E7D12316772F00053E78 /* UITableViewCell+OCUIRenderView.m */; };
-		5DD5E7D52317585D00053E78 /* NSObject+OCUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5E7D42317585D00053E78 /* NSObject+OCUI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,12 +93,6 @@
 		5DCA42AB231A67A8000F8359 /* OCUIConfigView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIConfigView.m; sourceTree = "<group>"; };
 		5DCBA0162319288D00B1A2D5 /* OCUIButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIButton.h; sourceTree = "<group>"; };
 		5DCBA0172319288D00B1A2D5 /* OCUIButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIButton.m; sourceTree = "<group>"; };
-		5DD5E7CD231672C100053E78 /* NSArray+CombineValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+CombineValue.h"; sourceTree = "<group>"; };
-		5DD5E7CE231672C100053E78 /* NSArray+CombineValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CombineValue.m"; sourceTree = "<group>"; };
-		5DD5E7D02316772F00053E78 /* UITableViewCell+OCUIRenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+OCUIRenderView.h"; sourceTree = "<group>"; };
-		5DD5E7D12316772F00053E78 /* UITableViewCell+OCUIRenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+OCUIRenderView.m"; sourceTree = "<group>"; };
-		5DD5E7D32317585D00053E78 /* NSObject+OCUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+OCUI.h"; sourceTree = "<group>"; };
-		5DD5E7D42317585D00053E78 /* NSObject+OCUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OCUI.m"; sourceTree = "<group>"; };
 		83135448550FCBD8A84856A6 /* libPods-OCUIExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OCUIExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCE597FC42D7C6BA36DDB8F /* Pods-OCUIExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUIExample.debug.xcconfig"; path = "Target Support Files/Pods-OCUIExample/Pods-OCUIExample.debug.xcconfig"; sourceTree = "<group>"; };
 		C50B3E89958EC3ECD144CA9E /* Pods-OCUIExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUIExample.release.xcconfig"; path = "Target Support Files/Pods-OCUIExample/Pods-OCUIExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,14 +213,13 @@
 		5D5F098B2314E79D0029EE9E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5DCB9A192317B18400B1A2D5 /* Category */,
 				5DCB9A182317B0E000B1A2D5 /* Protocol */,
+				5D5F0956231362050029EE9E /* OCUILayoutOffset.h */,
+				5D5F095A231362050029EE9E /* OCUILayoutOffset.m */,
 				5D5F095E231362050029EE9E /* OCUIStack.h */,
 				5D5F0959231362050029EE9E /* OCUIStack.m */,
 				5D5F0968231362050029EE9E /* OCUINode.h */,
 				5D5F096B231362050029EE9E /* OCUINode.m */,
-				5D5F0956231362050029EE9E /* OCUILayoutOffset.h */,
-				5D5F095A231362050029EE9E /* OCUILayoutOffset.m */,
 				5D5F098023137C850029EE9E /* OCUIConstraints.h */,
 				5D5F098123137C850029EE9E /* OCUIConstraints.m */,
 				5D5F0961231362050029EE9E /* OCUIMaker.h */,
@@ -246,19 +236,6 @@
 				5D5F0963231362050029EE9E /* OCUIRenderView.h */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		5DCB9A192317B18400B1A2D5 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				5DD5E7CD231672C100053E78 /* NSArray+CombineValue.h */,
-				5DD5E7CE231672C100053E78 /* NSArray+CombineValue.m */,
-				5DD5E7D02316772F00053E78 /* UITableViewCell+OCUIRenderView.h */,
-				5DD5E7D12316772F00053E78 /* UITableViewCell+OCUIRenderView.m */,
-				5DD5E7D32317585D00053E78 /* NSObject+OCUI.h */,
-				5DD5E7D42317585D00053E78 /* NSObject+OCUI.m */,
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 		73B4FFA190951EA7A5C078D8 /* Frameworks */ = {
@@ -367,7 +344,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D43F1FD230D40810098713E /* ViewController.m in Sources */,
-				5DD5E7CF231672C100053E78 /* NSArray+CombineValue.m in Sources */,
 				5DCA42A9231A65AC000F8359 /* OCUISlider.m in Sources */,
 				5D5F0977231362060029EE9E /* OCUISpacer.m in Sources */,
 				5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */,
@@ -377,14 +353,12 @@
 				5D5F097B231362060029EE9E /* OCUIMaker.m in Sources */,
 				5D43F208230D40840098713E /* main.m in Sources */,
 				5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */,
-				5DD5E7D22316772F00053E78 /* UITableViewCell+OCUIRenderView.m in Sources */,
 				5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */,
 				5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */,
 				5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */,
 				5D5F0972231362060029EE9E /* OCUILayoutOffset.m in Sources */,
 				5D5F0971231362060029EE9E /* OCUIStack.m in Sources */,
 				5DCBA0182319288D00B1A2D5 /* OCUIButton.m in Sources */,
-				5DD5E7D52317585D00053E78 /* NSObject+OCUI.m in Sources */,
 				5D5F097A231362060029EE9E /* OCUIText.m in Sources */,
 				5D5F098223137C850029EE9E /* OCUIConstraints.m in Sources */,
 				5D43F1FA230D40810098713E /* AppDelegate.m in Sources */,

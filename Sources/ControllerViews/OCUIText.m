@@ -8,7 +8,9 @@
 
 #import "OCUIText.h"
 
-@implementation OCUIText
+@implementation OCUIText {
+    CombineBind<NSString *> *_uiTextBind;
+}
 
 - (instancetype)initWithText:(NSString *)content {
     if (self = [super init]) {
@@ -18,17 +20,35 @@
 }
 
 - (UIView *)makeOCUIView {
-    return [[UILabel alloc] initWithFrame:CGRectZero];
+    return [UILabel new];
 }
 
 - (void)configOCUIView:(UIView *)view {
     [super configOCUIView:view];
-    if (![view isKindOfClass:[UILabel class]]) {
-        return;
-    }
-    UILabel *label = (UILabel *)view;
-    label.text = self.content;
-    label.viewBind(self.textBind,UILabelIdentifier.text);
+    [OCUIConfigView<UILabel *> configView:view className:UILabel.self block:^(UILabel * _Nonnull configView) {
+        UILabel *label = (UILabel *)view;
+        if (self.content) {
+            label.text = self.content;
+        }
+        if (self.uiTextBind) {
+            label.viewBind(self.uiTextBind,UILabelIdentifier.text);
+        }
+    }];
+}
+
+@end
+
+@implementation OCUIText (Bind)
+
+- (CombineBind<NSString *> *)uiTextBind {
+    return _uiTextBind;
+}
+
+- (instancetype  _Nonnull (^)(CombineBind<NSString *> * _Nonnull))textBind {
+    return ^OCUIText *(CombineBind<NSString *> *textBind) {
+        self->_uiTextBind = textBind;
+        return self;
+    };
 }
 
 @end

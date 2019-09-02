@@ -14,31 +14,25 @@
     void (^_cellConfig)(UITableViewCell * _Nonnull, NSUInteger);
 }
 
-- (instancetype)initWithWithBind:(CombineBind *)bind block:(UITableViewCell * _Nonnull (^)(void))block {
+- (instancetype)initWithBlock:(void (^)(void))block {
     if (self = [super init]) {
-        _dataBind = bind;
-        _bindRenderView = block();
     }
     return self;
 }
 
 - (UIView *)makeOCUIView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    return tableView;
+    return [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
 }
 
 - (void)configOCUIView:(UIView *)view {
     [super configOCUIView:view];
-    if (![view isKindOfClass:[UITableView class]]) {
-        return;
-    }
-    UITableView *tableView = (UITableView *)view;
-    NSArray *data = (NSArray *)self.dataBind.wrappedContent;
-    [tableView reloadListWithDriverBlock:^{
-        ZHDriverCell([self->_bindRenderView class], ^DriverBlockContent * _Nonnull{
-            return self->_bindRenderView.ocui.uiDriverBlockContent;
-        })
-        .number(data.count);
+    [OCUIConfigView<UITableView *> configView:view className:[UITableView class] block:^(UITableView * _Nonnull configView) {
+        [configView reloadListWithDriverBlock:^{
+            ZHDriverCell([self->_bindRenderView class], ^DriverBlockContent * _Nonnull{
+                return nil;
+            })
+            .number(0);
+        }];
     }];
 }
 
