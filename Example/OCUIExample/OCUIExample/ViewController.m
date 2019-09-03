@@ -21,11 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadOCUIInView:self.view];
-    
+    Maker(self.view, ^{
+        Text(@"Hello World!");
+    });
 }
 
-- (void)OCUIMaker {
-    Text(@"Hello World!");
-}
 @end

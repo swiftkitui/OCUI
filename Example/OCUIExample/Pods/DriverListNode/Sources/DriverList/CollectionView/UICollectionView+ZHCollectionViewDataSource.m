@@ -29,11 +29,7 @@
         }
     }];
 }
-- (void (^)(void(^)(DriverList *list)))driverData {
-    return ^(void(^block)(DriverList *list)) {
-        [self makeDriverList:block];
-    };
-}
+
 - (void)makeDriverList:(void (^)(DriverList * _Nonnull))block {
     if (!block) {
         return;

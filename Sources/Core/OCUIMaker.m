@@ -9,11 +9,17 @@
 #import <Masonry/Masonry.h>
 #import <objc/runtime.h>
 #import "OCUIMaker.h"
-FOUNDATION_EXTERN OCUIMaker *Maker(void(^block)(void)) {
+
+/// 当前正在布局的OCUIStack
+static OCUIStack *OCUICurrentStack;
+
+FOUNDATION_EXTERN OCUIMaker *Maker(UIView *contentView, void(^block)(void)) {
     OCUIStack *tempStack = OCUICurrentStack;
     OCUICurrentStack = nil;
-    block();
-    OCUIMaker *make = [[OCUIMaker alloc] initWithStack:OCUICurrentStack];
+    if (!block) {
+        block();
+    }
+    OCUIMaker *make = [[OCUIMaker alloc] initWithContentView:contentView stack:OCUICurrentStack];
     OCUICurrentStack = tempStack;
     return make;
 }
@@ -69,7 +75,7 @@ FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName) {
     return image;
 }
 
-FOUNDATION_EXPORT OCUIList *List() {
+FOUNDATION_EXPORT OCUIList *List(void) {
     OCUIList *list = [[OCUIList alloc] init];
     AddRenderViewInStack(list);
     return list;
@@ -97,46 +103,17 @@ FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value) {
     return slider;
 }
 
-@implementation OCUIMaker {
-    OCUIStack *_stack;
-}
+@implementation OCUIMaker
 
-- (instancetype)initWithStack:(OCUIStack *)stack {
+- (instancetype)initWithContentView:(UIView *)contentView
+                              stack:(nonnull OCUIStack *)stack {
     if (self = [super init]) {
+        _contentView = contentView;
         _stack = stack;
+        [stack startLayoutWithContentView:contentView];
     }
     return self;
 }
 
-
-- (OCUIVStack * _Nonnull (^)(OCUIHorizontalAlignment))alignment {
-    return ^OCUIVStack *(OCUIHorizontalAlignment alignment) {
-        if ([self.stack isKindOfClass:[OCUIVStack class]]) {
-            OCUIVStack *vStack = (OCUIVStack *)self.stack;
-            vStack.alignment(alignment);
-            return vStack;
-        } else {
-            return nil;
-        }
-    };
-}
-
-- (void)loadOCUIInView:(UIView *)view {
-    [self.stack loadAndLayoutViewsInView:view];
-}
-
 @end
 
-@implementation NSObject (OCUIMaker)
-
-- (void)loadOCUIInView:(UIView *)view {
-    OCUIMaker *maker = Maker(^{
-        [self OCUIMaker];
-    });
-    objc_setAssociatedObject(self, @selector(OCUIMaker), maker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [maker loadOCUIInView:view];
-}
-
-- (void)OCUIMaker {}
-
-@end

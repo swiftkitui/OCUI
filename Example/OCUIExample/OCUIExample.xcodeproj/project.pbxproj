@@ -14,8 +14,6 @@
 		5D43F202230D40840098713E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D43F201230D40840098713E /* Assets.xcassets */; };
 		5D43F205230D40840098713E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D43F203230D40840098713E /* LaunchScreen.storyboard */; };
 		5D43F208230D40840098713E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F207230D40840098713E /* main.m */; };
-		5D5F0971231362060029EE9E /* OCUIStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F0959231362050029EE9E /* OCUIStack.m */; };
-		5D5F0972231362060029EE9E /* OCUILayoutOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F095A231362050029EE9E /* OCUILayoutOffset.m */; };
 		5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F095B231362050029EE9E /* OCUIHStack.m */; };
 		5D5F0975231362060029EE9E /* OCUIVStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F095F231362050029EE9E /* OCUIVStack.m */; };
 		5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F0960231362050029EE9E /* OCUIZStack.m */; };
@@ -24,13 +22,16 @@
 		5D5F0979231362060029EE9E /* OCUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096C231362050029EE9E /* OCUIView.m */; };
 		5D5F097A231362060029EE9E /* OCUIText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096E231362050029EE9E /* OCUIText.m */; };
 		5D5F097B231362060029EE9E /* OCUIMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096F231362050029EE9E /* OCUIMaker.m */; };
-		5D5F098223137C850029EE9E /* OCUIConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F098123137C850029EE9E /* OCUIConstraints.m */; };
 		5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09842313E0A10029EE9E /* OCUIImage.m */; };
 		5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09882314E6A90029EE9E /* OCUIList.m */; };
 		5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */; };
 		5DCA42A9231A65AC000F8359 /* OCUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A8231A65AC000F8359 /* OCUISlider.m */; };
-		5DCA42AC231A67A8000F8359 /* OCUIConfigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42AB231A67A8000F8359 /* OCUIConfigView.m */; };
 		5DCBA0182319288D00B1A2D5 /* OCUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCBA0172319288D00B1A2D5 /* OCUIButton.m */; };
+		7FD9B3F3231E427C0092CF2D /* OCUIAlignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9B3F2231E427C0092CF2D /* OCUIAlignment.m */; };
+		7FD9B3F6231E4AF00092CF2D /* OCUIViewParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9B3F5231E4AF00092CF2D /* OCUIViewParse.m */; };
+		7FD9B3F9231E527F0092CF2D /* OCUIiOSViewParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9B3F8231E527F0092CF2D /* OCUIiOSViewParse.m */; };
+		7FD9B3FC231E67DF0092CF2D /* OCUIiOSLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9B3FB231E67DF0092CF2D /* OCUIiOSLayout.m */; };
+		7FD9B3FF231E69F40092CF2D /* OCUIStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9B3FE231E69F40092CF2D /* OCUIStack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,17 +59,12 @@
 		5D43F206230D40840098713E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D43F207230D40840098713E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D5F0955231362050029EE9E /* OCUIHStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIHStack.h; sourceTree = "<group>"; };
-		5D5F0956231362050029EE9E /* OCUILayoutOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUILayoutOffset.h; sourceTree = "<group>"; };
 		5D5F0957231362050029EE9E /* OCUIZStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIZStack.h; sourceTree = "<group>"; };
 		5D5F0958231362050029EE9E /* OCUIVStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIVStack.h; sourceTree = "<group>"; };
-		5D5F0959231362050029EE9E /* OCUIStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIStack.m; sourceTree = "<group>"; };
-		5D5F095A231362050029EE9E /* OCUILayoutOffset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUILayoutOffset.m; sourceTree = "<group>"; };
 		5D5F095B231362050029EE9E /* OCUIHStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIHStack.m; sourceTree = "<group>"; };
-		5D5F095E231362050029EE9E /* OCUIStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIStack.h; sourceTree = "<group>"; };
 		5D5F095F231362050029EE9E /* OCUIVStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIVStack.m; sourceTree = "<group>"; };
 		5D5F0960231362050029EE9E /* OCUIZStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIZStack.m; sourceTree = "<group>"; };
 		5D5F0961231362050029EE9E /* OCUIMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIMaker.h; sourceTree = "<group>"; };
-		5D5F0963231362050029EE9E /* OCUIRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIRenderView.h; sourceTree = "<group>"; };
 		5D5F0965231362050029EE9E /* OCUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUI.h; sourceTree = "<group>"; };
 		5D5F0967231362050029EE9E /* OCUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIView.h; sourceTree = "<group>"; };
 		5D5F0968231362050029EE9E /* OCUINode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUINode.h; sourceTree = "<group>"; };
@@ -79,8 +75,6 @@
 		5D5F096D231362050029EE9E /* OCUISpacer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUISpacer.h; sourceTree = "<group>"; };
 		5D5F096E231362050029EE9E /* OCUIText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIText.m; sourceTree = "<group>"; };
 		5D5F096F231362050029EE9E /* OCUIMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIMaker.m; sourceTree = "<group>"; };
-		5D5F098023137C850029EE9E /* OCUIConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIConstraints.h; sourceTree = "<group>"; };
-		5D5F098123137C850029EE9E /* OCUIConstraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIConstraints.m; sourceTree = "<group>"; };
 		5D5F09832313E0A10029EE9E /* OCUIImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIImage.h; sourceTree = "<group>"; };
 		5D5F09842313E0A10029EE9E /* OCUIImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIImage.m; sourceTree = "<group>"; };
 		5D5F09872314E6A90029EE9E /* OCUIList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIList.h; sourceTree = "<group>"; };
@@ -89,10 +83,19 @@
 		5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIToggle.m; sourceTree = "<group>"; };
 		5DCA42A7231A65AC000F8359 /* OCUISlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUISlider.h; sourceTree = "<group>"; };
 		5DCA42A8231A65AC000F8359 /* OCUISlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUISlider.m; sourceTree = "<group>"; };
-		5DCA42AA231A67A8000F8359 /* OCUIConfigView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIConfigView.h; sourceTree = "<group>"; };
-		5DCA42AB231A67A8000F8359 /* OCUIConfigView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIConfigView.m; sourceTree = "<group>"; };
 		5DCBA0162319288D00B1A2D5 /* OCUIButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIButton.h; sourceTree = "<group>"; };
 		5DCBA0172319288D00B1A2D5 /* OCUIButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIButton.m; sourceTree = "<group>"; };
+		7FD9B3F0231E3E1A0092CF2D /* OCUIHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIHeader.h; sourceTree = "<group>"; };
+		7FD9B3F1231E427C0092CF2D /* OCUIAlignment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIAlignment.h; sourceTree = "<group>"; };
+		7FD9B3F2231E427C0092CF2D /* OCUIAlignment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIAlignment.m; sourceTree = "<group>"; };
+		7FD9B3F4231E4AF00092CF2D /* OCUIViewParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIViewParse.h; sourceTree = "<group>"; };
+		7FD9B3F5231E4AF00092CF2D /* OCUIViewParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIViewParse.m; sourceTree = "<group>"; };
+		7FD9B3F7231E527F0092CF2D /* OCUIiOSViewParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIiOSViewParse.h; sourceTree = "<group>"; };
+		7FD9B3F8231E527F0092CF2D /* OCUIiOSViewParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIiOSViewParse.m; sourceTree = "<group>"; };
+		7FD9B3FA231E67DF0092CF2D /* OCUIiOSLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIiOSLayout.h; sourceTree = "<group>"; };
+		7FD9B3FB231E67DF0092CF2D /* OCUIiOSLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIiOSLayout.m; sourceTree = "<group>"; };
+		7FD9B3FD231E69F40092CF2D /* OCUIStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIStack.h; sourceTree = "<group>"; };
+		7FD9B3FE231E69F40092CF2D /* OCUIStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIStack.m; sourceTree = "<group>"; };
 		83135448550FCBD8A84856A6 /* libPods-OCUIExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OCUIExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCE597FC42D7C6BA36DDB8F /* Pods-OCUIExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUIExample.debug.xcconfig"; path = "Target Support Files/Pods-OCUIExample/Pods-OCUIExample.debug.xcconfig"; sourceTree = "<group>"; };
 		C50B3E89958EC3ECD144CA9E /* Pods-OCUIExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCUIExample.release.xcconfig"; path = "Target Support Files/Pods-OCUIExample/Pods-OCUIExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -157,10 +160,10 @@
 		5D5F0951231362050029EE9E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				7FD9B3EE231E1E4D0092CF2D /* Parse */,
+				7FD9B3EB231E1E280092CF2D /* Layout */,
+				7FD9B3EA231E1E210092CF2D /* UI */,
 				5D5F098B2314E79D0029EE9E /* Core */,
-				5D5F098A2314E6E90029EE9E /* LayoutViews */,
-				5D5F0964231362050029EE9E /* ControllerViews */,
-				5D5F0966231362050029EE9E /* Other Views */,
 				5D5F0965231362050029EE9E /* OCUI.h */,
 			);
 			name = Sources;
@@ -195,47 +198,18 @@
 			path = "Other Views";
 			sourceTree = "<group>";
 		};
-		5D5F098A2314E6E90029EE9E /* LayoutViews */ = {
-			isa = PBXGroup;
-			children = (
-				5D5F0955231362050029EE9E /* OCUIHStack.h */,
-				5D5F095B231362050029EE9E /* OCUIHStack.m */,
-				5D5F0958231362050029EE9E /* OCUIVStack.h */,
-				5D5F095F231362050029EE9E /* OCUIVStack.m */,
-				5D5F0957231362050029EE9E /* OCUIZStack.h */,
-				5D5F0960231362050029EE9E /* OCUIZStack.m */,
-				5D5F096D231362050029EE9E /* OCUISpacer.h */,
-				5D5F096A231362050029EE9E /* OCUISpacer.m */,
-			);
-			path = LayoutViews;
-			sourceTree = "<group>";
-		};
 		5D5F098B2314E79D0029EE9E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5DCB9A182317B0E000B1A2D5 /* Protocol */,
-				5D5F0956231362050029EE9E /* OCUILayoutOffset.h */,
-				5D5F095A231362050029EE9E /* OCUILayoutOffset.m */,
-				5D5F095E231362050029EE9E /* OCUIStack.h */,
-				5D5F0959231362050029EE9E /* OCUIStack.m */,
+				7FD9B3F0231E3E1A0092CF2D /* OCUIHeader.h */,
 				5D5F0968231362050029EE9E /* OCUINode.h */,
 				5D5F096B231362050029EE9E /* OCUINode.m */,
-				5D5F098023137C850029EE9E /* OCUIConstraints.h */,
-				5D5F098123137C850029EE9E /* OCUIConstraints.m */,
 				5D5F0961231362050029EE9E /* OCUIMaker.h */,
 				5D5F096F231362050029EE9E /* OCUIMaker.m */,
-				5DCA42AA231A67A8000F8359 /* OCUIConfigView.h */,
-				5DCA42AB231A67A8000F8359 /* OCUIConfigView.m */,
+				7FD9B3F4231E4AF00092CF2D /* OCUIViewParse.h */,
+				7FD9B3F5231E4AF00092CF2D /* OCUIViewParse.m */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		5DCB9A182317B0E000B1A2D5 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				5D5F0963231362050029EE9E /* OCUIRenderView.h */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		73B4FFA190951EA7A5C078D8 /* Frameworks */ = {
@@ -244,6 +218,53 @@
 				83135448550FCBD8A84856A6 /* libPods-OCUIExample.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7FD9B3EA231E1E210092CF2D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5D5F0964231362050029EE9E /* ControllerViews */,
+				5D5F0966231362050029EE9E /* Other Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7FD9B3EB231E1E280092CF2D /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				7FD9B3FD231E69F40092CF2D /* OCUIStack.h */,
+				7FD9B3FE231E69F40092CF2D /* OCUIStack.m */,
+				5D5F0955231362050029EE9E /* OCUIHStack.h */,
+				5D5F095B231362050029EE9E /* OCUIHStack.m */,
+				5D5F0958231362050029EE9E /* OCUIVStack.h */,
+				5D5F095F231362050029EE9E /* OCUIVStack.m */,
+				5D5F0957231362050029EE9E /* OCUIZStack.h */,
+				5D5F0960231362050029EE9E /* OCUIZStack.m */,
+				5D5F096D231362050029EE9E /* OCUISpacer.h */,
+				5D5F096A231362050029EE9E /* OCUISpacer.m */,
+				7FD9B3F1231E427C0092CF2D /* OCUIAlignment.h */,
+				7FD9B3F2231E427C0092CF2D /* OCUIAlignment.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		7FD9B3EE231E1E4D0092CF2D /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				7FD9B3EF231E1E4D0092CF2D /* iOS */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		7FD9B3EF231E1E4D0092CF2D /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7FD9B3F7231E527F0092CF2D /* OCUIiOSViewParse.h */,
+				7FD9B3F8231E527F0092CF2D /* OCUIiOSViewParse.m */,
+				7FD9B3FA231E67DF0092CF2D /* OCUIiOSLayout.h */,
+				7FD9B3FB231E67DF0092CF2D /* OCUIiOSLayout.m */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,13 +377,14 @@
 				5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */,
 				5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */,
 				5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */,
-				5D5F0972231362060029EE9E /* OCUILayoutOffset.m in Sources */,
-				5D5F0971231362060029EE9E /* OCUIStack.m in Sources */,
 				5DCBA0182319288D00B1A2D5 /* OCUIButton.m in Sources */,
+				7FD9B3FF231E69F40092CF2D /* OCUIStack.m in Sources */,
+				7FD9B3F6231E4AF00092CF2D /* OCUIViewParse.m in Sources */,
 				5D5F097A231362060029EE9E /* OCUIText.m in Sources */,
-				5D5F098223137C850029EE9E /* OCUIConstraints.m in Sources */,
 				5D43F1FA230D40810098713E /* AppDelegate.m in Sources */,
-				5DCA42AC231A67A8000F8359 /* OCUIConfigView.m in Sources */,
+				7FD9B3F9231E527F0092CF2D /* OCUIiOSViewParse.m in Sources */,
+				7FD9B3F3231E427C0092CF2D /* OCUIAlignment.m in Sources */,
+				7FD9B3FC231E67DF0092CF2D /* OCUIiOSLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

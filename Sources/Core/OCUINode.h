@@ -6,88 +6,12 @@
 //  Copyright © 2019 张行. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <CombineObjectObjc/NSObject+CombineBind.h>
-#import <DriverListNode/DriverListNode.h>
-#import "OCUIConstraints.h"
-#import "OCUIRenderView.h"
-#import "OCUIConfigView.h"
+#import "OCUIHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUINode;
 
-@interface OCUINode : NSObject<OCUIRenderView>
-
-@end
-
-@interface OCUINode (Frame)
-
-/// 设置宽度
-@property (nonatomic, assign, readonly) CGFloat uiWidth;
-/// 设置高度
-@property (nonatomic, assign, readonly) CGFloat uiHeight;
-/// 设置大小
-@property (nonatomic, assign, readonly) CGSize uiSize;
-/// 是否使用 intrinsicContentSize 默认为 YES
-@property (nonatomic, assign, readonly) BOOL uiIsUseIntrinsicContentSize;
-/// 内容边距 默认为(0,0,0,0)
-@property (nonatomic, assign, readonly) UIEdgeInsets uiContentEdgeInsets;
-/**
- 设置宽度
- */
-- (instancetype(^)(CGFloat))width;
-/**
- 设置高度
- */
-- (instancetype(^)(CGFloat))height;
-/**
- 设置大小
- */
-- (instancetype(^)(CGSize))size;
-
-/// 设置是否使用 intrinsicContentSize
-- (instancetype(^)(BOOL))isUseIntrinsicContentSize;
-/// 设置内容的上下左右间距
-- (instancetype(^)(UIEdgeInsets))contentEdgeInsets;
-
-
-@end
-
-@interface OCUINode (FloatLayout)
-
-/**
- 设置的最小的浮动长度 默认为0
- */
-@property (nonatomic, assign, readonly) CGFloat uiMinFloatLenght;
-/**
- 当前支持的浮动长度 默认为 0
- */
-@property (nonatomic, assign, readonly) CGFloat uiFloatLenght;
-/// 监听uiFloatLenght的变化
-@property (nonatomic, strong, readonly) OCUIConstraints *uiFloatLenghtContraints;
-
-/**
- 设置最小的浮动长度
- */
-- (instancetype(^)(CGFloat))minFloatLengh;
-/**
- 设置当前的浮动长度 如果小于最小的浮动长度 则按照最小的浮动s长度设置
- */
-- (instancetype(^)(CGFloat))floatLenght;
-
-@end
-
-@interface OCUINode (Priority)
-
-/**
- 布局的优先级 默认为 1000 最大值
- */
-@property (nonatomic, assign, readonly) NSUInteger uiPriority;
-
-/**
- 设置优先级
- */
-- (instancetype(^)(CGFloat))priority;
+@interface OCUINode : NSObject
 
 @end
 
