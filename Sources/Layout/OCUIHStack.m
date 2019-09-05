@@ -7,6 +7,7 @@
 //
 
 #import "OCUIHStack.h"
+#import "OCUIView.h"
 
 @implementation OCUIHStack {
     
@@ -24,6 +25,21 @@
         self->_uiAlignment = alignment;
         return self;
     };
+}
+
+- (CGFloat)intrinsicContentSizeWidth {
+    __block CGFloat intrinsicContentSizeWidth = 0;
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view;
+        if ([obj isKindOfClass:[OCUIView class]]) {
+            OCUIView *nodeView = (OCUIView *)obj;
+            view = nodeView.uiRenderView;
+        }
+        if (view) {
+            intrinsicContentSizeWidth += view.intrinsicContentSize.width;
+        }
+    }];
+    return intrinsicContentSizeWidth;
 }
 
 @end

@@ -27,6 +27,8 @@
 		5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */; };
 		5DCA42A9231A65AC000F8359 /* OCUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A8231A65AC000F8359 /* OCUISlider.m */; };
 		5DCBA0182319288D00B1A2D5 /* OCUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCBA0172319288D00B1A2D5 /* OCUIButton.m */; };
+		5DF02AF32320F5970099F76B /* OCUILayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF02AF22320F5970099F76B /* OCUILayoutItem.m */; };
+		5DF02AF62320FE490099F76B /* OCUILayoutCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF02AF52320FE490099F76B /* OCUILayoutCenter.m */; };
 		7FD9B3F3231E427C0092CF2D /* OCUIAlignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9B3F2231E427C0092CF2D /* OCUIAlignment.m */; };
 		7FD9B3F6231E4AF00092CF2D /* OCUIViewParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9B3F5231E4AF00092CF2D /* OCUIViewParse.m */; };
 		7FD9B3F9231E527F0092CF2D /* OCUIiOSViewParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9B3F8231E527F0092CF2D /* OCUIiOSViewParse.m */; };
@@ -85,6 +87,10 @@
 		5DCA42A8231A65AC000F8359 /* OCUISlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUISlider.m; sourceTree = "<group>"; };
 		5DCBA0162319288D00B1A2D5 /* OCUIButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIButton.h; sourceTree = "<group>"; };
 		5DCBA0172319288D00B1A2D5 /* OCUIButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIButton.m; sourceTree = "<group>"; };
+		5DF02AF12320F5970099F76B /* OCUILayoutItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUILayoutItem.h; sourceTree = "<group>"; };
+		5DF02AF22320F5970099F76B /* OCUILayoutItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUILayoutItem.m; sourceTree = "<group>"; };
+		5DF02AF42320FE490099F76B /* OCUILayoutCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUILayoutCenter.h; sourceTree = "<group>"; };
+		5DF02AF52320FE490099F76B /* OCUILayoutCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUILayoutCenter.m; sourceTree = "<group>"; };
 		7FD9B3F0231E3E1A0092CF2D /* OCUIHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIHeader.h; sourceTree = "<group>"; };
 		7FD9B3F1231E427C0092CF2D /* OCUIAlignment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIAlignment.h; sourceTree = "<group>"; };
 		7FD9B3F2231E427C0092CF2D /* OCUIAlignment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIAlignment.m; sourceTree = "<group>"; };
@@ -263,6 +269,10 @@
 				7FD9B3F8231E527F0092CF2D /* OCUIiOSViewParse.m */,
 				7FD9B3FA231E67DF0092CF2D /* OCUIiOSLayout.h */,
 				7FD9B3FB231E67DF0092CF2D /* OCUIiOSLayout.m */,
+				5DF02AF12320F5970099F76B /* OCUILayoutItem.h */,
+				5DF02AF22320F5970099F76B /* OCUILayoutItem.m */,
+				5DF02AF42320FE490099F76B /* OCUILayoutCenter.h */,
+				5DF02AF52320FE490099F76B /* OCUILayoutCenter.m */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -382,7 +392,9 @@
 				7FD9B3F6231E4AF00092CF2D /* OCUIViewParse.m in Sources */,
 				5D5F097A231362060029EE9E /* OCUIText.m in Sources */,
 				5D43F1FA230D40810098713E /* AppDelegate.m in Sources */,
+				5DF02AF32320F5970099F76B /* OCUILayoutItem.m in Sources */,
 				7FD9B3F9231E527F0092CF2D /* OCUIiOSViewParse.m in Sources */,
+				5DF02AF62320FE490099F76B /* OCUILayoutCenter.m in Sources */,
 				7FD9B3F3231E427C0092CF2D /* OCUIAlignment.m in Sources */,
 				7FD9B3FC231E67DF0092CF2D /* OCUIiOSLayout.m in Sources */,
 			);

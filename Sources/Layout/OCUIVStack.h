@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (OCUIVStack *(^)(OCUIHorizontalAlignment))alignment;
 
+- (CGFloat)intrinsicContentSizeHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,7 @@
 //
 
 #import "OCUINode.h"
+#import "OCUISpacer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUIStack;
@@ -17,15 +18,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) OC_VIEW *contentView;
 @property (nonatomic, copy, readonly) NSArray<OC_VIEW *> *allLayoutViews;
 
-- (void)startLayoutWithContentView:(OC_VIEW *)contentView;
+- (void)startLayout;
 
 @end
 
 @interface OCUIStack<S:OCUIStack *> (Layout)
 
-+ (void)LoadLayoutWithClassName:(Class)className
++ (void)loadLayoutWithClassName:(Class)className
                     layoutBlock:(void(^)(S stack))layoutBlock;
 
 @end
+
+@interface OCUIStack (Spacer)
+
+/// 获取所有浮动布局的 Spacer 数组
+- (NSArray<OCUISpacer *> *)allFloatSpacers;
+- (OCUISpacer *)layoutSpacerWithView:(UIView *)view;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

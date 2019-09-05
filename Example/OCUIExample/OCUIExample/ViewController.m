@@ -21,9 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    Maker(self.view, ^{
-        Text(@"Hello World!");
-    });
+    
 }
 
 @end

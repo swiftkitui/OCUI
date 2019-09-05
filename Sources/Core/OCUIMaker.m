@@ -105,12 +105,16 @@ FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value) {
 
 @implementation OCUIMaker
 
-- (instancetype)initWithContentView:(UIView *)contentView
+- (instancetype)initWithContentView:(OC_VIEW *)contentView
                               stack:(nonnull OCUIStack *)stack {
     if (self = [super init]) {
         _contentView = contentView;
         _stack = stack;
-        [stack startLayoutWithContentView:contentView];
+        [contentView addSubview:stack.contentView];
+        [stack.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(UIEdgeInsetsZero);
+        }];
+        [stack startLayout];
     }
     return self;
 }

@@ -9,6 +9,7 @@
 #import "OCUIStack.h"
 #import "OCUIView.h"
 #import "OCUIViewParse.h"
+#import "OCUISpacer.h"
 
 @implementation OCUIStack
 @synthesize allLayoutViews = _allLayoutViews;
@@ -16,14 +17,14 @@
 - (instancetype)init {
     if (self = [super init]) {
         _nodes = [NSMutableArray array];
+        _contentView = [UIView new];
     }
     return self;
 }
 
-- (void)startLayoutWithContentView:(OC_VIEW *)contentView {
-    _contentView = contentView;
+- (void)startLayout {
     [self.allLayoutViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [contentView addSubview:obj];
+        [_contentView addSubview:obj];
     }];
     void(^block)(OCUIStack *) = [[OCUIViewParse shareParse] layoutViewBlockWithClassName:self.class];
     if (block) {
@@ -31,16 +32,46 @@
     }
 }
 
+- (void)addSpacerInTopBottomStack {
+    if (![self isExitSpacerInStack]) {
+        if (![self.nodes.firstObject isKindOfClass:[OCUISpacer class]]) {
+            OCUISpacer *topSpacer = [[OCUISpacer alloc] init];
+            [self.nodes addObject:topSpacer];
+        }
+        
+        if (![self.nodes.lastObject isKindOfClass:[OCUISpacer class]]) {
+            OCUISpacer *bottomSpacer = [[OCUISpacer alloc] init];
+            [self.nodes addObject:bottomSpacer];
+        }
+    }
+}
+
+- (BOOL)isExitSpacerInStack {
+    __block BOOL isExitSpacer = NO;
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[OCUISpacer class]] && ![obj isEqual:self.nodes.firstObject] && ![obj isEqual:self.nodes.lastObject]) {
+            isExitSpacer = YES;
+        }
+    }];
+    return isExitSpacer;
+}
+
+
+
 - (NSArray<OC_VIEW *> *)allLayoutViews {
     if (!_allLayoutViews) {
         NSMutableArray *array = [NSMutableArray array];
         [self.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (![obj isKindOfClass:[OCUIView class]]) {
-                return;
-            }
-            OCUIView *view = (OCUIView *)obj;
-            if (view.uiRenderView) {
-                [array addObject:view.uiRenderView];
+            if ([obj isKindOfClass:[OCUIView class]]) {
+                OCUIView *view = (OCUIView *)obj;
+                if (view.uiRenderView) {
+                    [array addObject:view.uiRenderView];
+                }
+            } else if ([obj isKindOfClass:[OCUIStack class]]) {
+                OCUIStack *stack = (OCUIStack *)obj;
+                if (stack.contentView) {
+                    [array addObject:stack.contentView];
+                }
             }
         }];
         _allLayoutViews = array;
@@ -48,13 +79,48 @@
     return _allLayoutViews;
 }
 
+
 @end
 
 @implementation OCUIStack (Layout)
 
-+ (void)LoadLayoutWithClassName:(Class)className
++ (void)loadLayoutWithClassName:(Class)className
                     layoutBlock:(void (^)(OCUIStack * _Nonnull))layoutBlock {
     [[OCUIViewParse shareParse] addLayoutBlock:layoutBlock className:className];
 }
 
 @end
+
+@implementation OCUIStack (Spacer)
+
+- (NSArray<OCUISpacer *> *)allFloatSpacers {
+    NSMutableArray<OCUISpacer *> *spacers = [NSMutableArray array];
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[OCUISpacer class]]) {
+            OCUISpacer *spacer = (OCUISpacer *)obj;
+            if (spacer.uiFlxedOffset == NSNotFound) {
+                [spacers addObject:spacer];
+            }
+        }
+    }];
+    return spacers;
+}
+
+- (OCUISpacer *)layoutSpacerWithView:(UIView *)view {
+    __block OCUISpacer *spacer;
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[OCUISpacer class]]) {
+            spacer = (OCUISpacer *)obj;
+        } else if ([obj isKindOfClass:[OCUIView class]]) {
+            UIView *renderView = [(OCUIView *)obj uiRenderView];
+            if ([renderView isEqual:view]) {
+                *stop = YES;
+                return;
+            }
+        }
+    }];
+    return spacer;
+}
+
+@end
+
