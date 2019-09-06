@@ -9,6 +9,7 @@
 #import <Masonry/Masonry.h>
 #import <objc/runtime.h>
 #import "OCUIMaker.h"
+#import "OCUILayoutItem.h"
 
 /// 当前正在布局的OCUIStack
 static OCUIStack *OCUICurrentStack;
@@ -16,7 +17,7 @@ static OCUIStack *OCUICurrentStack;
 FOUNDATION_EXTERN OCUIMaker *Maker(UIView *contentView, void(^block)(void)) {
     OCUIStack *tempStack = OCUICurrentStack;
     OCUICurrentStack = nil;
-    if (!block) {
+    if (block) {
         block();
     }
     OCUIMaker *make = [[OCUIMaker alloc] initWithContentView:contentView stack:OCUICurrentStack];
@@ -63,7 +64,7 @@ FOUNDATION_EXPORT OCUIText *Text(NSString *_Nullable content) {
     return text;
 }
 
-FOUNDATION_EXPORT OCUISpacer *Spacer(NSNumber * _Nullable offset) {
+FOUNDATION_EXPORT OCUISpacer *Spacer() {
     OCUISpacer *spacer = [OCUISpacer new];
     AddRenderViewInStack(spacer);
     return spacer;
@@ -105,19 +106,43 @@ FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value) {
 
 @implementation OCUIMaker
 
+- (void)dealloc {
+    [self.stack.contentView removeObserver:self forKeyPath:@"frame"];
+}
+
 - (instancetype)initWithContentView:(OC_VIEW *)contentView
                               stack:(nonnull OCUIStack *)stack {
     if (self = [super init]) {
+        contentView.uiMaker = self;
         _contentView = contentView;
         _stack = stack;
         [contentView addSubview:stack.contentView];
         [stack.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsZero);
         }];
+        stack.contentView.widthLayoutItem = OCUICreateLayoutItem(CGRectGetWidth(contentView.frame), stack.contentView, nil, nil);
+        stack.contentView.heightLayoutItem = OCUICreateLayoutItem(CGRectGetHeight(contentView.frame), stack.contentView, nil, nil);
+        [stack.contentView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         [stack startLayout];
+        
     }
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    NSLog(@"keyPath:%@\nobject:%@\nchange:%@",keyPath,object,change);
+}
+
 @end
 
+@implementation UIView (OCUIMaker)
+
+- (void)setUiMaker:(OCUIMaker * _Nonnull)uiMaker {
+    objc_setAssociatedObject(self, @selector(uiMaker), uiMaker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (OCUIMaker *)uiMaker {
+    return objc_getAssociatedObject(self, @selector(uiMaker));
+}
+
+@end

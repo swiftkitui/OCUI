@@ -14,7 +14,7 @@
 @implementation OCUIiOSLayout
 
 + (void)loadLayout {
-    [self loadHStackLayout];
+    [self loadVStackLayout];
 }
 
 + (void)loadHStackLayout {
@@ -26,11 +26,28 @@
 + (void)loadVStackLayout {
     [OCUIStack<OCUIVStack *> loadLayoutWithClassName:OCUIVStack.self layoutBlock:^(OCUIVStack * _Nonnull stack) {
         __block UIView *topView;
+        __block BOOL isExitFloatView = NO;
+        [stack.allLayoutViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.intrinsicContentSize.height <= 0) {
+                isExitFloatView = YES;
+            }
+        }];
+        [stack.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (![obj isKindOfClass:[OCUISpacer class]]) {
+                return;
+            }
+            OCUISpacer *spacer = (OCUISpacer *)obj;
+            if (spacer.uiFlxedOffset == NSNotFound) {
+                spacer.flxedOffset(spacer.uiMinOffset);
+            }
+        }];
+        UIView *contentView = stack.contentView;
         NSMutableArray<OCUILayoutItem *> *flxedLayoutItems = [NSMutableArray array];
         NSMutableArray<OCUILayoutItem *> *floatLayoutItems = [NSMutableArray array];
         [stack.allLayoutViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj mas_makeConstraints:^(MASConstraintMaker *make) {
                 
+                /// 布局居左 居中 居右
                 if (stack.uiAlignment == OCUIHorizontalAlignmentLeading) {
                     make.leading.equalTo(stack.contentView);
                 } else if (stack.uiAlignment == OCUIHorizontalAlignmentCenter) {
@@ -39,57 +56,77 @@
                     make.trailing.equalTo(stack.contentView);
                 }
                 
+                /// 获取最适合的大小
                 CGSize intrinsicContentSize = [obj intrinsicContentSize];
                 if (intrinsicContentSize.width > 0) {
-                    make.width.mas_equalTo(intrinsicContentSize.width);
+                    OCUILayoutItem *item = OCUICreateLayoutItem(intrinsicContentSize.width, obj, ^(OCUILayoutItem * _Nonnull item) {
+                        item.width(make.width.mas_equalTo(intrinsicContentSize.width));
+                        make.leading.greaterThanOrEqualTo(contentView).offset(0);
+                        make.trailing.lessThanOrEqualTo(contentView).offset(0);
+                    }, ^(OCUILayoutItem * _Nonnull item) {
+                        item.widthConstraints.mas_equalTo(item.value);
+                    });
+                    obj.widthLayoutItem = item;
                 } else {
                     make.width.equalTo(stack.contentView);
                 }
                 
                 if (intrinsicContentSize.height > 0) {
                     OCUILayoutItem *item = OCUICreateLayoutItem(intrinsicContentSize.height, obj, ^(OCUILayoutItem * _Nonnull item) {
-                        make.height.mas_equalTo(intrinsicContentSize.height);
+                        item.height(make.height.mas_equalTo(item.value));
                     }, ^(OCUILayoutItem * _Nonnull item) {
-                        [item.bindView mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.height.mas_equalTo(intrinsicContentSize.height);
-                        }];
+                        item.heightConstraints.mas_equalTo(item.value);
                     });
+                    obj.heightLayoutItem = item;
                     [flxedLayoutItems addObject:item];
                 } else {
                     OCUILayoutItem *item = OCUICreateLayoutItem(0, obj, ^(OCUILayoutItem * _Nonnull item) {
-                        make.height.mas_equalTo(intrinsicContentSize.height);
+                        item.height(make.height.mas_equalTo(item.value));
                     }, ^(OCUILayoutItem * _Nonnull item) {
-                        [item.bindView mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.height.mas_equalTo(intrinsicContentSize.height);
-                        }];
+                        item.heightConstraints.mas_equalTo(item.value);
                     });
                     [floatLayoutItems addObject:item];
                 }
                 
                 OCUISpacer *spacer = [stack layoutSpacerWithView:obj];
                 if (!spacer || spacer.uiFlxedOffset != NSNotFound) {
-                    if (!topView) {
-                        make.top.equalTo(stack.contentView);
+                    if (spacer && spacer.uiFlxedOffset != NSNotFound) {
+                        if (!topView) {
+                            OCUILayoutItem *item = OCUICreateLayoutItem(spacer.uiFlxedOffset, obj, ^(OCUILayoutItem * _Nonnull item) {
+                                item.top(make.top.equalTo(contentView).offset(spacer.uiFlxedOffset));
+                            }, ^(OCUILayoutItem * _Nonnull item) {
+                                item.topConstraints.offset(item.value);
+                            });
+                            [flxedLayoutItems addObject:item];
+                        } else {
+                            OCUILayoutItem *item = OCUICreateLayoutItem(spacer.uiFlxedOffset, obj, ^(OCUILayoutItem * _Nonnull item) {
+                                item.top(make.top.equalTo(topView.mas_bottom).offset(spacer.uiFlxedOffset));
+                            }, ^(OCUILayoutItem * _Nonnull item) {
+                                item.topConstraints.offset(item.value);
+                            });
+                            [flxedLayoutItems addObject:item];
+                        }
                     } else {
-                        make.top.equalTo(stack.contentView.mas_bottom);
+                        if (!topView) {
+                            make.top.equalTo(contentView);
+                        } else {
+                            make.top.equalTo(topView.mas_bottom);
+                        }
                     }
+                    
                 } else {
                     if (!topView) {
                         OCUILayoutItem *item = OCUICreateLayoutItem(spacer.uiMinOffset, obj, ^(OCUILayoutItem * _Nonnull item) {
-                            make.top.equalTo(stack.contentView).offset(item.value);
+                            item.top(make.top.equalTo(contentView).offset(item.value));
                         }, ^(OCUILayoutItem * _Nonnull item) {
-                            [item.bindView mas_updateConstraints:^(MASConstraintMaker *make) {
-                                make.top.equalTo(stack.contentView).offset(item.value);
-                            }];
+                            item.topConstraints.offset(item.value);
                         });
                         [floatLayoutItems addObject:item];
                     } else {
                         OCUILayoutItem *item = OCUICreateLayoutItem(spacer.uiMinOffset, obj, ^(OCUILayoutItem * _Nonnull item) {
-                            make.top.equalTo(stack.contentView.mas_bottom).offset(item.value);
+                            item.top(make.top.equalTo(topView.mas_bottom).offset(item.value));
                         }, ^(OCUILayoutItem * _Nonnull item) {
-                            [item.bindView mas_updateConstraints:^(MASConstraintMaker *make) {
-                                make.top.equalTo(stack.contentView.mas_bottom).offset(item.value);
-                            }];
+                            item.topConstraints.offset(item.value);
                         });
                         [floatLayoutItems addObject:item];
                     }
@@ -97,7 +134,15 @@
             }];
             topView = obj;
         }];
-        OCUILayoutCenter *center = [[OCUILayoutCenter alloc] initWithContentViewLayoutItem:stack.contentView.layoutItem
+        if ([stack.nodes.lastObject isKindOfClass:[OCUISpacer class]]) {
+            OCUISpacer *spacer = (OCUISpacer *)stack.nodes.lastObject;
+            if (spacer.uiFlxedOffset != NSNotFound) {
+                [flxedLayoutItems addObject:OCUICreateLayoutItem(spacer.uiFlxedOffset, stack.allLayoutViews.lastObject, nil, nil)];
+            } else {
+                [floatLayoutItems addObject:OCUICreateLayoutItem(spacer.uiMinOffset, stack.allLayoutViews.lastObject, nil, nil)];
+            }
+        }
+        OCUILayoutCenter *center = [[OCUILayoutCenter alloc] initWithContentViewLayoutItem:contentView.heightLayoutItem
                                                                           floatLayoutItems:floatLayoutItems
                                                                           flxedLayoutItems:flxedLayoutItems];
         stack.contentView.layoutCenter = center;

@@ -26,7 +26,7 @@ FOUNDATION_EXPORT OCUIVStack *VStack(void(^ _Nullable block)(void));
 FOUNDATION_EXPORT OCUIHStack *HStack(void(^ _Nullable block)(void));
 FOUNDATION_EXPORT OCUIZStack *ZStack(void(^ _Nullable block)(void));
 FOUNDATION_EXPORT OCUIText *Text(NSString * _Nullable content);
-FOUNDATION_EXPORT OCUISpacer *Spacer(NSNumber * _Nullable offset);
+FOUNDATION_EXPORT OCUISpacer *Spacer();
 FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName);
 FOUNDATION_EXPORT OCUIList *List(void);
 FOUNDATION_EXPORT OCUIView *View(void);
@@ -37,11 +37,17 @@ FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value);
 /// UI 构造器
 @interface OCUIMaker : NSObject
 
-@property (nonatomic, strong, readonly) OC_VIEW *contentView;
+@property (nonatomic, weak, readonly) OC_VIEW *contentView;
 @property (nonatomic, strong, readonly) OCUIStack *stack;
 
 - (instancetype)initWithContentView:(OC_VIEW *)contentView
                               stack:(OCUIStack *)stack;
+
+@end
+
+@interface UIView (OCUIMaker)
+
+@property (nonatomic, strong) OCUIMaker *uiMaker;
 
 @end
 

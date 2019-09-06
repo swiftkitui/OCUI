@@ -22,11 +22,11 @@
         _contentViewLayoutItem = contentViewLayoutItem;
         _floatLayoutItems = floatLayoutItems;
         _flxedLayoutItems = flxedLayoutItems;
-        [self updateFloatLayoutItem];
         if (contentViewLayoutItem) {
             [self listenLayoutItems:@[contentViewLayoutItem]];
         }
         [self listenLayoutItems:flxedLayoutItems];
+        [self updateFloatLayoutItem];
     }
     return self;
 }
@@ -55,7 +55,7 @@
     } else if (currentFloatLayoutValue < maxFloatLayoutValue) {
         [self updateFloatLayoutWithRemainFloatLayoutItems:_floatLayoutItems remainFloatLayoutValue:currentFloatLayoutValue];
     } else {
-        CGFloat averageFloatValue = maxFloatLayoutValue * 1.0 / _floatLayoutItems.count;
+        CGFloat averageFloatValue = currentFloatLayoutValue / _floatLayoutItems.count;
         [_floatLayoutItems enumerateObjectsUsingBlock:^(OCUILayoutItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj updateValue:averageFloatValue];
         }];

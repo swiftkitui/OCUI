@@ -21,7 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    Maker(self.view, ^{
+        View()
+        .backgroundColor([UIColor redColor]);
+        View()
+        .backgroundColor([UIColor blueColor]);
+        View()
+        .backgroundColor([UIColor grayColor]);
+    });
 }
 
 @end

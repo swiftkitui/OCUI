@@ -23,6 +23,7 @@
 }
 
 - (void)startLayout {
+    [self addSpacerInTopBottomStack];
     [self.allLayoutViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [_contentView addSubview:obj];
     }];
@@ -30,13 +31,19 @@
     if (block) {
         block(self);
     }
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[OCUIStack class]]) {
+            OCUIStack *stack = (OCUIStack *)obj;
+            [stack startLayout];
+        }
+    }];
 }
 
 - (void)addSpacerInTopBottomStack {
     if (![self isExitSpacerInStack]) {
         if (![self.nodes.firstObject isKindOfClass:[OCUISpacer class]]) {
             OCUISpacer *topSpacer = [[OCUISpacer alloc] init];
-            [self.nodes addObject:topSpacer];
+            [self.nodes insertObject:topSpacer atIndex:0];
         }
         
         if (![self.nodes.lastObject isKindOfClass:[OCUISpacer class]]) {
@@ -116,6 +123,8 @@
             if ([renderView isEqual:view]) {
                 *stop = YES;
                 return;
+            } else {
+                spacer = nil;
             }
         }
     }];

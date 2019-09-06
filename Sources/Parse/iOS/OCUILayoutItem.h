@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CombineObjectObjc/NSObject+CombineBind.h>
+#import <Masonry/Masonry.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUILayoutItem;
@@ -31,12 +32,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UIView (OCUILayoutItem)
+@interface OCUILayoutItem (MASConstrints)
 
-@property (nonatomic, strong) OCUILayoutItem *layoutItem;
+@property (nonatomic, strong, readonly) MASConstraint *topConstraints;
+@property (nonatomic, strong, readonly) MASConstraint *leadingConstraints;
+@property (nonatomic, strong, readonly) MASConstraint *widthConstraints;
+@property (nonatomic, strong, readonly) MASConstraint *heightConstraints;
+
+- (instancetype(^)(MASConstraint *))top;
+- (instancetype(^)(MASConstraint *))leading;
+- (instancetype(^)(MASConstraint *))width;
+- (instancetype(^)(MASConstraint *))height;
 
 @end
 
-FOUNDATION_EXPORT OCUILayoutItem *OCUICreateLayoutItem(CGFloat value, UIView *bindView,void(^addConstraintsBlock)(OCUILayoutItem *item),void(^updateConstraintsBlock)(OCUILayoutItem *item));
+@interface UIView (OCUILayoutItem)
+
+@property (nonatomic, strong) OCUILayoutItem *widthLayoutItem;
+@property (nonatomic, strong) OCUILayoutItem *heightLayoutItem;
+
+@end
+
+FOUNDATION_EXPORT OCUILayoutItem *OCUICreateLayoutItem(CGFloat value, UIView *bindView,void(^_Nullable addConstraintsBlock)(OCUILayoutItem *item),void(^_Nullable updateConstraintsBlock)(OCUILayoutItem *item));
 
 NS_ASSUME_NONNULL_END

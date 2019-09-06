@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
-
+#import "OCUIiOSViewParse.h"
+#import "OCUIiOSLayout.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +22,9 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         [[NSBundle bundleWithPath:path] load];
     }
+    
+    [OCUIiOSViewParse loadParse];
+    [OCUIiOSLayout loadLayout];
     // Override point for customization after application launch.
     return YES;
 }
