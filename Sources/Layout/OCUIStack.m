@@ -25,7 +25,7 @@
 - (void)startLayout {
     [self addSpacerInTopBottomStack];
     [self.allLayoutViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [_contentView addSubview:obj];
+        [self.contentView addSubview:obj];
     }];
     void(^block)(OCUIStack *) = [[OCUIViewParse shareParse] layoutViewBlockWithClassName:self.class];
     if (block) {
@@ -133,3 +133,21 @@
 
 @end
 
+@implementation OCUIStack (OCUIView)
+
+- (OCUIView *)viewNodeWithRenderView:(UIView *)view {
+    __block OCUIView *viewNode;
+    [self.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (![obj isKindOfClass:[OCUIView class]]) {
+            return;
+        }
+        OCUIView *_viewNode = (OCUIView *)obj;
+        if (![_viewNode.uiRenderView isEqual:view]) {
+            return;
+        }
+        viewNode = _viewNode;
+    }];
+    return viewNode;
+}
+
+@end

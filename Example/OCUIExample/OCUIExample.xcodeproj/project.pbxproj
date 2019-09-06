@@ -8,12 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		52C20879024A57CEC2EE9555 /* libPods-OCUIExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83135448550FCBD8A84856A6 /* libPods-OCUIExample.a */; };
+		5D32795D23220F81000AE2CF /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D32795C23220F81000AE2CF /* DetailViewController.m */; };
+		5D32796023220F98000AE2CF /* SourceCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D32795F23220F98000AE2CF /* SourceCodeViewController.m */; };
+		5D3279642322111A000AE2CF /* OCUIVStackExample0.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3279632322111A000AE2CF /* OCUIVStackExample0.m */; };
+		5D32796723221303000AE2CF /* OCUIExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D32796623221303000AE2CF /* OCUIExample.m */; };
+		5D327969232213EF000AE2CF /* OCUIVStackExample0 in Resources */ = {isa = PBXBuildFile; fileRef = 5D327968232213EF000AE2CF /* OCUIVStackExample0 */; };
+		5D32796E2322306B000AE2CF /* OCUIVStackExample1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D32796D2322306B000AE2CF /* OCUIVStackExample1.m */; };
+		5D32797023223078000AE2CF /* OCUIVStackExample1 in Resources */ = {isa = PBXBuildFile; fileRef = 5D32796F23223078000AE2CF /* OCUIVStackExample1 */; };
+		5D327974232231C0000AE2CF /* OCUIVStackExample2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D327973232231C0000AE2CF /* OCUIVStackExample2.m */; };
+		5D327976232231F4000AE2CF /* OCUIVStackExample2 in Resources */ = {isa = PBXBuildFile; fileRef = 5D327975232231F4000AE2CF /* OCUIVStackExample2 */; };
 		5D43F1FA230D40810098713E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F1F9230D40810098713E /* AppDelegate.m */; };
 		5D43F1FD230D40810098713E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F1FC230D40810098713E /* ViewController.m */; };
 		5D43F200230D40810098713E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D43F1FE230D40810098713E /* Main.storyboard */; };
 		5D43F202230D40840098713E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D43F201230D40840098713E /* Assets.xcassets */; };
 		5D43F205230D40840098713E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D43F203230D40840098713E /* LaunchScreen.storyboard */; };
 		5D43F208230D40840098713E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F207230D40840098713E /* main.m */; };
+		5D56487423223E5C00568A54 /* UIView+LayoutSubViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D56487323223E5C00568A54 /* UIView+LayoutSubViews.m */; };
+		5D564878232241EE00568A54 /* OCUIVStackExample3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D564877232241EE00568A54 /* OCUIVStackExample3.m */; };
+		5D56487A232241FC00568A54 /* OCUIVStackExample3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D564879232241FC00568A54 /* OCUIVStackExample3 */; };
+		5D56487E232244B300568A54 /* OCUIVStackExample4.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D56487D232244B300568A54 /* OCUIVStackExample4.m */; };
+		5D5648802322450100568A54 /* OCUIVStackExample4 in Resources */ = {isa = PBXBuildFile; fileRef = 5D56487F2322450100568A54 /* OCUIVStackExample4 */; };
+		5D564884232246F900568A54 /* OCUIVStackExample5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D564883232246F900568A54 /* OCUIVStackExample5.m */; };
+		5D564886232257D800568A54 /* OCUIVStackExample5 in Resources */ = {isa = PBXBuildFile; fileRef = 5D564885232257D800568A54 /* OCUIVStackExample5 */; };
 		5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F095B231362050029EE9E /* OCUIHStack.m */; };
 		5D5F0975231362060029EE9E /* OCUIVStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F095F231362050029EE9E /* OCUIVStack.m */; };
 		5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F0960231362050029EE9E /* OCUIZStack.m */; };
@@ -50,6 +66,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D32795B23220F81000AE2CF /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		5D32795C23220F81000AE2CF /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		5D32795E23220F98000AE2CF /* SourceCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SourceCodeViewController.h; sourceTree = "<group>"; };
+		5D32795F23220F98000AE2CF /* SourceCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SourceCodeViewController.m; sourceTree = "<group>"; };
+		5D3279622322111A000AE2CF /* OCUIVStackExample0.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIVStackExample0.h; sourceTree = "<group>"; };
+		5D3279632322111A000AE2CF /* OCUIVStackExample0.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIVStackExample0.m; sourceTree = "<group>"; };
+		5D32796523221303000AE2CF /* OCUIExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIExample.h; sourceTree = "<group>"; };
+		5D32796623221303000AE2CF /* OCUIExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIExample.m; sourceTree = "<group>"; };
+		5D327968232213EF000AE2CF /* OCUIVStackExample0 */ = {isa = PBXFileReference; lastKnownFileType = text; path = OCUIVStackExample0; sourceTree = "<group>"; };
+		5D32796C2322306B000AE2CF /* OCUIVStackExample1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIVStackExample1.h; sourceTree = "<group>"; };
+		5D32796D2322306B000AE2CF /* OCUIVStackExample1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIVStackExample1.m; sourceTree = "<group>"; };
+		5D32796F23223078000AE2CF /* OCUIVStackExample1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = OCUIVStackExample1; sourceTree = "<group>"; };
+		5D327972232231C0000AE2CF /* OCUIVStackExample2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIVStackExample2.h; sourceTree = "<group>"; };
+		5D327973232231C0000AE2CF /* OCUIVStackExample2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIVStackExample2.m; sourceTree = "<group>"; };
+		5D327975232231F4000AE2CF /* OCUIVStackExample2 */ = {isa = PBXFileReference; lastKnownFileType = text; path = OCUIVStackExample2; sourceTree = "<group>"; };
 		5D43F1F5230D40810098713E /* OCUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D43F1F8230D40810098713E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5D43F1F9230D40810098713E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,6 +91,17 @@
 		5D43F204230D40840098713E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D43F206230D40840098713E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D43F207230D40840098713E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5D56487223223E5C00568A54 /* UIView+LayoutSubViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LayoutSubViews.h"; sourceTree = "<group>"; };
+		5D56487323223E5C00568A54 /* UIView+LayoutSubViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayoutSubViews.m"; sourceTree = "<group>"; };
+		5D564876232241EE00568A54 /* OCUIVStackExample3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIVStackExample3.h; sourceTree = "<group>"; };
+		5D564877232241EE00568A54 /* OCUIVStackExample3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIVStackExample3.m; sourceTree = "<group>"; };
+		5D564879232241FC00568A54 /* OCUIVStackExample3 */ = {isa = PBXFileReference; lastKnownFileType = text; path = OCUIVStackExample3; sourceTree = "<group>"; };
+		5D56487C232244B300568A54 /* OCUIVStackExample4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIVStackExample4.h; sourceTree = "<group>"; };
+		5D56487D232244B300568A54 /* OCUIVStackExample4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIVStackExample4.m; sourceTree = "<group>"; };
+		5D56487F2322450100568A54 /* OCUIVStackExample4 */ = {isa = PBXFileReference; lastKnownFileType = text; path = OCUIVStackExample4; sourceTree = "<group>"; };
+		5D564882232246F900568A54 /* OCUIVStackExample5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIVStackExample5.h; sourceTree = "<group>"; };
+		5D564883232246F900568A54 /* OCUIVStackExample5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIVStackExample5.m; sourceTree = "<group>"; };
+		5D564885232257D800568A54 /* OCUIVStackExample5 */ = {isa = PBXFileReference; lastKnownFileType = text; path = OCUIVStackExample5; sourceTree = "<group>"; };
 		5D5F0955231362050029EE9E /* OCUIHStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIHStack.h; sourceTree = "<group>"; };
 		5D5F0957231362050029EE9E /* OCUIZStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIZStack.h; sourceTree = "<group>"; };
 		5D5F0958231362050029EE9E /* OCUIVStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIVStack.h; sourceTree = "<group>"; };
@@ -128,6 +170,59 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5D32795A23220C25000AE2CF /* OCUIExample */ = {
+			isa = PBXGroup;
+			children = (
+				5D327961232210D5000AE2CF /* VStack */,
+				5D32796523221303000AE2CF /* OCUIExample.h */,
+				5D32796623221303000AE2CF /* OCUIExample.m */,
+			);
+			path = OCUIExample;
+			sourceTree = "<group>";
+		};
+		5D327961232210D5000AE2CF /* VStack */ = {
+			isa = PBXGroup;
+			children = (
+				5D564881232246E800568A54 /* Example5 */,
+				5D56487B2322449C00568A54 /* Example4 */,
+				5D564875232241D300568A54 /* Example3 */,
+				5D32797123223138000AE2CF /* Example2 */,
+				5D32796B23223052000AE2CF /* Example1 */,
+				5D32796A23223042000AE2CF /* Example0 */,
+			);
+			path = VStack;
+			sourceTree = "<group>";
+		};
+		5D32796A23223042000AE2CF /* Example0 */ = {
+			isa = PBXGroup;
+			children = (
+				5D3279622322111A000AE2CF /* OCUIVStackExample0.h */,
+				5D3279632322111A000AE2CF /* OCUIVStackExample0.m */,
+				5D327968232213EF000AE2CF /* OCUIVStackExample0 */,
+			);
+			path = Example0;
+			sourceTree = "<group>";
+		};
+		5D32796B23223052000AE2CF /* Example1 */ = {
+			isa = PBXGroup;
+			children = (
+				5D32796C2322306B000AE2CF /* OCUIVStackExample1.h */,
+				5D32796D2322306B000AE2CF /* OCUIVStackExample1.m */,
+				5D32796F23223078000AE2CF /* OCUIVStackExample1 */,
+			);
+			path = Example1;
+			sourceTree = "<group>";
+		};
+		5D32797123223138000AE2CF /* Example2 */ = {
+			isa = PBXGroup;
+			children = (
+				5D327972232231C0000AE2CF /* OCUIVStackExample2.h */,
+				5D327973232231C0000AE2CF /* OCUIVStackExample2.m */,
+				5D327975232231F4000AE2CF /* OCUIVStackExample2 */,
+			);
+			path = Example2;
+			sourceTree = "<group>";
+		};
 		5D43F1EC230D40810098713E = {
 			isa = PBXGroup;
 			children = (
@@ -149,11 +244,16 @@
 		5D43F1F7230D40810098713E /* OCUIExample */ = {
 			isa = PBXGroup;
 			children = (
+				5D32795A23220C25000AE2CF /* OCUIExample */,
 				5D5F0951231362050029EE9E /* Sources */,
 				5D43F1F8230D40810098713E /* AppDelegate.h */,
 				5D43F1F9230D40810098713E /* AppDelegate.m */,
 				5D43F1FB230D40810098713E /* ViewController.h */,
 				5D43F1FC230D40810098713E /* ViewController.m */,
+				5D32795B23220F81000AE2CF /* DetailViewController.h */,
+				5D32795C23220F81000AE2CF /* DetailViewController.m */,
+				5D32795E23220F98000AE2CF /* SourceCodeViewController.h */,
+				5D32795F23220F98000AE2CF /* SourceCodeViewController.m */,
 				5D43F1FE230D40810098713E /* Main.storyboard */,
 				5D43F201230D40840098713E /* Assets.xcassets */,
 				5D43F203230D40840098713E /* LaunchScreen.storyboard */,
@@ -161,6 +261,36 @@
 				5D43F207230D40840098713E /* main.m */,
 			);
 			path = OCUIExample;
+			sourceTree = "<group>";
+		};
+		5D564875232241D300568A54 /* Example3 */ = {
+			isa = PBXGroup;
+			children = (
+				5D564876232241EE00568A54 /* OCUIVStackExample3.h */,
+				5D564877232241EE00568A54 /* OCUIVStackExample3.m */,
+				5D564879232241FC00568A54 /* OCUIVStackExample3 */,
+			);
+			path = Example3;
+			sourceTree = "<group>";
+		};
+		5D56487B2322449C00568A54 /* Example4 */ = {
+			isa = PBXGroup;
+			children = (
+				5D56487C232244B300568A54 /* OCUIVStackExample4.h */,
+				5D56487D232244B300568A54 /* OCUIVStackExample4.m */,
+				5D56487F2322450100568A54 /* OCUIVStackExample4 */,
+			);
+			path = Example4;
+			sourceTree = "<group>";
+		};
+		5D564881232246E800568A54 /* Example5 */ = {
+			isa = PBXGroup;
+			children = (
+				5D564882232246F900568A54 /* OCUIVStackExample5.h */,
+				5D564883232246F900568A54 /* OCUIVStackExample5.m */,
+				5D564885232257D800568A54 /* OCUIVStackExample5 */,
+			);
+			path = Example5;
 			sourceTree = "<group>";
 		};
 		5D5F0951231362050029EE9E /* Sources */ = {
@@ -273,6 +403,8 @@
 				5DF02AF22320F5970099F76B /* OCUILayoutItem.m */,
 				5DF02AF42320FE490099F76B /* OCUILayoutCenter.h */,
 				5DF02AF52320FE490099F76B /* OCUILayoutCenter.m */,
+				5D56487223223E5C00568A54 /* UIView+LayoutSubViews.h */,
+				5D56487323223E5C00568A54 /* UIView+LayoutSubViews.m */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -336,9 +468,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D327976232231F4000AE2CF /* OCUIVStackExample2 in Resources */,
 				5D43F205230D40840098713E /* LaunchScreen.storyboard in Resources */,
+				5D56487A232241FC00568A54 /* OCUIVStackExample3 in Resources */,
+				5D564886232257D800568A54 /* OCUIVStackExample5 in Resources */,
 				5D43F202230D40840098713E /* Assets.xcassets in Resources */,
+				5D327969232213EF000AE2CF /* OCUIVStackExample0 in Resources */,
 				5D43F200230D40810098713E /* Main.storyboard in Resources */,
+				5D5648802322450100568A54 /* OCUIVStackExample4 in Resources */,
+				5D32797023223078000AE2CF /* OCUIVStackExample1 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,20 +521,30 @@
 				5D5F0979231362060029EE9E /* OCUIView.m in Sources */,
 				5D5F097B231362060029EE9E /* OCUIMaker.m in Sources */,
 				5D43F208230D40840098713E /* main.m in Sources */,
+				5D327974232231C0000AE2CF /* OCUIVStackExample2.m in Sources */,
 				5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */,
+				5D56487E232244B300568A54 /* OCUIVStackExample4.m in Sources */,
 				5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */,
+				5D32796023220F98000AE2CF /* SourceCodeViewController.m in Sources */,
+				5D32795D23220F81000AE2CF /* DetailViewController.m in Sources */,
 				5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */,
 				5D5F0973231362060029EE9E /* OCUIHStack.m in Sources */,
 				5DCBA0182319288D00B1A2D5 /* OCUIButton.m in Sources */,
 				7FD9B3FF231E69F40092CF2D /* OCUIStack.m in Sources */,
 				7FD9B3F6231E4AF00092CF2D /* OCUIViewParse.m in Sources */,
 				5D5F097A231362060029EE9E /* OCUIText.m in Sources */,
+				5D32796723221303000AE2CF /* OCUIExample.m in Sources */,
 				5D43F1FA230D40810098713E /* AppDelegate.m in Sources */,
 				5DF02AF32320F5970099F76B /* OCUILayoutItem.m in Sources */,
+				5D32796E2322306B000AE2CF /* OCUIVStackExample1.m in Sources */,
 				7FD9B3F9231E527F0092CF2D /* OCUIiOSViewParse.m in Sources */,
 				5DF02AF62320FE490099F76B /* OCUILayoutCenter.m in Sources */,
+				5D56487423223E5C00568A54 /* UIView+LayoutSubViews.m in Sources */,
+				5D564878232241EE00568A54 /* OCUIVStackExample3.m in Sources */,
+				5D564884232246F900568A54 /* OCUIVStackExample5.m in Sources */,
 				7FD9B3F3231E427C0092CF2D /* OCUIAlignment.m in Sources */,
 				7FD9B3FC231E67DF0092CF2D /* OCUIiOSLayout.m in Sources */,
+				5D3279642322111A000AE2CF /* OCUIVStackExample0.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

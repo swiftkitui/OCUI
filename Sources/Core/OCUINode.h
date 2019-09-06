@@ -15,4 +15,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface OCUINode (Frame)
+
+@property (nonatomic, assign, readonly) CGSize uiSize;
+
+- (OCUINode *(^)(CGSize))size;
+
+@end
+
+@interface OCUINode (OCUIView)
+
+- (OCUINode *(^)(UIColor *))backgroundColor;
+
+@end
+
 NS_ASSUME_NONNULL_END

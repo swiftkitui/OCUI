@@ -8,6 +8,31 @@
 
 #import "OCUINode.h"
 
-@implementation OCUINode
+@implementation OCUINode {
+    CGSize _uiSize;
+}
+
+@end
+
+@implementation OCUINode (Frame)
+
+- (CGSize)uiSize {
+    return _uiSize;
+}
+
+- (OCUINode *(^)(CGSize))size {
+    return ^OCUINode *(CGSize size) {
+        self->_uiSize = size;
+        return self;
+    };
+}
+
+@end
+
+@implementation OCUINode (OCUIView)
+
+- (OCUINode * _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
+    return nil;
+}
 
 @end

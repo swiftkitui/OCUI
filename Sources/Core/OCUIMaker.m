@@ -106,10 +106,6 @@ FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value) {
 
 @implementation OCUIMaker
 
-- (void)dealloc {
-    [self.stack.contentView removeObserver:self forKeyPath:@"frame"];
-}
-
 - (instancetype)initWithContentView:(OC_VIEW *)contentView
                               stack:(nonnull OCUIStack *)stack {
     if (self = [super init]) {
@@ -122,15 +118,9 @@ FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value) {
         }];
         stack.contentView.widthLayoutItem = OCUICreateLayoutItem(CGRectGetWidth(contentView.frame), stack.contentView, nil, nil);
         stack.contentView.heightLayoutItem = OCUICreateLayoutItem(CGRectGetHeight(contentView.frame), stack.contentView, nil, nil);
-        [stack.contentView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         [stack startLayout];
-        
     }
     return self;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    NSLog(@"keyPath:%@\nobject:%@\nchange:%@",keyPath,object,change);
 }
 
 @end

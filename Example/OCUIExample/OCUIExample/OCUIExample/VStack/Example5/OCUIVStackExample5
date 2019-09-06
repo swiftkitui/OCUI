@@ -1,0 +1,7 @@
+View()
+.backgroundColor([UIColor redColor]);
+View()
+.backgroundColor([UIColor blueColor])
+.size(CGSizeMake(50, 50));
+View()
+.backgroundColor([UIColor grayColor]);

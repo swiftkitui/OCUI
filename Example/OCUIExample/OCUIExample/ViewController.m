@@ -10,25 +10,33 @@
 #import "OCUI.h"
 #import <CombineObjectObjc/NSObject+CombineBind.h>
 #import <Masonry/Masonry.h>
+#import "DetailViewController.h"
+#import "OCUIExample.h"
 
-@interface ViewController ()
+@interface ViewController ()<UITableViewDelegate>
 
 
 @end
 
 @implementation ViewController {
+    NSString *_title;
+    DetailViewController *_destinationViewController;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    Maker(self.view, ^{
-        View()
-        .backgroundColor([UIColor redColor]);
-        View()
-        .backgroundColor([UIColor blueColor]);
-        View()
-        .backgroundColor([UIColor grayColor]);
-    });
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    _title = [(UITableViewCell *)sender textLabel].text;
+    _destinationViewController = (DetailViewController *)segue.destinationViewController;
+    _destinationViewController.title = _title;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [OCUIExample exampleWithController:_destinationViewController indexPath:indexPath];
 }
 
 @end

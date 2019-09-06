@@ -22,8 +22,8 @@
     return _uiBackgroundColor;
 }
 
-- (instancetype(^)(UIColor * _Nonnull))backgroundColor {
-    return ^OCUIView *(UIColor *backgroundColor) {
+- (OCUINode * _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
+    return ^OCUINode *(UIColor *backgroundColor) {
         self->_uiBackgroundColor = backgroundColor;
         return self;
     };

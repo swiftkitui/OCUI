@@ -37,7 +37,7 @@
                 return;
             }
             OCUISpacer *spacer = (OCUISpacer *)obj;
-            if (spacer.uiFlxedOffset == NSNotFound) {
+            if (spacer.uiFlxedOffset == NSNotFound && isExitFloatView) {
                 spacer.flxedOffset(spacer.uiMinOffset);
             }
         }];
@@ -56,11 +56,13 @@
                     make.trailing.equalTo(stack.contentView);
                 }
                 
-                /// 获取最适合的大小
+                OCUIView *viewNode = [stack viewNodeWithRenderView:obj];
                 CGSize intrinsicContentSize = [obj intrinsicContentSize];
-                if (intrinsicContentSize.width > 0) {
-                    OCUILayoutItem *item = OCUICreateLayoutItem(intrinsicContentSize.width, obj, ^(OCUILayoutItem * _Nonnull item) {
-                        item.width(make.width.mas_equalTo(intrinsicContentSize.width));
+                CGFloat width = viewNode.uiSize.width > 0 ? viewNode.uiSize.width : intrinsicContentSize.width;
+                CGFloat height = viewNode.uiSize.height > 0 ? viewNode.uiSize.height : intrinsicContentSize.height;
+                if (width > 0) {
+                    OCUILayoutItem *item = OCUICreateLayoutItem(width, obj, ^(OCUILayoutItem * _Nonnull item) {
+                        item.width(make.width.mas_equalTo(item.value));
                         make.leading.greaterThanOrEqualTo(contentView).offset(0);
                         make.trailing.lessThanOrEqualTo(contentView).offset(0);
                     }, ^(OCUILayoutItem * _Nonnull item) {
@@ -71,8 +73,8 @@
                     make.width.equalTo(stack.contentView);
                 }
                 
-                if (intrinsicContentSize.height > 0) {
-                    OCUILayoutItem *item = OCUICreateLayoutItem(intrinsicContentSize.height, obj, ^(OCUILayoutItem * _Nonnull item) {
+                if (height > 0) {
+                    OCUILayoutItem *item = OCUICreateLayoutItem(height, obj, ^(OCUILayoutItem * _Nonnull item) {
                         item.height(make.height.mas_equalTo(item.value));
                     }, ^(OCUILayoutItem * _Nonnull item) {
                         item.heightConstraints.mas_equalTo(item.value);

@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) UIColor *uiBackgroundColor;
 
-- (instancetype(^)(UIColor *))backgroundColor;
-
 @end
 
 @interface OCUIView<V:OC_VIEW *, N:OCUIView *> (RenderView)
