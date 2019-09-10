@@ -15,9 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUIStack<S:OCUIStack *> : OCUINode
 
-@property (nonatomic, copy, readonly) NSMutableArray<OCUINode *> *nodes;
+@property (nonatomic, copy, readonly) NSArray<OCUINode *> *nodes;
 @property (nonatomic, strong, readonly) OC_VIEW *contentView;
 @property (nonatomic, copy, readonly) NSArray<OC_VIEW *> *allLayoutViews;
+    
+- (instancetype)initWithNodes:(NSArray<OCUINode *> *)nodes;
 
 - (void)startLayout;
 

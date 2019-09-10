@@ -9,10 +9,21 @@
 #import "OCUIView.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class OCUISection;
 
 @interface OCUIList : OCUIView
 
 - (instancetype)initWithBlock:(void(^)(void))block;
+
+@end
+
+FOUNDATION_EXPORT OCUIList *List(void(^block)(void));
+
+@interface OCUISection : OCUINode
+
+- (instancetype)initWithBlock:(void(^)(void))block;
+
+FOUNDATION_EXPORT OCUISection *Section(void(^block)(void));
 
 @end
 

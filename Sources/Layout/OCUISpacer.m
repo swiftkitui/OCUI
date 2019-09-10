@@ -7,6 +7,7 @@
 //
 
 #import "OCUISpacer.h"
+#import "OCUICreate.h"
 
 @implementation OCUISpacer
 @synthesize uiOffset = _uiOffset;
@@ -47,4 +48,10 @@
 }
 
 @end
+
+FOUNDATION_EXPORT OCUISpacer *Spacer(void) {
+    OCUISpacer *spacer = [OCUISpacer new];
+    AddNodeInUINodes(spacer);
+    return spacer;
+}
 

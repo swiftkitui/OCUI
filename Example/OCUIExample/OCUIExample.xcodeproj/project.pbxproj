@@ -40,6 +40,9 @@
 		5D5F097B231362060029EE9E /* OCUIMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F096F231362050029EE9E /* OCUIMaker.m */; };
 		5D5F09852313E0A10029EE9E /* OCUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09842313E0A10029EE9E /* OCUIImage.m */; };
 		5D5F09892314E6A90029EE9E /* OCUIList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F09882314E6A90029EE9E /* OCUIList.m */; };
+		5D8BE5A923266BAB005FCC59 /* OCUINavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8BE5A823266BAB005FCC59 /* OCUINavigationView.m */; };
+		5D8BE5AD23266F62005FCC59 /* OCUINavigationLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8BE5AC23266F62005FCC59 /* OCUINavigationLink.m */; };
+		5D8C4147232687FA00542865 /* OCUICreate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C4146232687FA00542865 /* OCUICreate.m */; };
 		5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */; };
 		5DCA42A9231A65AC000F8359 /* OCUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCA42A8231A65AC000F8359 /* OCUISlider.m */; };
 		5DCBA0182319288D00B1A2D5 /* OCUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCBA0172319288D00B1A2D5 /* OCUIButton.m */; };
@@ -123,6 +126,12 @@
 		5D5F09842313E0A10029EE9E /* OCUIImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIImage.m; sourceTree = "<group>"; };
 		5D5F09872314E6A90029EE9E /* OCUIList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIList.h; sourceTree = "<group>"; };
 		5D5F09882314E6A90029EE9E /* OCUIList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIList.m; sourceTree = "<group>"; };
+		5D8BE5A723266BAB005FCC59 /* OCUINavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUINavigationView.h; sourceTree = "<group>"; };
+		5D8BE5A823266BAB005FCC59 /* OCUINavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUINavigationView.m; sourceTree = "<group>"; };
+		5D8BE5AB23266F62005FCC59 /* OCUINavigationLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUINavigationLink.h; sourceTree = "<group>"; };
+		5D8BE5AC23266F62005FCC59 /* OCUINavigationLink.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUINavigationLink.m; sourceTree = "<group>"; };
+		5D8C4145232687FA00542865 /* OCUICreate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUICreate.h; sourceTree = "<group>"; };
+		5D8C4146232687FA00542865 /* OCUICreate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUICreate.m; sourceTree = "<group>"; };
 		5DCA42A4231A5CB4000F8359 /* OCUIToggle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUIToggle.h; sourceTree = "<group>"; };
 		5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCUIToggle.m; sourceTree = "<group>"; };
 		5DCA42A7231A65AC000F8359 /* OCUISlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCUISlider.h; sourceTree = "<group>"; };
@@ -168,6 +177,13 @@
 				C50B3E89958EC3ECD144CA9E /* Pods-OCUIExample.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		5D09477423263BC5001930C0 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
 			sourceTree = "<group>";
 		};
 		5D32795A23220C25000AE2CF /* OCUIExample */ = {
@@ -296,6 +312,7 @@
 		5D5F0951231362050029EE9E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5D09477423263BC5001930C0 /* Lib */,
 				7FD9B3EE231E1E4D0092CF2D /* Parse */,
 				7FD9B3EB231E1E280092CF2D /* Layout */,
 				7FD9B3EA231E1E210092CF2D /* UI */,
@@ -319,6 +336,10 @@
 				5DCA42A5231A5CB4000F8359 /* OCUIToggle.m */,
 				5DCA42A7231A65AC000F8359 /* OCUISlider.h */,
 				5DCA42A8231A65AC000F8359 /* OCUISlider.m */,
+				5D8BE5A723266BAB005FCC59 /* OCUINavigationView.h */,
+				5D8BE5A823266BAB005FCC59 /* OCUINavigationView.m */,
+				5D8BE5AB23266F62005FCC59 /* OCUINavigationLink.h */,
+				5D8BE5AC23266F62005FCC59 /* OCUINavigationLink.m */,
 			);
 			path = ControllerViews;
 			sourceTree = "<group>";
@@ -344,6 +365,8 @@
 				5D5F096F231362050029EE9E /* OCUIMaker.m */,
 				7FD9B3F4231E4AF00092CF2D /* OCUIViewParse.h */,
 				7FD9B3F5231E4AF00092CF2D /* OCUIViewParse.m */,
+				5D8C4145232687FA00542865 /* OCUICreate.h */,
+				5D8C4146232687FA00542865 /* OCUICreate.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -524,6 +547,7 @@
 				5D327974232231C0000AE2CF /* OCUIVStackExample2.m in Sources */,
 				5D5F0976231362060029EE9E /* OCUIZStack.m in Sources */,
 				5D56487E232244B300568A54 /* OCUIVStackExample4.m in Sources */,
+				5D8BE5A923266BAB005FCC59 /* OCUINavigationView.m in Sources */,
 				5DCA42A6231A5CB4000F8359 /* OCUIToggle.m in Sources */,
 				5D32796023220F98000AE2CF /* SourceCodeViewController.m in Sources */,
 				5D32795D23220F81000AE2CF /* DetailViewController.m in Sources */,
@@ -542,9 +566,11 @@
 				5D56487423223E5C00568A54 /* UIView+LayoutSubViews.m in Sources */,
 				5D564878232241EE00568A54 /* OCUIVStackExample3.m in Sources */,
 				5D564884232246F900568A54 /* OCUIVStackExample5.m in Sources */,
+				5D8BE5AD23266F62005FCC59 /* OCUINavigationLink.m in Sources */,
 				7FD9B3F3231E427C0092CF2D /* OCUIAlignment.m in Sources */,
 				7FD9B3FC231E67DF0092CF2D /* OCUIiOSLayout.m in Sources */,
 				5D3279642322111A000AE2CF /* OCUIVStackExample0.m in Sources */,
+				5D8C4147232687FA00542865 /* OCUICreate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

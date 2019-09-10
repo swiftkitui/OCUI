@@ -7,6 +7,7 @@
 //
 
 #import "OCUIZStack.h"
+#import "OCUICreate.h"
 
 @implementation OCUIZStack
 
@@ -18,3 +19,12 @@
 }
 
 @end
+
+FOUNDATION_EXPORT OCUIZStack *ZStack(void(^block)(void)) {
+    if (!block) {
+        return nil;
+    }
+    NSArray<OCUINode *> *nodes = CreateUINodes(block);
+    OCUIZStack *zStack = [[OCUIZStack alloc] initWithNodes:nodes];
+    return zStack;
+}

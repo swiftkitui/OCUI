@@ -16,6 +16,11 @@
 
 @end
 
+FOUNDATION_EXPORT OCUIView *View(void) {
+    OCUIView *view = [[OCUIView alloc] init];
+    return view;
+}
+
 @implementation OCUIView (Color)
 
 - (UIColor *)uiBackgroundColor {

@@ -42,3 +42,12 @@
 }
 
 @end
+
+FOUNDATION_EXPORT OCUIVStack *VStack(void(^block)(void)) {
+    if (!block) {
+        return nil;
+    }
+    NSArray<OCUINode *> *nodes = CreateUINodes(block);
+    OCUIVStack *vStack = [[OCUIVStack alloc] initWithNodes:nodes];
+    return vStack;
+}

@@ -7,10 +7,9 @@
 //
 
 #import "OCUIText.h"
+#import "OCUICreate.h"
 
-@implementation OCUIText {
-    CombineBind<NSString *> *_uiTextBind;
-}
+@implementation OCUIText
 
 - (instancetype)initWithText:(NSString *)content {
     if (self = [super init]) {
@@ -19,27 +18,59 @@
     return self;
 }
 
-- (UIView *)makeOCUIView {
-    return [UILabel new];
+@end
+
+FOUNDATION_EXPORT OCUIText *Text(NSString *content) {
+    OCUIText *text = [[OCUIText alloc] initWithText:content];
+    AddNodeInUINodes(text);
+    return text;
 }
 
-- (void)configOCUIView:(UIView *)view {
-    
+@implementation OCUINode (Bind)
+
+- (CombineBind<NSString *> *)uiTextBind {
+    return (CombineBind<NSString *> *)self.propertyGet(@selector(uiTextBind));
+}
+
+- (OCUINode *(^)(CombineBind<NSString *> * _Nonnull))textBind {
+    return ^OCUINode *(CombineBind<NSString *> *textBind) {
+        self.propertySet(textBind,@selector(uiTextBind));
+        return self;
+    };
 }
 
 @end
 
-@implementation OCUIText (Bind)
+@implementation OCUINode (TextStyle)
 
-- (CombineBind<NSString *> *)uiTextBind {
-    return _uiTextBind;
+- (BOOL)isUIBold {
+    return [self.propertyGet(@selector(isUIBold)) boolValue];
 }
 
-- (instancetype  _Nonnull (^)(CombineBind<NSString *> * _Nonnull))textBind {
-    return ^OCUIText *(CombineBind<NSString *> *textBind) {
-        self->_uiTextBind = textBind;
+- (BOOL)isUIItalic {
+    return [self.propertyGet(@selector(isUIItalic)) boolValue];
+}
+
+- (OCUINode *(^)(void))bold {
+    return ^OCUINode *{
+        self.propertySet(@(YES),@selector(isUIBold));
         return self;
     };
+}
+/// 设置斜体
+- (OCUINode *(^)(void))italic {
+    return ^OCUINode *{
+        self.propertySet(@(YES),@selector(isUIItalic));
+        return self;
+    };
+}
+
+@end
+
+@implementation FontWeight
+
++ (FontWeight *)black {
+    return [FontWeight new];
 }
 
 @end

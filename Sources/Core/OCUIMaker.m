@@ -11,98 +11,7 @@
 #import "OCUIMaker.h"
 #import "OCUILayoutItem.h"
 
-/// 当前正在布局的OCUIStack
-static OCUIStack *OCUICurrentStack;
 
-FOUNDATION_EXTERN OCUIMaker *Maker(UIView *contentView, void(^block)(void)) {
-    OCUIStack *tempStack = OCUICurrentStack;
-    OCUICurrentStack = nil;
-    if (block) {
-        block();
-    }
-    OCUIMaker *make = [[OCUIMaker alloc] initWithContentView:contentView stack:OCUICurrentStack];
-    OCUICurrentStack = tempStack;
-    return make;
-}
-FOUNDATION_EXPORT OCUIVStack *VStack(void(^ _Nullable block)(void)) {
-    OCUIVStack *stack = [[OCUIVStack alloc] init];
-    OCUICurrentStack = stack;
-    if (block) {
-        block();
-    }
-    return stack;
-}
-FOUNDATION_EXPORT OCUIHStack *HStack(void(^ _Nullable block)(void)) {
-    OCUIHStack *stack = [[OCUIHStack alloc] init];
-    OCUICurrentStack = stack;
-    if (block) {
-        block();
-    }
-    return stack;
-}
-FOUNDATION_EXPORT OCUIZStack *ZStack(void(^ _Nullable block)(void)) {
-    OCUIZStack *stack = [[OCUIZStack alloc] init];
-    OCUICurrentStack = stack;
-    if (block) {
-        block();
-    }
-    return stack;
-}
-FOUNDATION_EXPORT void AddRenderViewInStack(OCUINode *node) {
-    if (!node) {
-        return;
-    }
-    if (!OCUICurrentStack) {
-        OCUICurrentStack = VStack(nil);
-    }
-    [OCUICurrentStack.nodes addObject:node];
-}
-
-FOUNDATION_EXPORT OCUIText *Text(NSString *_Nullable content) {
-    OCUIText *text = [[OCUIText alloc] initWithText:content];
-    AddRenderViewInStack(text);
-    return text;
-}
-
-FOUNDATION_EXPORT OCUISpacer *Spacer() {
-    OCUISpacer *spacer = [OCUISpacer new];
-    AddRenderViewInStack(spacer);
-    return spacer;
-}
-
-FOUNDATION_EXPORT OCUIImage *Image(NSString * _Nullable imageName) {
-    OCUIImage *image = [[OCUIImage alloc] initWithImageName:imageName];
-    AddRenderViewInStack(image);
-    return image;
-}
-
-FOUNDATION_EXPORT OCUIList *List(void) {
-    OCUIList *list = [[OCUIList alloc] init];
-    AddRenderViewInStack(list);
-    return list;
-}
-FOUNDATION_EXTERN OCUIButton *Button(NSString * _Nullable text,void(^ _Nullable block)(void)) {
-    OCUIButton *button = [[OCUIButton alloc] initWithText:text make:block];
-    AddRenderViewInStack(button);
-    return button;
-}
-FOUNDATION_EXPORT OCUIView *View(void) {
-    OCUIView *view = [[OCUIView alloc] init];
-    AddRenderViewInStack(view);
-    return view;
-}
-
-FOUNDATION_EXPORT OCUIToggle *Toggle(BOOL isOn) {
-    OCUIToggle *toggle = [[OCUIToggle alloc] initWithIsOn:isOn];
-    AddRenderViewInStack(toggle);
-    return toggle;
-}
-
-FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value) {
-    OCUISlider *slider = [[OCUISlider alloc] initWithValue:value];
-    AddRenderViewInStack(slider);
-    return slider;
-}
 
 @implementation OCUIMaker
 
@@ -136,3 +45,12 @@ FOUNDATION_EXPORT OCUISlider *Slider(CGFloat value) {
 }
 
 @end
+
+FOUNDATION_EXTERN OCUIMaker *Maker(UIView *contentView, void(^block)(void)) {
+    if (!block) {
+        return nil;
+    }
+    NSArray<OCUINode *> *nodes = CreateUINodes(block);
+    OCUIMaker *make = [[OCUIMaker alloc] initWithContentView:contentView stack:nil];
+    return make;
+}

@@ -14,9 +14,9 @@
 @implementation OCUIStack
 @synthesize allLayoutViews = _allLayoutViews;
 
-- (instancetype)init {
+- (instancetype)initWithNodes:(NSArray<OCUINode *> *)nodes {
     if (self = [super init]) {
-        _nodes = [NSMutableArray array];
+        _nodes = nodes;
         _contentView = [UIView new];
     }
     return self;
@@ -40,17 +40,19 @@
 }
 
 - (void)addSpacerInTopBottomStack {
+    NSMutableArray<OCUINode *> *tempNodes = [NSMutableArray arrayWithArray:self.nodes];
     if (![self isExitSpacerInStack]) {
         if (![self.nodes.firstObject isKindOfClass:[OCUISpacer class]]) {
             OCUISpacer *topSpacer = [[OCUISpacer alloc] init];
-            [self.nodes insertObject:topSpacer atIndex:0];
+            [tempNodes insertObject:topSpacer atIndex:0];
         }
         
         if (![self.nodes.lastObject isKindOfClass:[OCUISpacer class]]) {
             OCUISpacer *bottomSpacer = [[OCUISpacer alloc] init];
-            [self.nodes addObject:bottomSpacer];
+            [tempNodes addObject:bottomSpacer];
         }
     }
+    _nodes = tempNodes;
 }
 
 - (BOOL)isExitSpacerInStack {

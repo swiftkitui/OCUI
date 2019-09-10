@@ -8,6 +8,7 @@
 
 #import "OCUIStack.h"
 #import "OCUIAlignment.h"
+#import "OCUICreate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,5 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)intrinsicContentSizeHeight;
 
 @end
+
+FOUNDATION_EXPORT OCUIVStack *VStack(void(^block)(void));
 
 NS_ASSUME_NONNULL_END

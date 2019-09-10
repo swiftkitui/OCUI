@@ -8,11 +8,9 @@
 
 #import "OCUIList.h"
 #import <DriverListNode/DriverListNode.h>
+#import "OCUICreate.h"
 
-@implementation OCUIList {
-    UITableViewCell *_bindRenderView;
-    void (^_cellConfig)(UITableViewCell * _Nonnull, NSUInteger);
-}
+@implementation OCUIList 
 
 - (instancetype)initWithBlock:(void (^)(void))block {
     if (self = [super init]) {
@@ -20,12 +18,26 @@
     return self;
 }
 
-- (UIView *)makeOCUIView {
-    return [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+
+@end
+
+FOUNDATION_EXPORT OCUIList *List(void(^block)(void)) {
+    OCUIList *list = [[OCUIList alloc] initWithBlock:block];
+    return list;
 }
 
-- (void)configOCUIView:(UIView *)view {
-    
+@implementation OCUISection
+
+- (instancetype)initWithBlock:(void(^)(void))block {
+    if (self = [super init]) {
+        
+    }
+    return self;
 }
 
 @end
+
+FOUNDATION_EXPORT OCUISection *Section(void(^block)(void)) {
+    OCUISection *section = [[OCUISection alloc] init];
+    return section;
+}

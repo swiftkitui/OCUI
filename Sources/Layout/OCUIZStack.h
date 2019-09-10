@@ -19,4 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+FOUNDATION_EXPORT OCUIZStack *ZStack(void(^block)(void));
+
 NS_ASSUME_NONNULL_END

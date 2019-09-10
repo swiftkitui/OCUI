@@ -9,9 +9,7 @@
 #import "OCUIHStack.h"
 #import "OCUIView.h"
 
-@implementation OCUIHStack {
-    
-}
+@implementation OCUIHStack 
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -43,3 +41,12 @@
 }
 
 @end
+
+FOUNDATION_EXPORT OCUIHStack *HStack(void(^block)(void)) {
+    if (!block) {
+        return nil;
+    }
+    NSArray<OCUINode *> *nodes = CreateUINodes(block);
+    OCUIHStack *hStack = [[OCUIHStack alloc] initWithNodes:nodes];
+    return hStack;
+}

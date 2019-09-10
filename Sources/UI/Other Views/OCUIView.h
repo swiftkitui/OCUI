@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+FOUNDATION_EXPORT OCUIView *View(void);
+
 @interface OCUIView (Color)
 
 @property (nonatomic, strong, readonly) UIColor *uiBackgroundColor;

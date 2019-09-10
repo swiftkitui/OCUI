@@ -13,7 +13,7 @@
 #import "DetailViewController.h"
 #import "OCUIExample.h"
 
-@interface ViewController ()<UITableViewDelegate>
+@interface ViewController ()
 
 
 @end
@@ -25,18 +25,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    Maker(self.view, ^{
+        NavigationView(^{
+            List(^{
+                Section(^{
+                    
+                });
+            });
+        });
+    });
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    _title = [(UITableViewCell *)sender textLabel].text;
-    _destinationViewController = (DetailViewController *)segue.destinationViewController;
-    _destinationViewController.title = _title;
-}
-
-#pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [OCUIExample exampleWithController:_destinationViewController indexPath:indexPath];
-}
 
 @end

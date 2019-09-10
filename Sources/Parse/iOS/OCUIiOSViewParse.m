@@ -49,7 +49,23 @@
         if (node.uiTextBind) {
             view.viewBind(node.uiTextBind, UILabelIdentifier.text);
         }
+        if (node.isUIBold) {
+            [self setFontDescriptorTraits:UIFontDescriptorTraitBold inLabel:view];
+        }
+        if (node.isUIItalic) {
+            [self setFontDescriptorTraits:UIFontDescriptorTraitItalic inLabel:view];
+        }
+        
     }];
+}
+
++ (void)setFontDescriptorTraits:(UIFontDescriptorSymbolicTraits)traits
+                        inLabel:(UILabel *)label {
+    UIFont *font = label.font;
+    UIFontDescriptorSymbolicTraits descriptorTraits = font.fontDescriptor.symbolicTraits | traits;
+    UIFontDescriptor *descriptor = [font.fontDescriptor fontDescriptorWithSymbolicTraits:descriptorTraits];
+    UIFont *traitsFont = [UIFont fontWithDescriptor:descriptor size:UIFont.systemFontSize];
+    label.font = traitsFont;
 }
 
 @end
