@@ -15,15 +15,17 @@
 #import "OCUIText.h"
 #import "OCUINavigationView.h"
 #import "OCUIList.h"
+#import "OCUIButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
 /// UI 构造器
 @interface OCUIMaker : NSObject
 
-@property (nonatomic, weak, readonly) OC_VIEW *contentView;
+@property (nonatomic, weak, readonly) UIView *contentView;
 @property (nonatomic, strong, readonly) OCUIStack *stack;
 
-- (instancetype)initWithContentView:(OC_VIEW *)contentView
+- (instancetype)initWithContentView:(UIView *)contentView
                               stack:(OCUIStack *)stack;
 
 @end

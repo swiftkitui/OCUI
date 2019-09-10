@@ -19,3 +19,8 @@
 }
 
 @end
+
+FOUNDATION_EXPORT OCUINavigationLink *NavigationLink(Class destination, void(^block)(void)) {
+    OCUINavigationLink *link = [[OCUINavigationLink alloc] init];
+    return link;
+}

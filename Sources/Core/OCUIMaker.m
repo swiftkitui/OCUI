@@ -15,7 +15,7 @@
 
 @implementation OCUIMaker
 
-- (instancetype)initWithContentView:(OC_VIEW *)contentView
+- (instancetype)initWithContentView:(UIView *)contentView
                               stack:(nonnull OCUIStack *)stack {
     if (self = [super init]) {
         contentView.uiMaker = self;

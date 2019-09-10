@@ -7,8 +7,15 @@
 //
 
 #import "OCUINode.h"
+#import "OCUINavigationLink.h"
+#import "OCUIText.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(NSUInteger, OCUITitleDisplayMode) {
+    OCUITitleDisplayModeAutomatic,
+    OCUITitleDisplayModeInline,
+    OCUITitleDisplayModeLarge
+};
 
 @interface OCUINavigationView : OCUINode
 
@@ -16,6 +23,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface OCUINode (NavigationBar)
+
+@property (nonatomic, strong, readonly) OCUIText *uiNavigationBarTitleText;
+@property (nonatomic, assign, readonly) OCUITitleDisplayMode *uiTitleDisplayMode;
+
+- (OCUINode *(^)(OCUIText *, OCUITitleDisplayMode))navigationBarTitle;
+
+@end
+
+@interface OCUINode (NavigationBarItems)
+
+@property (nonatomic, strong, readonly) NSArray<OCUINode *> *uiLeadingNavigationBarItems;
+@property (nonatomic, strong, readonly) NSArray<OCUINode *> *uiTrailingNavigationBarItems;
+
+- (OCUINode *(^)(void(^leadingBlock)(void), void(^trailingBlock)(void)))navigationBarItems;
+
+@end
+
 FOUNDATION_EXPORT OCUINavigationView *NavigationView(void(^block)(void));
+
 
 NS_ASSUME_NONNULL_END

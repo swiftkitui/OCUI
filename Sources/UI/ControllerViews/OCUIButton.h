@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+FOUNDATION_EXPORT OCUIButton *Button(void(^actionBlock)(void), void(^labelBlock)(void));
+
 @interface OCUIButton (Chained)
 
 - (instancetype(^)(void(^)(void)))action;

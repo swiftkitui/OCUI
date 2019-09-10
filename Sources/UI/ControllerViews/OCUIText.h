@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "OCUIView.h"
+#import "OCUIColor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -42,6 +43,14 @@ FOUNDATION_EXPORT OCUIText *Text(NSString *content);
 - (OCUINode *(^)(void))bold;
 /// 设置斜体
 - (OCUINode *(^)(void))italic;
+
+@end
+
+@interface OCUINode (TextColor)
+
+@property (nonatomic, strong, readonly) OCUIColor *uiForegroundColor;
+
+- (OCUINode *(^)(OCUIColor *))foregroundColor;
 
 @end
 

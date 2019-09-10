@@ -20,17 +20,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUIViewParse (MakeView)
 
-- (void)addMakeViewBlock:(OC_VIEW *(^)(void))block
+- (void)addMakeViewBlock:(UIView *(^)(OCUIView *view))block
                className:(Class)className;
-- (OC_VIEW *(^)(void))makeViewBlockWithClassName:(Class)className;
+- (UIView *(^)(OCUINode *))makeViewBlockWithClassName:(Class)className;
 
 @end
 
 @interface OCUIViewParse (ConfigView)
 
-- (void)addConfigViewBlock:(void(^)(OC_VIEW *view, OCUIView *node))block
+- (void)addConfigViewBlock:(void(^)(UIView *view, OCUIView *node))block
                  className:(Class)className;
-- (void(^)(OC_VIEW *view, OCUIView *node))configViewBlockWithClassName:(Class)className;
+- (void(^)(UIView *view, OCUIView *node))configViewBlockWithClassName:(Class)className;
 
 @end
 

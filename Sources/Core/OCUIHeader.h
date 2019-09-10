@@ -12,12 +12,12 @@
 
 #import <UIKit/UIKit.h>
 
-#define OC_VIEW UIView
+//#define UIView UIView
 
 #elif TARGET_OS_MAC
 
 #import <AppKit/AppKit.h>
 
-#define OC_VIEW NSView
+//#define UIView NSView
 
 #endif

@@ -14,11 +14,11 @@
     [super exampleWithController:controller];
     controller.uiMaker = ^{
         View()
-        .backgroundColor([UIColor redColor]);
+        .backgroundColor(nil);
         View()
-        .backgroundColor([UIColor blueColor]);
+        .backgroundColor(nil);
         View()
-        .backgroundColor([UIColor grayColor]);
+        .backgroundColor(nil);
     };
 }
 

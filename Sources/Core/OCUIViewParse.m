@@ -9,8 +9,8 @@
 #import "OCUIViewParse.h"
 
 @implementation OCUIViewParse {
-    NSMutableDictionary<NSString *, OC_VIEW *(^)(void)> *_makeViewBlockMap;
-    NSMutableDictionary<NSString *, void(^)(OC_VIEW *, OCUIView *)> *_configViewBlockMap;
+    NSMutableDictionary<NSString *, UIView *(^)(OCUINode *node)> *_makeViewBlockMap;
+    NSMutableDictionary<NSString *, void(^)(UIView *, OCUIView *)> *_configViewBlockMap;
     NSMutableDictionary<NSString *, void(^)(OCUIStack *)> *_layoutViewBlockMap;
 }
 
@@ -36,7 +36,7 @@
 
 @implementation OCUIViewParse (MakeView)
 
-- (void)addMakeViewBlock:(OC_VIEW * _Nonnull (^)(void))block
+- (void)addMakeViewBlock:(UIView *(^)(OCUIView *view))block
                className:(Class)className {
     if (!block) {
         return;
@@ -44,7 +44,7 @@
     _makeViewBlockMap[NSStringFromClass(className)] = block;
 }
 
-- (OC_VIEW * _Nonnull (^)(void))makeViewBlockWithClassName:(Class)className {
+- (UIView *(^)(OCUINode *))makeViewBlockWithClassName:(Class)className {
     return _makeViewBlockMap[NSStringFromClass(className)];
 }
 
@@ -52,7 +52,7 @@
 
 @implementation OCUIViewParse (ConfigView)
 
-- (void)addConfigViewBlock:(void (^)(OC_VIEW * _Nonnull, OCUIView * _Nonnull))block
+- (void)addConfigViewBlock:(void (^)(UIView * _Nonnull, OCUIView * _Nonnull))block
                  className:(Class)className {
     if (!block) {
         return;
@@ -60,7 +60,7 @@
     _configViewBlockMap[NSStringFromClass(className)] = block;
 }
 
-- (void (^)(OC_VIEW * _Nonnull, OCUIView * _Nonnull))configViewBlockWithClassName:(Class)className {
+- (void (^)(UIView * _Nonnull, OCUIView * _Nonnull))configViewBlockWithClassName:(Class)className {
     return _configViewBlockMap[NSStringFromClass(className)];
 }
 

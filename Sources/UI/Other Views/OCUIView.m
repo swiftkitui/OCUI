@@ -11,7 +11,7 @@
 
 @implementation OCUIView {
     UIColor *_uiBackgroundColor;
-    OC_VIEW *_uiRenderView;
+    UIView *_uiRenderView;
 }
 
 @end
@@ -38,13 +38,13 @@ FOUNDATION_EXPORT OCUIView *View(void) {
 
 @implementation OCUIView (RenderView)
 
-- (OC_VIEW *)uiRenderView {
+- (UIView *)uiRenderView {
     if (!_uiRenderView) {
-        OC_VIEW *(^makeBlock)(void) = [[OCUIViewParse shareParse] makeViewBlockWithClassName:[self class]];
+        UIView *(^makeBlock)(OCUIView *) = [[OCUIViewParse shareParse] makeViewBlockWithClassName:[self class]];
         if (makeBlock) {
-            _uiRenderView = makeBlock();
+            _uiRenderView = makeBlock(self);
         }
-        void(^configBlock)(OC_VIEW *, OCUIView*) = [[OCUIViewParse shareParse] configViewBlockWithClassName:[self class]];
+        void(^configBlock)(UIView *, OCUIView*) = [[OCUIViewParse shareParse] configViewBlockWithClassName:[self class]];
         if (configBlock) {
             configBlock(_uiRenderView,self);
         }
@@ -53,14 +53,14 @@ FOUNDATION_EXPORT OCUIView *View(void) {
 }
 
 + (void)loadViewWithClassName:(Class)className
-                makeViewBlock:(OC_VIEW * _Nonnull (^)(void))makeViewBlock
-              configViewBlock:(void (^)(OC_VIEW * _Nonnull, OCUIView * _Nonnull))configViewBlock {
+                makeViewBlock:(UIView * _Nonnull (^)(OCUIView *))makeViewBlock
+              configViewBlock:(void (^)(UIView * _Nonnull, OCUIView * _Nonnull))configViewBlock {
     [[OCUIViewParse shareParse] addMakeViewBlock:makeViewBlock className:className];
     [[OCUIViewParse shareParse] addConfigViewBlock:configViewBlock className:className];
 }
 
 - (void)configViewWithClassName:(Class)className {
-    void(^configBlock)(OC_VIEW *, OCUIView*) = [[OCUIViewParse shareParse] configViewBlockWithClassName:className];
+    void(^configBlock)(UIView *, OCUIView*) = [[OCUIViewParse shareParse] configViewBlockWithClassName:className];
     if (configBlock) {
         configBlock(self.uiRenderView,self);
     }

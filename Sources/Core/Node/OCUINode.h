@@ -20,19 +20,4 @@ FOUNDATION_EXPORT void OCUINodeSetProperty(OCUINode *node, SEL sel, id property)
 - (void(^)(id,SEL))propertySet;
 
 @end
-
-@interface OCUINode (Frame)
-
-@property (nonatomic, assign, readonly) CGSize uiSize;
-
-- (OCUINode *(^)(CGSize))size;
-
-@end
-
-@interface OCUINode (OCUIView)
-
-- (OCUINode *(^)(UIColor *))backgroundColor;
-
-@end
-
 NS_ASSUME_NONNULL_END

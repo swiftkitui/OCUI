@@ -18,7 +18,7 @@
 }
 
 + (void)loadView {
-    [OCUIView<UIView *, OCUIView *> loadViewWithClassName:OCUIView.self makeViewBlock:^UIView * _Nonnull{
+    [OCUIView<UIView *, OCUIView *> loadViewWithClassName:OCUIView.self makeViewBlock:^UIView * (OCUIView *node){
         return UIView.new;
     } configViewBlock:^(UIView * _Nonnull view, OCUIView * _Nonnull node) {
         if (node.uiBackgroundColor) {
@@ -28,7 +28,7 @@
 }
 
 + (void)loadImage {
-    [OCUIView<UIImageView *, OCUIImage *> loadViewWithClassName:OCUIImage.self makeViewBlock:^UIImageView * _Nonnull{
+    [OCUIView<UIImageView *, OCUIImage *> loadViewWithClassName:OCUIImage.self makeViewBlock:^UIImageView * (OCUIImage *node){
         return UIImageView.new;
     } configViewBlock:^(UIImageView * _Nonnull view, OCUIImage * _Nonnull node) {
         [node configViewWithClassName:OCUIView.self];
@@ -39,7 +39,7 @@
 }
 
 + (void)loadText {
-    [OCUIView<UILabel *, OCUIText *> loadViewWithClassName:OCUIText.self makeViewBlock:^UILabel * _Nonnull{
+    [OCUIView<UILabel *, OCUIText *> loadViewWithClassName:OCUIText.self makeViewBlock:^UILabel * (OCUIText *node){
         return UILabel.new;
     } configViewBlock:^(UILabel * _Nonnull view, OCUIText * _Nonnull node) {
         [node configViewWithClassName:UIView.self];
@@ -59,6 +59,14 @@
     }];
 }
 
++ (void)loadList {
+    [OCUIView<UITableView *, OCUIList *> loadViewWithClassName:OCUIList.self makeViewBlock:^UITableView * (OCUIList *node){
+        return UITableView.new;
+    } configViewBlock:^(UITableView * _Nonnull view, OCUIList * _Nonnull node) {
+        
+    }];
+}
+
 + (void)setFontDescriptorTraits:(UIFontDescriptorSymbolicTraits)traits
                         inLabel:(UILabel *)label {
     UIFont *font = label.font;
@@ -67,5 +75,6 @@
     UIFont *traitsFont = [UIFont fontWithDescriptor:descriptor size:UIFont.systemFontSize];
     label.font = traitsFont;
 }
+
 
 @end

@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUISection;
+@class OCUIListStyle;
+@class OCUIGroupedListStyle;
 
 @interface OCUIList : OCUIView
 
@@ -19,12 +21,38 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT OCUIList *List(void(^block)(void));
 
+@interface OCUIList (ListStyle)
+
+@property (nonatomic, strong, readonly) OCUIListStyle *uiListStyle;
+
+- (OCUINode *(^)(OCUIListStyle *))listStyle;
+
+@end
+
 @interface OCUISection : OCUINode
 
 - (instancetype)initWithBlock:(void(^)(void))block;
 
-FOUNDATION_EXPORT OCUISection *Section(void(^block)(void));
+@end
+
+@interface OCUINode (OCUISectionHeader)
+
+@property (nonatomic, strong, readonly) NSArray<OCUINode *> *headerNodes;
+
+- (OCUINode *(^)(void(^HeaderBlock)(void)))header;
 
 @end
+
+FOUNDATION_EXPORT OCUISection *Section(void(^block)(void));
+
+@interface OCUIListStyle : OCUINode
+
+@end
+
+@interface OCUIGroupedListStyle : OCUIListStyle
+
+@end
+
+FOUNDATION_EXPORT OCUIGroupedListStyle *GroupedListStyle(void);
 
 NS_ASSUME_NONNULL_END

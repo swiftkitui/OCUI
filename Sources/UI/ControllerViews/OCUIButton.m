@@ -23,20 +23,12 @@
     return self;
 }
 
-- (UIView *)makeOCUIView {
-    return [UIButton buttonWithType:UIButtonTypeCustom];
-}
-
-- (void)configOCUIView:(UIView *)view {}
-
-- (void)buttonClick {
-    if (self.uiButtonAction) {
-        self.uiButtonAction();
-    }
-}
-
-
 @end
+
+FOUNDATION_EXPORT OCUIButton *Button(void(^actionBlock)(void), void(^labelBlock)(void)) {
+    OCUIButton *button = [[OCUIButton alloc] init];
+    return button;
+}
 
 @implementation OCUIButton (Chained)
 

@@ -67,6 +67,21 @@ FOUNDATION_EXPORT OCUIText *Text(NSString *content) {
 
 @end
 
+@implementation OCUINode (TextColor)
+
+- (OCUIColor *)uiForegroundColor {
+    return self.propertyGet(@selector(uiForegroundColor));
+}
+
+- (OCUINode *(^)(OCUIColor *))foregroundColor {
+    return ^OCUINode *(OCUIColor *foregroundColor) {
+        self.propertySet(foregroundColor,@selector(uiForegroundColor));
+        return self;
+    };
+}
+
+@end
+
 @implementation FontWeight
 
 + (FontWeight *)black {

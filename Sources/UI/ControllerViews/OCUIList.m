@@ -26,6 +26,21 @@ FOUNDATION_EXPORT OCUIList *List(void(^block)(void)) {
     return list;
 }
 
+@implementation OCUIList (ListStyle)
+
+- (OCUIListStyle *)uiListStyle {
+    return self.propertyGet(@selector(uiListStyle));
+}
+
+- (OCUINode *(^)(OCUIListStyle *))listStyle {
+    return ^OCUINode *(OCUIListStyle *listStyle) {
+        self.propertySet(listStyle,@selector(uiListStyle));
+        return self;
+    };
+}
+
+@end
+
 @implementation OCUISection
 
 - (instancetype)initWithBlock:(void(^)(void))block {
@@ -40,4 +55,17 @@ FOUNDATION_EXPORT OCUIList *List(void(^block)(void)) {
 FOUNDATION_EXPORT OCUISection *Section(void(^block)(void)) {
     OCUISection *section = [[OCUISection alloc] init];
     return section;
+}
+
+@implementation OCUIListStyle
+
+@end
+
+@implementation OCUIGroupedListStyle
+
+@end
+
+FOUNDATION_EXPORT OCUIGroupedListStyle *GroupedListStyle(void) {
+    OCUIGroupedListStyle *style = [[OCUIGroupedListStyle alloc] init];
+    return style;
 }

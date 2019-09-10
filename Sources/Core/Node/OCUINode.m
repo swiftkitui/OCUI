@@ -29,28 +29,4 @@ FOUNDATION_EXPORT void OCUINodeSetProperty(OCUINode *node, SEL sel, id property)
         OCUINodeSetProperty(self, sel, property);
     };
 }
-
-@end
-
-@implementation OCUINode (Frame)
-
-- (CGSize)uiSize {
-    return [self.propertyGet(@selector(uiSize)) CGSizeValue];
-}
-
-- (OCUINode *(^)(CGSize))size {
-    return ^OCUINode *(CGSize size) {
-        self.propertySet(@(size),@selector(uiSize));
-        return self;
-    };
-}
-
-@end
-
-@implementation OCUINode (OCUIView)
-
-- (OCUINode * _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
-    return nil;
-}
-
 @end

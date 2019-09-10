@@ -17,4 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+FOUNDATION_EXPORT OCUINavigationLink *NavigationLink(Class destination, void(^block)(void));
+
 NS_ASSUME_NONNULL_END
