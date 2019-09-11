@@ -50,8 +50,15 @@
 @end
 
 FOUNDATION_EXPORT OCUISpacer *Spacer(void) {
-    OCUISpacer *spacer = [OCUISpacer new];
-    AddNodeInUINodes(spacer);
-    return spacer;
+    return [[OCUISpacer alloc] init];
 }
 
+@implementation OCUICreate (OCUISpacer)
+
+- (OCUISpacer *(^)(void))Spacer {
+    return ^OCUISpacer *{
+        return [self addElenment:Spacer()];
+    };
+}
+
+@end

@@ -11,46 +11,40 @@
 #import "OCUIMaker.h"
 #import "OCUILayoutItem.h"
 
-
-
-@implementation OCUIMaker
-
-- (instancetype)initWithContentView:(UIView *)contentView
-                              stack:(nonnull OCUIStack *)stack {
-    if (self = [super init]) {
-        contentView.uiMaker = self;
-        _contentView = contentView;
-        _stack = stack;
-        [contentView addSubview:stack.contentView];
-        [stack.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsZero);
-        }];
-        stack.contentView.widthLayoutItem = OCUICreateLayoutItem(CGRectGetWidth(contentView.frame), stack.contentView, nil, nil);
-        stack.contentView.heightLayoutItem = OCUICreateLayoutItem(CGRectGetHeight(contentView.frame), stack.contentView, nil, nil);
-        [stack startLayout];
-    }
-    return self;
-}
-
-@end
-
-@implementation UIView (OCUIMaker)
-
-- (void)setUiMaker:(OCUIMaker * _Nonnull)uiMaker {
-    objc_setAssociatedObject(self, @selector(uiMaker), uiMaker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (OCUIMaker *)uiMaker {
-    return objc_getAssociatedObject(self, @selector(uiMaker));
-}
-
-@end
-
-FOUNDATION_EXTERN OCUIMaker *Maker(UIView *contentView, void(^block)(void)) {
+FOUNDATION_EXTERN OCUIMaker *Maker(UIView *contentView, OCUICreateElenmentBlock) {
     if (!block) {
         return nil;
     }
-    NSArray<OCUINode *> *nodes = CreateUINodes(block);
-    OCUIMaker *make = [[OCUIMaker alloc] initWithContentView:contentView stack:nil];
+    OCUIMaker *make = [[OCUIMaker alloc] initWithElenmentsBlock:block];
+    [make loadElenmentInContentView:contentView];
     return make;
 }
+
+@implementation OCUIMaker
+
+//- (instancetype)initWithContentView:(UIView *)contentView
+//                              stack:(nonnull OCUIStack *)stack {
+//    if (self = [super init]) {
+//        contentView.uiMaker = self;
+//        [contentView addSubview:stack.contentView];
+//        [stack.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.mas_equalTo(UIEdgeInsetsZero);
+//        }];
+//        stack.contentView.widthLayoutItem = OCUICreateLayoutItem(CGRectGetWidth(contentView.frame), stack.contentView, nil, nil);
+//        stack.contentView.heightLayoutItem = OCUICreateLayoutItem(CGRectGetHeight(contentView.frame), stack.contentView, nil, nil);
+//        [stack startLayout];
+//    }
+//    return self;
+//}
+
+- (void)loadElenmentInContentView:(UIView *)contentView {
+    if (!contentView) {
+        return;
+    }
+    [self.elenments enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj loadElenmentInContentView:contentView];
+    }];
+}
+
+@end
+

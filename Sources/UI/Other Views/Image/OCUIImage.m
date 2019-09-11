@@ -7,9 +7,12 @@
 //
 
 #import "OCUIImage.h"
-#import "OCUICreate.h"
 
 @implementation OCUIImage
+
+@end
+
+@implementation OCUIImage (Init)
 
 - (instancetype)initWithImageName:(NSString *)imageName {
     if (self = [super init]) {
@@ -20,8 +23,3 @@
 
 @end
 
-FOUNDATION_EXPORT OCUIImage *Image(NSString *imageName) {
-    OCUIImage *image = [[OCUIImage alloc] initWithImageName:imageName];
-    AddNodeInUINodes(image);
-    return image;
-}

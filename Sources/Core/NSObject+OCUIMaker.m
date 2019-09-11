@@ -12,12 +12,12 @@
 @implementation NSObject (OCUIMaker)
 
 - (void)makeRenderView:(UIView *)view {
-    Maker(view, ^{
-        [self bodyUI];
+    Maker(view, OCUICreateElenment{
+        [self bodyUI:c];
     });
 }
 
 #pragma mark - OCUIMakerRenderView
-- (void)bodyUI {}
+- (void)bodyUI:(OCUICreate *)c {}
 
 @end

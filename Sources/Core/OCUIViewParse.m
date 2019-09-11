@@ -9,7 +9,7 @@
 #import "OCUIViewParse.h"
 
 @implementation OCUIViewParse {
-    NSMutableDictionary<NSString *, UIView *(^)(OCUINode *node)> *_makeViewBlockMap;
+    NSMutableDictionary<NSString *, UIView *(^)(OCUIView *)> *_makeViewBlockMap;
     NSMutableDictionary<NSString *, void(^)(UIView *, OCUIView *)> *_configViewBlockMap;
     NSMutableDictionary<NSString *, void(^)(OCUIStack *)> *_layoutViewBlockMap;
 }
@@ -44,7 +44,7 @@
     _makeViewBlockMap[NSStringFromClass(className)] = block;
 }
 
-- (UIView *(^)(OCUINode *))makeViewBlockWithClassName:(Class)className {
+- (UIView *(^)(OCUIView *))makeViewBlockWithClassName:(Class)className {
     return _makeViewBlockMap[NSStringFromClass(className)];
 }
 

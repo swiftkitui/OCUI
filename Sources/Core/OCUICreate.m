@@ -7,27 +7,30 @@
 //
 
 
-#import "OCUIMaker.h"
+#import "OCUICreate.h"
 
-FOUNDATION_EXPORT NSArray<OCUINode *> *CreateUINodes(void(^block)(void)) {
-    if (!CurrentUINodes) {
-        CurrentUINodes = [NSMutableArray array];
-    }
-    NSMutableArray *tempNodes = [NSMutableArray arrayWithArray:CurrentUINodes];
-    /// 重置全局数组
-    CurrentUINodes = [NSMutableArray array];
-    if (block) {
-        block();
-    }
-    NSArray *resultArray = CurrentUINodes;
-    CurrentUINodes = tempNodes;
-    return resultArray;
+@implementation OCUICreate {
+    NSMutableArray<OCUINode *> *_elenmentNodes;
 }
-FOUNDATION_EXPORT void AddNodeInUINodes(OCUINode *node) {
-    if (!CurrentUINodes || !node) {
-        return;
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _elenmentNodes = [NSMutableArray array];
     }
-    [CurrentUINodes addObject:node];
+    return self;
 }
+
+- (__kindof OCUINode *)addElenment:(OCUINode *)elenment {
+    if (elenment) {
+        [_elenmentNodes addObject:elenment];
+    }
+    return elenment;
+}
+
+- (NSArray<OCUINode *> *)elenments {
+    return _elenmentNodes;
+}
+
+@end
 
 

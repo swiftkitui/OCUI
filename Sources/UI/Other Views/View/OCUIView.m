@@ -9,47 +9,26 @@
 #import "OCUIView.h"
 #import "OCUIViewParse.h"
 
-@implementation OCUIView {
-    UIColor *_uiBackgroundColor;
-    UIView *_uiRenderView;
-}
-
-@end
-
-FOUNDATION_EXPORT OCUIView *View(void) {
-    OCUIView *view = [[OCUIView alloc] init];
-    return view;
-}
-
-@implementation OCUIView (Color)
-
-- (UIColor *)uiBackgroundColor {
-    return _uiBackgroundColor;
-}
-
-- (OCUINode * _Nonnull (^)(UIColor * _Nonnull))backgroundColor {
-    return ^OCUINode *(UIColor *backgroundColor) {
-        self->_uiBackgroundColor = backgroundColor;
-        return self;
-    };
-}
+@implementation OCUIView
 
 @end
 
 @implementation OCUIView (RenderView)
 
 - (UIView *)uiRenderView {
-    if (!_uiRenderView) {
+    UIView *view = self.propertyGet(@selector(uiRenderView));
+    if (!view) {
         UIView *(^makeBlock)(OCUIView *) = [[OCUIViewParse shareParse] makeViewBlockWithClassName:[self class]];
         if (makeBlock) {
-            _uiRenderView = makeBlock(self);
+            view = makeBlock(self);
+            self.propertySet(view,@selector(uiRenderView));
         }
         void(^configBlock)(UIView *, OCUIView*) = [[OCUIViewParse shareParse] configViewBlockWithClassName:[self class]];
         if (configBlock) {
-            configBlock(_uiRenderView,self);
+            configBlock(view,self);
         }
     }
-    return _uiRenderView;
+    return view;
 }
 
 + (void)loadViewWithClassName:(Class)className

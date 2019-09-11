@@ -7,16 +7,25 @@
 //
 
 #import "OCUINode.h"
+#import "OCUICreate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUINavigationLink : OCUINode
 
+@property (nonatomic, strong) Class destination;
+
 - (instancetype)initWithDestination:(Class)destination
-                              block:(void(^)(void))block;
+                              block:(void(^)(OCUICreate *c))block;
 
 @end
 
-FOUNDATION_EXPORT OCUINavigationLink *NavigationLink(Class destination, void(^block)(void));
+FOUNDATION_EXPORT OCUINavigationLink *NavigationLink(Class destination, OCUICreateElenmentBlock);
+
+@interface OCUICreate (OCUINavigationLink)
+
+- (OCUINavigationLink *(^)(Class destination, OCUICreateElenmentBlock))NavigationLink;
+
+@end
 
 NS_ASSUME_NONNULL_END

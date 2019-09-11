@@ -1,5 +1,5 @@
 //
-//  OCUINode+OCUIViewColor.h
+//  OCUINode+OCUIView.h
 //  OCUIExample
 //
 //  Created by 张行 on 2019/9/10.
@@ -11,10 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OCUINode (OCUIViewColor)
+@interface OCUINode (OCUIView)
 
 @property (nonatomic, strong, readonly) OCUIColor *uiBackgroundColor;
-
 - (OCUINode *(^)(OCUIColor *))backgroundColor;
 
 @end

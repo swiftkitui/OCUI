@@ -11,32 +11,15 @@
 
 @implementation OCUIText
 
+@end
+
+@implementation OCUIText (Init)
+
 - (instancetype)initWithText:(NSString *)content {
     if (self = [super init]) {
         _content = content;
     }
     return self;
-}
-
-@end
-
-FOUNDATION_EXPORT OCUIText *Text(NSString *content) {
-    OCUIText *text = [[OCUIText alloc] initWithText:content];
-    AddNodeInUINodes(text);
-    return text;
-}
-
-@implementation OCUINode (Bind)
-
-- (CombineBind<NSString *> *)uiTextBind {
-    return (CombineBind<NSString *> *)self.propertyGet(@selector(uiTextBind));
-}
-
-- (OCUINode *(^)(CombineBind<NSString *> * _Nonnull))textBind {
-    return ^OCUINode *(CombineBind<NSString *> *textBind) {
-        self.propertySet(textBind,@selector(uiTextBind));
-        return self;
-    };
 }
 
 @end

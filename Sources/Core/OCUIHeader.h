@@ -7,17 +7,3 @@
 //
 #import <Foundation/Foundation.h>
 #import <CombineObjectObjc/NSObject+CombineBind.h>
-
-#if TARGET_OS_IPHONE || TARGET_OS_TV
-
-#import <UIKit/UIKit.h>
-
-//#define UIView UIView
-
-#elif TARGET_OS_MAC
-
-#import <AppKit/AppKit.h>
-
-//#define UIView NSView
-
-#endif

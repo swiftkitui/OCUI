@@ -11,16 +11,26 @@
 @implementation OCUINavigationLink
 
 - (instancetype)initWithDestination:(Class)destination
-                              block:(void (^)(void))block {
-    if (self = [super init]) {
-        
+                              block:(void(^)(OCUICreate *c))block {
+    if (self = [super initWithElenmentsBlock:block]) {
+        _destination = destination;
     }
     return self;
 }
 
 @end
 
-FOUNDATION_EXPORT OCUINavigationLink *NavigationLink(Class destination, void(^block)(void)) {
-    OCUINavigationLink *link = [[OCUINavigationLink alloc] init];
+FOUNDATION_EXPORT OCUINavigationLink *NavigationLink(Class destination, OCUICreateElenmentBlock) {
+    OCUINavigationLink *link = [[OCUINavigationLink alloc] initWithDestination:destination block:block];
     return link;
 }
+
+@implementation OCUICreate (OCUINavigationLink)
+
+- (OCUINavigationLink *(^)(Class destination, OCUICreateElenmentBlock))NavigationLink {
+    return ^OCUINavigationLink *(Class destination, OCUICreateElenmentBlock) {
+        return NavigationLink(destination, block);
+    };
+}
+
+@end

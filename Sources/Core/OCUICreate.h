@@ -10,9 +10,16 @@
 #import "OCUINode.h"
 
 NS_ASSUME_NONNULL_BEGIN
-static NSMutableArray<OCUINode *> *CurrentUINodes;
 
-FOUNDATION_EXPORT NSArray<OCUINode *> *CreateUINodes(void(^block)(void));
-FOUNDATION_EXPORT void AddNodeInUINodes(OCUINode *node);
+#define OCUICreateElenment ^(OCUICreate *c)
+#define OCUICreateElenmentBlock void(^block)(OCUICreate *c)
+
+@interface OCUICreate : NSObject
+
+@property (nonatomic, copy, readonly) NSArray<OCUINode *> *elenments;
+
+- (__kindof OCUINode *)addElenment:(OCUINode *)elenment;
+
+@end
 
 NS_ASSUME_NONNULL_END

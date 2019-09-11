@@ -7,6 +7,7 @@
 //
 
 #import "OCUIView.h"
+#import "OCUICreate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUISection;
@@ -15,11 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUIList : OCUIView
 
-- (instancetype)initWithBlock:(void(^)(void))block;
-
 @end
 
-FOUNDATION_EXPORT OCUIList *List(void(^block)(void));
+FOUNDATION_EXPORT OCUIList *List(OCUICreateElenmentBlock);
+
+@interface OCUICreate (OCUIList)
+
+- (OCUIList *(^)(OCUICreateElenmentBlock))List;
+
+@end
 
 @interface OCUIList (ListStyle)
 
@@ -43,7 +48,7 @@ FOUNDATION_EXPORT OCUIList *List(void(^block)(void));
 
 @end
 
-FOUNDATION_EXPORT OCUISection *Section(void(^block)(void));
+FOUNDATION_EXPORT OCUISection *Section(OCUICreateElenmentBlock);
 
 @interface OCUIListStyle : OCUINode
 

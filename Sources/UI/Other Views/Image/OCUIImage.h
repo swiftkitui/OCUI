@@ -7,17 +7,22 @@
 //
 
 #import "OCUIView.h"
+#import "OCUICreate+OCUIImage.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class OCUIImage;
 
 @interface OCUIImage : OCUIView
 
 @property (nonatomic, strong, readonly) UIImage *contentImage;
 
+@end
+
+//####################(Init)####################
+@interface OCUIImage (Init)
+
 - (instancetype)initWithImageName:(NSString *)imageName;
 
 @end
-
-FOUNDATION_EXPORT OCUIImage *Image(NSString *imageName);
 
 NS_ASSUME_NONNULL_END

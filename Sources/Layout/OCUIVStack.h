@@ -26,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-FOUNDATION_EXPORT OCUIVStack *VStack(void(^block)(void));
+FOUNDATION_EXPORT OCUIVStack *VStack(OCUICreateElenmentBlock);
+
+@interface OCUICreate (OCUIVStack)
+
+- (OCUIVStack *(^)(OCUICreateElenmentBlock))VStack;
+
+@end
 
 NS_ASSUME_NONNULL_END

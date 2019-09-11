@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "OCUINode.h"
+#import "OCUICreate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,5 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 FOUNDATION_EXPORT OCUISpacer *Spacer(void);
+
+@interface OCUICreate (OCUISpacer)
+
+- (OCUISpacer *(^)(void))Spacer;
+
+@end
 
 NS_ASSUME_NONNULL_END

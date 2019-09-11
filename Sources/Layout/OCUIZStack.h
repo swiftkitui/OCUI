@@ -8,6 +8,7 @@
 
 #import "OCUIStack.h"
 #import "OCUIAlignment.h"
+#import "OCUICreate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-FOUNDATION_EXPORT OCUIZStack *ZStack(void(^block)(void));
+FOUNDATION_EXPORT OCUIZStack *ZStack(OCUICreateElenmentBlock);
+
+@interface OCUICreate (OCUIZStack)
+
+- (OCUIZStack *(^)(OCUICreateElenmentBlock))ZStack;
+
+@end
 
 NS_ASSUME_NONNULL_END

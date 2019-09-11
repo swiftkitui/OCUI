@@ -61,7 +61,11 @@
 
 + (void)loadList {
     [OCUIView<UITableView *, OCUIList *> loadViewWithClassName:OCUIList.self makeViewBlock:^UITableView * (OCUIList *node){
-        return UITableView.new;
+        if ([node.uiListStyle isKindOfClass:[OCUIGroupedListStyle class]]) {
+            return [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        } else {
+            return [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        }
     } configViewBlock:^(UITableView * _Nonnull view, OCUIList * _Nonnull node) {
         
     }];

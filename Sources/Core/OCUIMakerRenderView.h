@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCUICreate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol OCUIMakerRenderView <NSObject>
 
-- (void)bodyUI;
+- (void)bodyUI:(OCUICreate *)c;
 
 @end
 

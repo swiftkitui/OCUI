@@ -9,6 +9,7 @@
 #import "OCUINode.h"
 #import "OCUINavigationLink.h"
 #import "OCUIText.h"
+#import "OCUICreate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, OCUITitleDisplayMode) {
@@ -19,7 +20,7 @@ typedef NS_ENUM(NSUInteger, OCUITitleDisplayMode) {
 
 @interface OCUINavigationView : OCUINode
 
-- (instancetype)initWithBlock:(void(^)(void))block;
+- (void)addNavigationControllerInView:(UIViewController *)view;
 
 @end
 
@@ -41,7 +42,13 @@ typedef NS_ENUM(NSUInteger, OCUITitleDisplayMode) {
 
 @end
 
-FOUNDATION_EXPORT OCUINavigationView *NavigationView(void(^block)(void));
+FOUNDATION_EXPORT OCUINavigationView *NavigationView(OCUICreateElenmentBlock);
+
+@interface OCUICreate (OCUINavigationView)
+
+- (OCUINavigationView *(^)(OCUICreateElenmentBlock))NavigationView;
+
+@end
 
 
 NS_ASSUME_NONNULL_END

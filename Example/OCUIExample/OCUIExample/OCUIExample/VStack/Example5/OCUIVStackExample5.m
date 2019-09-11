@@ -13,13 +13,13 @@
 + (void)exampleWithController:(DetailViewController *)controller {
     [super exampleWithController:controller];
     controller.uiMaker = ^{
-        View()
-        .backgroundColor([UIColor redColor]);
-        View()
-        .backgroundColor([UIColor blueColor])
-        .size(CGSizeMake(50, 50));
-        View()
-        .backgroundColor([UIColor grayColor]);
+//        View()
+//        .backgroundColor([UIColor redColor]);
+//        View()
+//        .backgroundColor([UIColor blueColor])
+//        .size(CGSizeMake(50, 50));
+//        View()
+//        .backgroundColor([UIColor grayColor]);
     };
 }
 

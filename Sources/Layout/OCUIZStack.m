@@ -20,11 +20,16 @@
 
 @end
 
-FOUNDATION_EXPORT OCUIZStack *ZStack(void(^block)(void)) {
-    if (!block) {
-        return nil;
-    }
-    NSArray<OCUINode *> *nodes = CreateUINodes(block);
-    OCUIZStack *zStack = [[OCUIZStack alloc] initWithNodes:nodes];
-    return zStack;
+FOUNDATION_EXPORT OCUIZStack *ZStack(OCUICreateElenmentBlock) {
+    return [[OCUIZStack alloc] initWithElenmentsBlock:block];
 }
+
+@implementation OCUICreate (OCUIZStack)
+
+- (OCUIZStack *(^)(OCUICreateElenmentBlock))ZStack {
+    return ^OCUIZStack *(OCUICreateElenmentBlock) {
+        return [self addElenment:ZStack(block)];
+    };
+}
+
+@end

@@ -7,6 +7,8 @@
 //
 
 #import "OCUINode.h"
+#import "OCUINode+OCUIView.h"
+#import "OCUICreate+OCUIView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class OCUIView;
@@ -15,14 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-FOUNDATION_EXPORT OCUIView *View(void);
-
-@interface OCUIView (Color)
-
-@property (nonatomic, strong, readonly) UIColor *uiBackgroundColor;
-
-@end
-
+//####################(RenderView)####################
 @interface OCUIView<V:UIView *, N:OCUIView *> (RenderView)
 
 @property (nonatomic, strong, readonly) UIView *uiRenderView;

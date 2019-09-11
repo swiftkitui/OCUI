@@ -18,24 +18,13 @@
 #import "OCUIButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class OCUIMaker;
+
+FOUNDATION_EXTERN OCUIMaker *Maker(UIView *contentView, OCUICreateElenmentBlock);
 
 /// UI 构造器
-@interface OCUIMaker : NSObject
-
-@property (nonatomic, weak, readonly) UIView *contentView;
-@property (nonatomic, strong, readonly) OCUIStack *stack;
-
-- (instancetype)initWithContentView:(UIView *)contentView
-                              stack:(OCUIStack *)stack;
+@interface OCUIMaker : OCUINode
 
 @end
-
-@interface UIView (OCUIMaker)
-
-@property (nonatomic, strong) OCUIMaker *uiMaker;
-
-@end
-
-FOUNDATION_EXTERN OCUIMaker *Maker(UIView *contentView, void(^block)(void));
 
 NS_ASSUME_NONNULL_END

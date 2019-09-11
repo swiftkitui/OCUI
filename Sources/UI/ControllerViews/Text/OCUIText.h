@@ -6,9 +6,10 @@
 //  Copyright © 2019 张行. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "OCUIView.h"
 #import "OCUIColor.h"
+#import "OCUICreate+OCUIText.h"
+#import "OCUINode+BindText.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,19 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *content;
 
-- (instancetype)initWithText:(NSString *)content;
-
 @end
 
-FOUNDATION_EXPORT OCUIText *Text(NSString *content);
+//####################(Init)####################
+@interface OCUIText (Init)
 
-@interface OCUINode (Bind)
-
-/// 绑定值可变的
-@property (nonatomic, strong, readonly) CombineBind<NSString *> *uiTextBind;
-
-/// 添加字符串绑定
-- (OCUINode *(^)(CombineBind<NSString *> *))textBind;
+- (instancetype)initWithText:(NSString *)content;
 
 @end
 

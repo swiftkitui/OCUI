@@ -11,13 +11,6 @@
 
 @implementation OCUINavigationView
 
-- (instancetype)initWithBlock:(void (^)(void))block {
-    if (self = [super init]) {
-        
-    }
-    return self;
-}
-
 @end
 
 @implementation OCUINode (NavigationBar)
@@ -53,12 +46,12 @@
 - (OCUINode *(^)(void(^leadingBlock)(void), void(^trailingBlock)(void)))navigationBarItems {
     return ^OCUINode *(void(^leadingBlock)(void), void(^trailingBlock)(void)) {
         if (leadingBlock) {
-            NSArray<OCUINode *> *nodes = CreateUINodes(leadingBlock);
-            self.propertySet(nodes,@selector(uiLeadingNavigationBarItems));
+//            NSArray<OCUINode *> *nodes = CreateUINodes(leadingBlock);
+//            self.propertySet(nodes,@selector(uiLeadingNavigationBarItems));
         }
         if (trailingBlock) {
-            NSArray<OCUINode *> *nodes = CreateUINodes(trailingBlock);
-            self.propertySet(nodes,@selector(uiTrailingNavigationBarItems));
+//            NSArray<OCUINode *> *nodes = CreateUINodes(trailingBlock);
+//            self.propertySet(nodes,@selector(uiTrailingNavigationBarItems));
         }
         return self;
     };
@@ -66,11 +59,22 @@
 
 @end
 
-FOUNDATION_EXPORT OCUINavigationView *NavigationView(void(^block)(void)) {
+FOUNDATION_EXPORT OCUINavigationView *NavigationView(OCUICreateElenmentBlock) {
     if (!block) {
         return nil;
     }
-    NSArray<OCUINode *> *node = CreateUINodes(block);
-    OCUINavigationView *view = [[OCUINavigationView alloc] init];
+    OCUINavigationView *view = [[OCUINavigationView alloc] initWithElenmentsBlock:block];
     return view;
 }
+
+@implementation OCUICreate (OCUINavigationView)
+
+- (OCUINavigationView *(^)(OCUICreateElenmentBlock))NavigationView {
+    return ^OCUINavigationView *(OCUICreateElenmentBlock) {
+        OCUINavigationView *view = NavigationView(block);
+        [self addElenment:view];
+        return view;
+    };
+}
+
+@end

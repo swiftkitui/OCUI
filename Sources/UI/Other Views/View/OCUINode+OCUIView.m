@@ -1,14 +1,14 @@
 //
-//  OCUINode+OCUIViewColor.m
+//  OCUINode+OCUIView.m
 //  OCUIExample
 //
 //  Created by 张行 on 2019/9/10.
 //  Copyright © 2019 张行. All rights reserved.
 //
 
-#import "OCUINode+OCUIViewColor.h"
+#import "OCUINode+OCUIView.h"
 
-@implementation OCUINode (OCUIViewColor)
+@implementation OCUINode (OCUIView)
 
 - (OCUIColor *)uiBackgroundColor {
     return self.propertyGet(@selector(uiBackgroundColor));

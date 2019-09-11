@@ -11,20 +11,24 @@
 #import "OCUICreate.h"
 
 @implementation OCUIList 
-
-- (instancetype)initWithBlock:(void (^)(void))block {
-    if (self = [super init]) {
-    }
-    return self;
-}
-
-
 @end
 
-FOUNDATION_EXPORT OCUIList *List(void(^block)(void)) {
-    OCUIList *list = [[OCUIList alloc] initWithBlock:block];
+FOUNDATION_EXPORT OCUIList *List(OCUICreateElenmentBlock) {
+    OCUIList *list = [[OCUIList alloc] initWithElenmentsBlock:block];
     return list;
 }
+
+@implementation OCUICreate (OCUIList)
+
+- (OCUIList *(^)(OCUICreateElenmentBlock))List {
+    return ^OCUIList *(OCUICreateElenmentBlock) {
+        OCUIList *list = List(block);
+        [self addElenment:list];
+        return list;
+    };
+}
+
+@end
 
 @implementation OCUIList (ListStyle)
 
@@ -52,10 +56,26 @@ FOUNDATION_EXPORT OCUIList *List(void(^block)(void)) {
 
 @end
 
-FOUNDATION_EXPORT OCUISection *Section(void(^block)(void)) {
-    OCUISection *section = [[OCUISection alloc] init];
+FOUNDATION_EXPORT OCUISection *Section(OCUICreateElenmentBlock) {
+    OCUISection *section = [[OCUISection alloc] initWithElenmentsBlock:block];
     return section;
 }
+
+@implementation OCUINode (OCUISectionHeader)
+
+- (NSArray<OCUINode *> *)headerNodes {
+    return self.propertyGet(@selector(headerNodes));
+}
+
+- (OCUINode *(^)(void(^HeaderBlock)(void)))header {
+    return ^OCUINode *(void(^HeaderBlock)(void)) {
+//        OCUINode *node = [[OCUINode alloc] initWithElenmentsBlock:HeaderBlock];
+//        self.propertySet(node.elenments,@selector(headerNodes));
+        return self;
+    };
+}
+
+@end
 
 @implementation OCUIListStyle
 

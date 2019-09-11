@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationController.navigationBar.translucent = NO;
-    Maker(self.view, self.uiMaker);
+//    Maker(self.view, self.uiMaker);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
