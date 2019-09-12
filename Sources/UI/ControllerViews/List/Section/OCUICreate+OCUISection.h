@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCUICreate (OCUISection)
 
+- (OCUISection *(^)(OCUICreateElenmentBlock))Section;
+
 @end
 
 FOUNDATION_EXPORT OCUISection *Section(OCUICreateElenmentBlock);

@@ -29,4 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface OCUIVStack (BoxElenments)
+
++ (void)boxElenmentsWithElenment:(OCUINode *)elenment;
+
+@end
+
 NS_ASSUME_NONNULL_END

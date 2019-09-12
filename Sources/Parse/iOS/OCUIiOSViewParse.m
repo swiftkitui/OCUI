@@ -7,7 +7,7 @@
 //
 
 #import "OCUIiOSViewParse.h"
-#import "OCUIMaker.h"
+#import "OCUI.h"
 
 @implementation OCUIiOSViewParse
 
@@ -15,15 +15,14 @@
     [self loadView];
     [self loadImage];
     [self loadText];
+    [self loadList];
 }
 
 + (void)loadView {
     [OCUIView<UIView *, OCUIView *> loadViewWithClassName:OCUIView.self makeViewBlock:^UIView * (OCUIView *node){
         return UIView.new;
     } configViewBlock:^(UIView * _Nonnull view, OCUIView * _Nonnull node) {
-        if (node.uiBackgroundColor) {
-            view.backgroundColor = node.uiBackgroundColor;
-        }
+        
     }];
 }
 

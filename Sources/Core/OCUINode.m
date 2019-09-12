@@ -16,8 +16,22 @@ FOUNDATION_EXPORT id OCUINodeGetProperty(OCUINode *node, SEL sel) {
 FOUNDATION_EXPORT void OCUINodeSetProperty(OCUINode *node, SEL sel, id property) {
     objc_setAssociatedObject(node, sel, property, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+FOUNDATION_EXPORT UIViewController *OCUIControllerWithView(UIView *view) {
+    UIResponder *responder = view.nextResponder;
+    while (responder) {
+        if ([responder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+        responder = responder.nextResponder;
+    }
+    return nil;
+}
 
 @implementation OCUINode
+
+- (void)updateElenments:(NSArray<OCUINode *> *)elenments {
+    _elenments = elenments;
+}
 
 @end
 

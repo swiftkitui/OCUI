@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, OCUITitleDisplayMode) {
 @property (nonatomic, copy, readonly) NSArray<OCUINode *> *uiLeadingNavigationBarItems;
 @property (nonatomic, copy, readonly) NSArray<OCUINode *> *uiTrailingNavigationBarItems;
 
-- (OCUINode *(^)(void(^leadingBlock)(OCUICreate *c), void(^trailingBlock)(OCUICreate *c)))navigationBarItems;
+- (OCUINode *(^)(void(^_Nullable leadingBlock)(OCUICreate *c), void(^_Nullable trailingBlock)(OCUICreate *c)))navigationBarItems;
 
 @end
 

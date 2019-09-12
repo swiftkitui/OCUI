@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSArray<OCUINode *> *elenments;
 
 - (__kindof OCUINode *)addElenment:(OCUINode *)elenment;
-
 @end
 
 NS_ASSUME_NONNULL_END

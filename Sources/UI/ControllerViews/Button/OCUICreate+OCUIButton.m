@@ -11,6 +11,12 @@
 
 @implementation OCUICreate (OCUIButton)
 
+- (OCUIButton *(^)(void(^actionBlock)(void), OCUICreateElenmentBlock))Button {
+    return ^OCUIButton *(void(^actionBlock)(void), OCUICreateElenmentBlock) {
+        return [self addElenment:Button(actionBlock, block)];
+    };
+}
+
 @end
 
 FOUNDATION_EXPORT OCUIButton *Button(void(^actionBlock)(void), OCUICreateElenmentBlock) {

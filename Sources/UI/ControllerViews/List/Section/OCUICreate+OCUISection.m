@@ -11,6 +11,12 @@
 
 @implementation OCUICreate (OCUISection)
 
+- (OCUISection *(^)(OCUICreateElenmentBlock))Section {
+    return ^OCUISection *(OCUICreateElenmentBlock) {
+        return [self addElenment:Section(block)];
+    };
+}
+
 @end
 
 FOUNDATION_EXPORT OCUISection *Section(OCUICreateElenmentBlock) {

@@ -13,6 +13,15 @@
 
 @implementation OCUIStack
 
+- (void)loadElenmentInContentView:(UIView *)contentView {
+    [super loadElenmentInContentView:contentView];
+    
+}
+
+- (BOOL)isExitFloatSpacer {
+    return self.allFloatSpacers.count > 0;
+}
+
 @end
 
 @implementation OCUIStack (UIView)

@@ -7,8 +7,18 @@
 //
 
 #import "OCUINavigationView.h"
+#import "OCUIVStack.h"
 
 @implementation OCUINavigationView
+
+- (void)loadElenmentInContentView:(UIView *)contentView {
+    UIViewController *viewController = OCUIControllerWithView(contentView);
+    NSParameterAssert(viewController.navigationController);
+    [OCUIVStack boxElenmentsWithElenment:self];
+    [self.elenments enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj loadElenmentInContentView:contentView];
+    }];
+}
 
 @end
 

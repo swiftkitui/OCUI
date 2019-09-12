@@ -19,17 +19,26 @@
     return self;
 }
 
-- (void)bodyUI {
-    Text(self.title)
+- (void)bodyUI:(OCUICreate *)c {
+    c.Text(self.title)
     .bold();
     if (self.subTitle) {
-        Text(self.subTitle);
+        c.Text(self.subTitle);
     }
 }
 
 @end
 
+@implementation OCUICreate (PageRowView)
+
+- (PageRowView *(^)(NSString *title, NSString *subTitle))PageRow {
+    return ^PageRowView *(NSString *title, NSString *subTitle) {
+        return [self addElenment:PageRow(title, subTitle)];
+    };
+}
+
+@end
+
 FOUNDATION_EXPORT PageRowView *PageRow(NSString *title, NSString *subTitle) {
-    PageRowView *view = [[PageRowView alloc] initWithTitle:title subTitle:subTitle];
-    return view;
+    return [[PageRowView alloc] initWithTitle:title subTitle:subTitle];
 }

@@ -14,10 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT id OCUINodeGetProperty(OCUINode *node, SEL sel);
 FOUNDATION_EXPORT void OCUINodeSetProperty(OCUINode *node, SEL sel, id property);
+FOUNDATION_EXPORT UIViewController *OCUIControllerWithView(UIView *view);
 
 @interface OCUINode : NSObject
 
 @property (nonatomic, copy, readonly) NSArray<OCUINode *> *elenments;
+- (void)updateElenments:(NSArray<OCUINode *> *)elenments;
 
 @end
 
@@ -25,6 +27,7 @@ FOUNDATION_EXPORT void OCUINodeSetProperty(OCUINode *node, SEL sel, id property)
 @interface OCUINode (Init)
 
 - (instancetype)initWithElenmentsBlock:(void(^)(OCUICreate *c))block;
+
 
 @end
 

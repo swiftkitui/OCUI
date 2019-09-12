@@ -20,6 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface OCUICreate (PageRowView)
+
+- (PageRowView *(^)(NSString *title, NSString *subTitle))PageRow;
+
+@end
+
 FOUNDATION_EXPORT PageRowView *PageRow(NSString *title, NSString *subTitle);
 
 NS_ASSUME_NONNULL_END
