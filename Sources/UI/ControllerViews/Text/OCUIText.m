@@ -7,7 +7,6 @@
 //
 
 #import "OCUIText.h"
-#import "OCUICreate.h"
 
 @implementation OCUIText
 
@@ -24,51 +23,3 @@
 
 @end
 
-@implementation OCUINode (TextStyle)
-
-- (BOOL)isUIBold {
-    return [self.propertyGet(@selector(isUIBold)) boolValue];
-}
-
-- (BOOL)isUIItalic {
-    return [self.propertyGet(@selector(isUIItalic)) boolValue];
-}
-
-- (OCUINode *(^)(void))bold {
-    return ^OCUINode *{
-        self.propertySet(@(YES),@selector(isUIBold));
-        return self;
-    };
-}
-/// 设置斜体
-- (OCUINode *(^)(void))italic {
-    return ^OCUINode *{
-        self.propertySet(@(YES),@selector(isUIItalic));
-        return self;
-    };
-}
-
-@end
-
-@implementation OCUINode (TextColor)
-
-- (OCUIColor *)uiForegroundColor {
-    return self.propertyGet(@selector(uiForegroundColor));
-}
-
-- (OCUINode *(^)(OCUIColor *))foregroundColor {
-    return ^OCUINode *(OCUIColor *foregroundColor) {
-        self.propertySet(foregroundColor,@selector(uiForegroundColor));
-        return self;
-    };
-}
-
-@end
-
-@implementation FontWeight
-
-+ (FontWeight *)black {
-    return [FontWeight new];
-}
-
-@end

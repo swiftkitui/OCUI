@@ -32,7 +32,7 @@
                 isExitFloatView = YES;
             }
         }];
-        [stack.nodes enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [stack.elenments enumerateObjectsUsingBlock:^(OCUINode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (![obj isKindOfClass:[OCUISpacer class]]) {
                 return;
             }
@@ -136,8 +136,8 @@
             }];
             topView = obj;
         }];
-        if ([stack.nodes.lastObject isKindOfClass:[OCUISpacer class]]) {
-            OCUISpacer *spacer = (OCUISpacer *)stack.nodes.lastObject;
+        if ([stack.elenments.lastObject isKindOfClass:[OCUISpacer class]]) {
+            OCUISpacer *spacer = (OCUISpacer *)stack.elenments.lastObject;
             if (spacer.uiFlxedOffset != NSNotFound) {
                 [flxedLayoutItems addObject:OCUICreateLayoutItem(spacer.uiFlxedOffset, stack.allLayoutViews.lastObject, nil, nil)];
             } else {
